@@ -44,12 +44,12 @@ const styles = StyleSheet.create({
         alignSelf:"center",
         backgroundColor:AppColors.primary,
         width:width(80),
-        borderRadius:20
+        borderRadius:30
     },
     loginContainer:{
         // backgroundColor:AppColors.white,
         margin:width(1),
-        paddingHorizontal:width(5),
+        paddingHorizontal:width(10),
         paddingVertical:height(1),
         borderRadius:20,
         alignItems:'center',
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     signupContainer:{
         // backgroundColor:AppColors.white,
         margin:width(1),
-        paddingHorizontal:width(5),
+        paddingHorizontal:width(10),
         paddingVertical:height(1),
         borderRadius:20,
         alignItems:'center',
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     onFocusStyle:{
         backgroundColor:AppColors.white,
         margin:width(1),
-        paddingHorizontal:width(5),
+        paddingHorizontal:width(10),
         paddingVertical:height(1),
         borderRadius:20,
         alignItems:'center',
