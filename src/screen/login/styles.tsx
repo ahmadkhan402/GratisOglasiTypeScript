@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         paddingLeft:width(2)
     },
     section: {
+      justifyContent:"space-between",
         flexDirection: 'row',
         alignItems: 'center',
       },
@@ -38,6 +39,13 @@ const styles = StyleSheet.create({
         fontSize:14,
         fontWeight:"600",
         color:AppColors.boulder
+      },
+      checkboxContainer:{
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"flex-start",
+        paddingVertical:height(1),
+        paddingLeft:width(2)
       }
 })
 
