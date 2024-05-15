@@ -1,7 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import styles from "./styles";
-import { StatusBar } from "expo-status-bar";
+import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from "@expo/vector-icons";
 
 import { LinearGradient } from "expo-linear-gradient";
@@ -31,6 +31,7 @@ export default function Authentication() {
   //   scrollViewProps={{ showsVerticalScrollIndicator: false }}
   // >
     <View style={styles.parentView}>
+      <StatusBar backgroundColor={AppColors.primary} />
       <TouchableOpacity style={styles.back}>
         <Ionicons name="chevron-back" size={24} color="black" />
       </TouchableOpacity>

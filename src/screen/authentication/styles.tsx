@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     parentView: {
         flex: 1,
         paddingHorizontal:width(5),
+        paddingTop:height(5),
         
     },
     statusBar:{
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
     },
    
     back:{
-        paddingTop:height(5)
+        // paddingTop:height(5)
     },
     textContainer:{
         paddingTop:height(1),
