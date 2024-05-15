@@ -2,11 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Route from './src/routes';
 import BottomTab from './src/routes/Bottom';
+import { AuthScreen } from './src/screen';
 
 export default function App() {
   return (
-
-      <Route />
+<AuthScreen/>
+      // <Route />
       // <BottomTab/>
     
   );
