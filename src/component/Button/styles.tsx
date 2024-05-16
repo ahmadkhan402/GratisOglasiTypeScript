@@ -5,11 +5,11 @@ import AppColors from "../../utils/AppColors";
 const styles = StyleSheet.create({
     btnContainer: {
         backgroundColor: AppColors.yellow,
-        borderRadius: 20,
+        borderRadius: 25,
         height: height(6),
         alignItems: "center",
         justifyContent: "center",
-        marginVertical: 10,
+        marginVertical: height(2.5),
 
     },
     btnText: {

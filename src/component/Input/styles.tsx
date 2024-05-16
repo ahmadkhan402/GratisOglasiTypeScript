@@ -3,24 +3,51 @@ import { height, width } from "../../utils/Dimension";
 import AppColors from "../../utils/AppColors";
 
 const styles = StyleSheet.create({
-    parentView: {
-        // flex: 1,
-        // paddingHorizontal: 20,
-       
-    },
-    textInputContainer:{
-        paddingHorizontal:width(3),
-        justifyContent:"center",
-        borderColor:AppColors.primary,
-        width:width(82),
-        height:height(5),
-        borderWidth:1,
-        borderRadius:20,
-        marginBottom:height(1)
-    },
-    textInput: {
-        width: '100%',
-    }
-})
+  parentView: {
+    // flex: 1,
+    // paddingHorizontal: 20,
+  },
+  textInputContainer: {
+    paddingHorizontal: width(5),
+    justifyContent: "center",
+    borderColor: AppColors.primary,
+    width: width(90),
+    height: height(6),
+    borderWidth: 1,
+    borderRadius: 25,
+    marginBottom: height(1),
+  },
+  textInput: {
+    width: "100%",
+  },
+  phoneInputText: {
+    flex: 1,
+  },
+  inputPhoneContainer: {
+    width: width(90),
+    marginBottom: height(1),
+    borderWidth: 1,
+    borderColor: AppColors.primary,
+    borderRadius: 26,
+    paddingHorizontal: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center",
+  },
+  phoneInputContainer: {
+    height: height(6),
+  
+  },
+  inputPhoneTextContainer: {
+    height: height(6),
+    backgroundColor: AppColors.white,
+    borderRadius: 20,
+    justifyContent: "center",
+  },
 
-export default styles
+  inputPhoneFlag:{
+    backgroundColor:AppColors.primary
+  }
+});
+
+export default styles;

@@ -4,8 +4,8 @@ import AppColors from "../../utils/AppColors";
 const styles = StyleSheet.create({
     parentView: {
         flex: 1,
-        paddingHorizontal:width(5),
-        paddingTop:height(5),
+        // paddingHorizontal:width(5),
+        // paddingTop:height(6),
         
     },
     statusBar:{
@@ -22,7 +22,11 @@ const styles = StyleSheet.create({
     },
    
     back:{
-        // paddingTop:height(5)
+        // backgroundColor:AppColors.primary,
+        height:height(5),
+        width:width(10),
+        alignItems:"center"
+        
     },
     textContainer:{
         paddingTop:height(1),

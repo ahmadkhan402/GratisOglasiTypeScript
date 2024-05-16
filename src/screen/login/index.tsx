@@ -4,21 +4,25 @@ import styles from "./styles";
 import Input from "../../component/Input";
 import AppColors from "../../utils/AppColors";
 import Checkbox from "expo-checkbox";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+// import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Button from "../../component/Button";
-
-
-export default function Login() {
-  const [isChecked, setChecked] = useState<any>(false);
+import ButtonLight from "../../component/ButtonLight";
+import SignUp from "../signup";
+interface SignInProps {
+  onSignUpPress: () => void; // Callback function to handle navigation to SignIn
+}
+export default function Login({onSignUpPress}: SignInProps) {
+  const [isChecked, setChecked] = useState<boolean>(false);
 
   return (
-    <KeyboardAwareScrollView style={styles.parentView}>
+    <View style={styles.parentView} >
       <Text style={styles.label}>Email</Text>
 
-      <Input style={styles.textInput} placeholder="Email" mode="email" />
+      <Input hide={false} placeholder="Email" mode ="text" type= "email-address" />
       <Text style={styles.label}>Password</Text>
 
-      <Input placeholder="Password" mode="password" />
+      <Input hide={true} placeholder="Password" mode="text" type = "default"/>
       <View style={styles.section}>
         <View style={styles.checkboxContainer}>
           <Checkbox
@@ -29,11 +33,17 @@ export default function Login() {
           />
           <Text style={styles.labelRemember}>Remember Me</Text>
         </View>
-        <Text style={styles.forgotPassword}>Forgot Password?</Text>
+        <ButtonLight press={() => {}} title ="Forgot Password?"/>
+        {/* <Text style={styles.forgotPassword}>Forgot Password?</Text> */}
       </View>
 
-      <Button title="Login"/>
-      <Text>Don't have an account?</Text>
-    </KeyboardAwareScrollView>
+      <Button press={() => {}} title="Login"/>
+      <View style={styles.dontHaveAccount}>
+      <Text style={styles.labelRemember}>Don't have an account?</Text>
+      <ButtonLight press={() => onSignUpPress()} title ="Sign Up!"/>
+      {/* <Text style={styles.labelSignUp}>Sign up!</Text> */}
+      </View>
+     
+    </View>
   );
 }

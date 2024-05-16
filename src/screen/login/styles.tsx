@@ -5,8 +5,10 @@ import AppColors from "../../utils/AppColors";
 const styles = StyleSheet.create({
     parentView: {
         flex: 1,
-        paddingHorizontal: 12,
+        // paddingHorizontal: 12,
        paddingTop:height(3),
+      //  justifyContent:"center",
+       alignSelf:"center"
        
     },
     textInput: {
@@ -31,22 +33,32 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '200',
         color: AppColors.boulder,
+        textAlign:"center",
       },
       checkbox: {
         margin: 8,
       },
-      forgotPassword:{
-        fontSize:14,
-        fontWeight:"600",
-        color:AppColors.boulder
-      },
+    
       checkboxContainer:{
         flexDirection:"row",
         alignItems:"center",
         justifyContent:"flex-start",
         paddingVertical:height(1),
         paddingLeft:width(2)
-      }
+      },
+      dontHaveAccount:{
+        flexDirection:"row",
+        alignSelf:"center",
+        justifyContent:"center"
+      },
+      labelSignUp:{
+        textAlign:"center",
+        fontWeight:"600",
+        fontSize:16,
+        paddingLeft:width(1)
+      },
+      
+
 })
 
 export default styles
