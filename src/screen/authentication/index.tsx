@@ -1,9 +1,16 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Pressable,
+  Button,
+} from "react-native";
 import React, { useState } from "react";
 import styles from "./styles";
 import { StatusBar } from "expo-status-bar";
-import { Ionicons } from "@expo/vector-icons";
-
+import { Ionicons ,AntDesign} from "@expo/vector-icons";
+import Modal from "react-native-modal";
 import { LinearGradient } from "expo-linear-gradient";
 import AppColors from "../../utils/AppColors";
 import Login from "../login";
@@ -16,6 +23,8 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import StatusBarCustom from "react-native-custom-statusbar";
+import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
+import { height, width } from "../../utils/Dimension";
 
 interface LoginState {
   email: string;
@@ -26,11 +35,18 @@ export default function Authentication() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [focusedButton, setFocusedButton] = useState<string | null>("login"); // Track focused button
+  const [visible, setVisible] = useState(false);
+  const [ShowMenu, setShowMenu] = useState<string>("English");
 
-  const insets = useSafeAreaInsets();
+  const hideMenu = (value: string) =>{
+    setVisible(false);
+    setShowMenu(value);
+  } 
+
+  const showMenu = () => setVisible(true);
 
   const toggleItem = (buttonName: "login" | "signup") => {
-    setFocusedButton(buttonName); 
+    setFocusedButton(buttonName);
   };
 
   const handleSignInPress = () => {
@@ -40,7 +56,7 @@ export default function Authentication() {
   const handleSignUpPress = () => {
     setFocusedButton("signup");
   };
-  
+
   return (
     //   <ScreenWrapper
     //   statusBarColor={AppColors.primary}
@@ -49,9 +65,8 @@ export default function Authentication() {
     //   scrollViewProps={{ showsVerticalScrollIndicator: false }}
     // >
     <StatusBarCustom
-      backgroundColor= {AppColors.primary}
+      backgroundColor={AppColors.primary}
       barStyle="dark-content"
-
     >
       {/* <KeyboardAwareScrollView style={[styles.parentView,{
       // Paddings to handle safe area
@@ -60,10 +75,17 @@ export default function Authentication() {
       paddingLeft: insets.left,
       paddingRight: insets.right}]}>
    */}
-     <KeyboardAwareScrollView style={styles.parentView} showsVerticalScrollIndicator={false}>
+      <KeyboardAwareScrollView
+        style={styles.parentView}
+        showsVerticalScrollIndicator={false}
+      >
         {/* <StatusBar backgroundColor={AppColors.primary} /> */}
-        <TouchableOpacity style={styles.back} onPress={() => {console.log("Back icon");
-        }}>
+        <TouchableOpacity
+          style={styles.back}
+          onPress={() => {
+            console.log("Back icon");
+          }}
+        >
           <Ionicons name="chevron-back" size={30} color="black" />
         </TouchableOpacity>
         {/* <StatusBar style={} /> */}
@@ -77,7 +99,22 @@ export default function Authentication() {
           <Text style={styles.welcomeText}>Welcome</Text>
           <Text style={styles.enterDetailsText}>Please enter your details</Text>
         </View>
+        <View style={{ height: height(5), alignItems: 'flex-end', justifyContent: 'center', paddingRight: width(15) }}>
+       <View style={{ flexDirection: 'row' , alignItems: 'center'}}>
+        <Text style={styles.MenuText} onPress={showMenu}>{ShowMenu}</Text>
+        <AntDesign name="caretdown" size={8} color="black" style={styles.MenuIcon} />
+        </View>
+      <Menu
+        visible={visible}
+        // anchor={}
+         onRequestClose={() => hideMenu(ShowMenu) }
+      >
+        <MenuItem textStyle={styles.MenuText} onPress={()=>hideMenu("English")}>English</MenuItem>
 
+        <MenuDivider />
+        <MenuItem  textStyle={styles.MenuText} onPress={()=>hideMenu("Bonian")}>Bonian</MenuItem>
+      </Menu>
+      </View>
         <LinearGradient
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
@@ -110,7 +147,11 @@ export default function Authentication() {
           </TouchableOpacity>
         </LinearGradient>
 
-        {focusedButton === "login" ? <Login onSignUpPress={handleSignUpPress}   /> : <SignUp onSignInPress={handleSignInPress} />}
+        {focusedButton === "login" ? (
+          <Login onSignUpPress={handleSignUpPress} />
+        ) : (
+          <SignUp onSignInPress={handleSignInPress} />
+        )}
       </KeyboardAwareScrollView>
       {/* </KeyboardAwareScrollView> */}
     </StatusBarCustom>

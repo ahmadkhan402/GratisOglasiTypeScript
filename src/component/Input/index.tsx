@@ -49,6 +49,7 @@ export default function Input({ placeholder, mode, type ,hide}: InputProps) {
           containerStyle={styles.inputPhoneContainer}
           textInputStyle={styles.phoneInputContainer}
           textContainerStyle={styles.inputPhoneTextContainer}
+          filterProps={{ placeholder: "Phone number" }}
         />
       ) : (
         <View style={styles.textInputContainer}>
