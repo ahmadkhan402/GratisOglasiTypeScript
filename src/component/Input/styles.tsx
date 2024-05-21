@@ -18,7 +18,12 @@ const styles = StyleSheet.create({
     marginBottom: height(1),
   },
   textInput: {
-    width: "100%",
+    // backgroundColor: AppColors.red,
+    width: width(80),
+  },
+  textInputHide:{
+    // backgroundColor: AppColors.red,
+    width:width(71)
   },
   phoneInputText: {
     flex: 1,
@@ -47,7 +52,13 @@ const styles = StyleSheet.create({
 
   inputPhoneFlag:{
     backgroundColor:AppColors.primary
-  }
+  },
+  icon:{
+    
+    // backgroundColor:AppColors.primary
+  },
+  textViewContainer: {
+    flexDirection:"row", justifyContent:"space-between",alignItems:"center"}
 });
 
 export default styles;

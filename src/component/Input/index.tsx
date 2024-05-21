@@ -1,30 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import React, { useRef, useState } from "react";
+import { View, TextInput, TouchableOpacity, KeyboardTypeOptions, TextInputProps } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import styles from "./styles";
 import PhoneInput from "react-native-phone-number-input";
+import { height, width } from "../../utils/Dimension";
 
-interface InputProps {
-  placeholder: string;
-  mode?: "none" | "text" | "numeric" | "email-address" | "phone-pad"; 
-  type?:
-    | "default"
-    | "number-pad"
-    | "decimal-pad"
-    | "numeric"
-    | "email-address"
-    | "phone-pad"
-    | "ascii-capable"
-    | "numbers-and-punctuation"
-    | "url"
-    | "name-phone-pad"
-    | "twitter"
-    | "web-search"
-    | undefined; 
-    hide:boolean
+interface InputProps extends TextInputProps {
+  mode?: TextInputProps['inputMode']; 
+  type?: KeyboardTypeOptions;
+  hide?: boolean;
+  val?: string;
+  style?:any
 }
 
-export default function Input({ placeholder, mode, type ,hide}: InputProps) {
+export default function Input({ mode, type, hide = false ,val ,style, ...rest }: InputProps) {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [value, setValue] = useState<string>("");
   const [formattedValue, setFormattedValue] = useState<string>("");
@@ -52,34 +41,27 @@ export default function Input({ placeholder, mode, type ,hide}: InputProps) {
           filterProps={{ placeholder: "Phone number" }}
         />
       ) : (
-        <View style={styles.textInputContainer}>
-          {hide ? (
-             <View  style={{flexDirection:"row", justifyContent:"space-between",alignItems:"center"}}>
-              <TextInput
-                placeholder={placeholder}
-                placeholderTextColor={"gray"}
-                keyboardType={type}
-                inputMode={mode}
-                secureTextEntry={!showMessage ? false : true}
-              />
-              <TouchableOpacity onPress={() => setShowMessage(!showMessage)}>
+        <View style={[styles.textInputContainer,style]}>
+          <View style={styles.textViewContainer}>
+            <TextInput
+              style={[hide ? styles.textInputHide : styles.textInput ,style]}
+              value={val}
+              placeholderTextColor={"gray"}
+              keyboardType={type}
+              inputMode={mode}
+              secureTextEntry={showMessage}
+              {...rest}
+            />
+            {hide && (
+              <TouchableOpacity style={styles.icon} onPress={() => setShowMessage(!showMessage)}>
                 <Entypo
-                  name={!showMessage ? "eye" : "eye-with-line"}
+                  name={!showMessage ? "eye-with-line" : "eye"}
                   size={25}
                   color={"gray"}
                 />
               </TouchableOpacity>
-              </View>
-          ) : (
-           
-            <TextInput
-              placeholder={placeholder}
-              placeholderTextColor={"gray"}
-              keyboardType={type}
-              inputMode={mode}
-            />
-          
-          )}
+            )}
+          </View>
         </View>
       )}
     </View>

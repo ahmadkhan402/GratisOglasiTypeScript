@@ -6,29 +6,40 @@ import AppColors from "../../utils/AppColors";
 import Checkbox from "expo-checkbox";
 import Button from "../../component/Button";
 import ButtonLight from "../../component/ButtonLight";
+import { useNavigation } from "@react-navigation/native";
+import ScreenNames from "../../routes/routes";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../utils/params";
 
+
+
+
+type SignUpScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, ScreenNames.Chat>;
 
 interface SignUpProps {
-  onSignInPress: () => void; // Callback function to handle navigation to SignIn
+  onSignInPress: () => void; 
 }
 export default function SignUp({ onSignInPress }: SignUpProps) {
   const [isChecked, setChecked] = useState<boolean>(false);
-
+  const [email , setEmail] = useState<string>("");
+  const [password , setPassword] = useState<string>("");
+const navigation = useNavigation<SignUpScreenNavigationProp>();
   return (
     <View style={styles.parentView}>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>First Name</Text>
-        <Input hide={false}  placeholder="FirstName" mode="text" />
+       
+        <Input val="" style={{}} hide={false}  placeholder="FirstName" mode="text"  />
         <Text style={styles.label}>Last Name</Text>
-        <Input hide={false}  placeholder="Last Name" mode="text" />
+        <Input val="" style={{}} hide={false}  placeholder="Last Name" mode="text" />
         <Text style={styles.label}>Email</Text>
-        <Input hide={false}  placeholder="Email"   mode="text"  />
+        <Input val={email} style={{}} hide={false}  placeholder="Email"   mode="text" onChangeText={(e) => setEmail(e)} />
         <Text style={styles.label}>Password</Text>
-        <Input hide={true}  placeholder="Password"  mode="text"  />
+      <Input val={password} style={{}} hide={true}  placeholder="Password"  mode="text" onChangeText={(e) => setPassword(e)} />
         <Text style={styles.label}>Confirm Password</Text>
-        <Input hide={true} placeholder="Confirm Password"  mode="text" />
+        <Input val="" style={{}} hide={true} placeholder="Confirm Password"  mode="text" />
         <Text style={styles.label}>Phone Number</Text>
-        <Input hide={false}  placeholder="Phone Number"  mode="numeric" />
+        <Input val="" style={{}} hide={false}  placeholder="Phone Number"  mode="numeric" />
 
         <View style={styles.checkboxContainer}>
           <Checkbox
@@ -50,7 +61,7 @@ export default function SignUp({ onSignInPress }: SignUpProps) {
             </TouchableOpacity>
           </View>
         </View>
-        <Button press={() => {}} title="Sign up" />
+        <Button onPress={()=>navigation.navigate(ScreenNames.Chat ,{Email : email , Password : password })} title="Sign up" />
 
         <View style={styles.haveAccount}>
           <Text style={styles.alreadyAccoutLabel}>

@@ -9,12 +9,22 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Button from "../../component/Button";
 import ButtonLight from "../../component/ButtonLight";
 import SignUp from "../signup";
+import CustomModal from "../../component/CustomModal";
 interface SignInProps {
   onSignUpPress: () => void; // Callback function to handle navigation to SignIn
 }
 export default function Login({onSignUpPress}: SignInProps) {
   const [isChecked, setChecked] = useState<boolean>(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [email, setEmail] = useState('');
+  const handleCancel = () => {
+    setModalVisible(false);
+  };
 
+  const handleReset = () => {
+    setEmail('');
+    setModalVisible(false);
+  };
   return (
     <View style={styles.parentView} >
       <Text style={styles.label}>Email</Text>
@@ -33,17 +43,24 @@ export default function Login({onSignUpPress}: SignInProps) {
           />
           <Text style={styles.labelRemember}>Remember Me</Text>
         </View>
-        <ButtonLight press={() => {}} title ="Forgot Password?"/>
+        <ButtonLight press={() => setModalVisible(true)} title ="Forgot Password?"/>
         {/* <Text style={styles.forgotPassword}>Forgot Password?</Text> */}
       </View>
 
-      <Button press={() => {}} title="Login"/>
+      <Button onPress={()=>{}} title="Login"/>
       <View style={styles.dontHaveAccount}>
       <Text style={styles.labelRemember}>Don't have an account?</Text>
       <ButtonLight press={() => onSignUpPress()} title ="Sign Up!"/>
       {/* <Text style={styles.labelSignUp}>Sign up!</Text> */}
       </View>
      
+      <CustomModal
+        visible={modalVisible}
+        onCancel={handleCancel}
+        onReset={handleReset}
+        email={email}
+        setEmail={setEmail}
+      />
     </View>
   );
 }

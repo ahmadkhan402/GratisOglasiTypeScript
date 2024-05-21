@@ -2,9 +2,13 @@ import { View, Text, Button } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import ScreenNames from '../../routes/routes'
+import { RootStackParamList } from '../../utils/params'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+
+type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, ScreenNames.Home>;
 
 export default function Home() {
-  const navigation = useNavigation()
+  const navigation = useNavigation<HomeScreenNavigationProp>()
   return (
     <View>
       <Text>Home</Text>

@@ -1,25 +1,19 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { LogBox, StyleSheet, Text, View, YellowBox } from "react-native";
 import Route from "./src/routes";
 import BottomTab from "./src/routes/Bottom";
 import { AuthScreen } from "./src/screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
+  React.useLayoutEffect(() => {
+    LogBox.ignoreAllLogs(true);
+  }, []);
+
   return (
     <SafeAreaProvider>
-      <AuthScreen />
+       <Route />
     </SafeAreaProvider>
-    // <Route />
-    // <BottomTab/>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

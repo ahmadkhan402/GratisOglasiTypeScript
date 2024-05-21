@@ -5,13 +5,14 @@ import { NavigationContainer } from '@react-navigation/native'
 import ScreenNames from './routes'
 import { AdPostScreen, AuthScreen, ChatScreen, EditProfileScreen, HomeScreen, MyAdsScreen, ProfileScreen } from '../screen'
 import BottomTab from './Bottom'
+import { RootStackParamList } from '../utils/params'
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator<RootStackParamList>()
 export default function Route() {
   return (
   <NavigationContainer>
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name={ScreenNames.Home} component={BottomTab} />
+  <Stack.Navigator initialRouteName={ScreenNames.Authentication} screenOptions={{headerShown: false}}>
+    <Stack.Screen name={ScreenNames.Home} component={BottomTab} />
         <Stack.Screen name={ScreenNames.Chat} component={ChatScreen} />
         {/* <Stack.Screen name={ScreenNames.AdPost} component={AdPostScreen} /> */}
         {/* <Stack.Screen name={ScreenNames.EditProfile} component={EditProfileScreen} /> */}
