@@ -3,11 +3,11 @@
 import ScreenNames from "../routes/routes";
 
 export type RootStackParamList = {
-  [ScreenNames.Home]: undefined;
-  [ScreenNames.Chat]: { Email?: string; Password?: string };
-  [ScreenNames.AdPost]?: undefined;
-  [ScreenNames.EditProfile]?: undefined;
-  [ScreenNames.Profile]: undefined;
-  [ScreenNames.MyAds]: undefined;
-  [ScreenNames.Authentication]: undefined;
+  [ScreenNames.HOME]: undefined;
+  [ScreenNames.CHAT]: { Email?: string; Password?: string };
+  [ScreenNames.ADPOST]?: undefined;
+  [ScreenNames.EDITPROFILE]?: undefined;
+  [ScreenNames.PROFILE]: undefined;
+  [ScreenNames.MYADS]: undefined;
+  [ScreenNames.AUTHENTICATION]: undefined;
 };

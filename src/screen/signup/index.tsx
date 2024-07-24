@@ -11,35 +11,73 @@ import ScreenNames from "../../routes/routes";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../utils/params";
 
-
-
-
-type SignUpScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, ScreenNames.Chat>;
+type SignUpScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  ScreenNames.CHAT
+>;
 
 interface SignUpProps {
-  onSignInPress: () => void; 
+  onSignInPress: () => void;
 }
 export default function SignUp({ onSignInPress }: SignUpProps) {
   const [isChecked, setChecked] = useState<boolean>(false);
-  const [email , setEmail] = useState<string>("");
-  const [password , setPassword] = useState<string>("");
-const navigation = useNavigation<SignUpScreenNavigationProp>();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const navigation = useNavigation<SignUpScreenNavigationProp>();
   return (
     <View style={styles.parentView}>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>First Name</Text>
-       
-        <Input val="" style={{}} hide={false}  placeholder="FirstName" mode="text"  />
+
+        <Input
+          val=""
+          style={{}}
+          hide={false}
+          placeholder="First Name"
+          mode="text"
+        />
         <Text style={styles.label}>Last Name</Text>
-        <Input val="" style={{}} hide={false}  placeholder="Last Name" mode="text" />
+        <Input
+          val=""
+          style={{}}
+          hide={false}
+          placeholder="Last Name"
+          mode="text"
+        />
         <Text style={styles.label}>Email</Text>
-        <Input val={email} style={{}} hide={false}  placeholder="Email"   mode="text" onChangeText={(e) => setEmail(e)} />
+        <Input
+          val={email}
+          style={{}}
+          hide={false}
+          placeholder="Email"
+          mode="text"
+          onChangeText={(e) => setEmail(e)}
+        />
         <Text style={styles.label}>Password</Text>
-      <Input val={password} style={{}} hide={true}  placeholder="Password"  mode="text" onChangeText={(e) => setPassword(e)} />
+        <Input
+          val={password}
+          style={{}}
+          hide={true}
+          placeholder="Password"
+          mode="text"
+          onChangeText={(e) => setPassword(e)}
+        />
         <Text style={styles.label}>Confirm Password</Text>
-        <Input val="" style={{}} hide={true} placeholder="Confirm Password"  mode="text" />
+        <Input
+          val=""
+          style={{}}
+          hide={true}
+          placeholder="Confirm Password"
+          mode="text"
+        />
         <Text style={styles.label}>Phone Number</Text>
-        <Input val="" style={{}} hide={false}  placeholder="Phone Number"  mode="numeric" />
+        <Input
+          val=""
+          style={{}}
+          hide={false}
+          placeholder="Phone Number"
+          mode="numeric"
+        />
 
         <View style={styles.checkboxContainer}>
           <Checkbox
@@ -61,7 +99,15 @@ const navigation = useNavigation<SignUpScreenNavigationProp>();
             </TouchableOpacity>
           </View>
         </View>
-        <Button onPress={()=>navigation.navigate(ScreenNames.Chat ,{Email : email , Password : password })} title="Sign up" />
+        <Button
+          onPress={() =>
+            navigation.navigate(ScreenNames.CHAT, {
+              Email: email,
+              Password: password,
+            })
+          }
+          title="Sign up"
+        />
 
         <View style={styles.haveAccount}>
           <Text style={styles.alreadyAccoutLabel}>

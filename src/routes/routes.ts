@@ -1,16 +1,15 @@
 enum ScreenNames {
-    Home = 'Home',
-    Profile = 'Profile',
-    Chat = 'Chat',
-    MyAds = 'MyAds',
-    Authentication = 'Authentication',
-    AdPost = 'AdPost',
-    EditProfile = 'EditProfile',
-    TabHome = 'TabHome',
-    TabAuthentication = 'TabAuthentication',
-    TabAdPost = 'TabAdPost',
-    homeStack = 'homeStack',
+  HOME = "Home",
+  PROFILE = "Profile",
+  CHAT = "Chat",
+  MYADS = "MyAds",
+  AUTHENTICATION = "Authentication",
+  ADPOST = "AdPost",
+  EDITPROFILE = "EditProfile",
+  TABHOME = "TabHome",
+  TABAUTHENTICATION = "TabAuthentication",
+  TABADPOST = "TabAdPost",
+  HOMESTACK = "homeStack",
 }
 
-export default ScreenNames
-
+export default ScreenNames;
