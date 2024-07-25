@@ -61,6 +61,16 @@ const styles = StyleSheet.create({
   latestAdsView: {
     marginTop: height(1),
   },
+  loadingView: {
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+  },
+  loaderImg: {
+    width: width(50),
+    height: height(20),
+    resizeMode: "contain",
+  },
 });
 
 export default styles;

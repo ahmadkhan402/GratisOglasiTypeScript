@@ -11,7 +11,7 @@ const getLatestAds = async () => {
   }
 };
 
-const getTopAds = async (cate, page, limit) => {
+const getTopAds = async (cate: string, page: number, limit: number) => {
   try {
     let response = await fetch(mainUrl + `item/newSearch`, {
       method: "POST",
@@ -35,7 +35,7 @@ const getTopAds = async (cate, page, limit) => {
   }
 };
 
-const getAllLatestAds = async (pageNum) => {
+const getAllLatestAds = async (pageNum: number) => {
   try {
     let response = await fetch(mainUrl + `item/getAll?page=${pageNum}`);
     let json = await response.json();
@@ -47,7 +47,7 @@ const getAllLatestAds = async (pageNum) => {
   }
 };
 
-const getMyAds = async (query, page) => {
+const getMyAds = async (query: object, page: number) => {
   try {
     let response = await fetch(mainUrl + "item/findItem", {
       method: "POST",
@@ -69,7 +69,7 @@ const getMyAds = async (query, page) => {
   }
 };
 
-const getFavorites = async (userid, pageNum) => {
+const getFavorites = async (userid: string, pageNum: number) => {
   try {
     let response = await fetch(
       mainUrl + `item/favorites/get/${userid}?page=${pageNum}`
@@ -82,7 +82,11 @@ const getFavorites = async (userid, pageNum) => {
   }
 };
 
-const getCategoryAds = async (cate, subCate, pageNumber) => {
+const getCategoryAds = async (
+  cate: string,
+  subCate: string,
+  pageNumber: number
+) => {
   try {
     let response = await fetch(mainUrl + "item/newSearch", {
       method: "POST",
@@ -105,7 +109,7 @@ const getCategoryAds = async (cate, subCate, pageNumber) => {
   }
 };
 
-const searchAds = async (item, pageNum) => {
+const searchAds = async (item: string, pageNum: number) => {
   try {
     let response = await fetch(mainUrl + "item/newSearch", {
       method: "POST",
@@ -127,7 +131,11 @@ const searchAds = async (item, pageNum) => {
   }
 };
 
-const searchAdsByCategory = async (category, searchTerm, pageNum) => {
+const searchAdsByCategory = async (
+  category: string,
+  searchTerm: string,
+  pageNum: number
+) => {
   try {
     let response = await fetch(mainUrl + "item/newSearch", {
       method: "POST",
@@ -150,7 +158,11 @@ const searchAdsByCategory = async (category, searchTerm, pageNum) => {
   }
 };
 
-const searchAdsBySubCategory = async (subCategory, searchTerm, pageNum) => {
+const searchAdsBySubCategory = async (
+  subCategory: string,
+  searchTerm: string,
+  pageNum: number
+) => {
   try {
     let response = await fetch(mainUrl + "item/newSearch", {
       method: "POST",
@@ -173,7 +185,7 @@ const searchAdsBySubCategory = async (subCategory, searchTerm, pageNum) => {
   }
 };
 
-const filterAds = async (details) => {
+const filterAds = async (details: object) => {
   try {
     let response = await fetch(mainUrl + "item/newSearch", {
       method: "POST",

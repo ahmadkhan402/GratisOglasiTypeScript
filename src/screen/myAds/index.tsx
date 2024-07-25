@@ -1,10 +1,10 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React, { useEffect } from "react";
 
 export default function MyAds() {
-  return (
-    <View>
-      <Text>MyAds</Text>
-    </View>
-  )
+  const getMyads = async () => {};
+  useEffect(() => {
+    getMyads();
+  });
+  return <View></View>;
 }

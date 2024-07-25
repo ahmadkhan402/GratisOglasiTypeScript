@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
   adsHeader: {
     width: width(98),
     height: height(15),
-    backgroundColor: AppColors.lightGrey,
     alignSelf: "center",
     justifyContent: "space-between",
     alignItems: "center",
@@ -54,6 +53,15 @@ const styles = StyleSheet.create({
   },
   displayView: {
     width: width(98),
+  },
+  cardView: {
+    width: width(46),
+    height: height(38),
+    borderWidth: 1,
+    borderColor: AppColors.primary,
+    borderRadius: 10,
+    padding: width(2),
+    backgroundColor: AppColors.white,
   },
 });
 

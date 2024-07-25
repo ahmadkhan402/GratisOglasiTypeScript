@@ -8,9 +8,12 @@ const styles = StyleSheet.create({
     // height: height(40),
     marginVertical: height(1),
     // alignSelf: "center",
+    marginRight: width(1),
   },
   cardView: {
-    marginLeft: width(3),
+    // margin: width(1.7),
+    marginLeft: width(2.5),
+    marginVertical: height(1),
     width: width(46),
     height: height(38),
     borderWidth: 1,
