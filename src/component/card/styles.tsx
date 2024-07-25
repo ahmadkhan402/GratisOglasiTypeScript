@@ -4,16 +4,16 @@ import { height, width } from "../../utils/Dimension";
 
 const styles = StyleSheet.create({
   cardContainer: {
-    width: width(95),
+    width: width(100),
     // height: height(40),
     marginVertical: height(1),
-    alignSelf: "center",
+    // alignSelf: "center",
   },
   cardView: {
+    marginLeft: width(3),
     width: width(46),
     height: height(38),
     borderWidth: 1,
-    margin: width(1),
     borderColor: AppColors.primary,
     borderRadius: 10,
     padding: width(2),
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   title: {
+    maxWidth: width(41),
     fontSize: 15,
     fontWeight: "900",
   },
@@ -47,6 +48,8 @@ const styles = StyleSheet.create({
     color: AppColors.gray,
   },
   location: {
+    width: width(42),
+    height: height(5),
     marginVertical: height(0.5),
     fontSize: 14,
     fontWeight: "500",

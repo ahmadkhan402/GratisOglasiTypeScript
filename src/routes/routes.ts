@@ -10,6 +10,7 @@ enum ScreenNames {
   TABAUTHENTICATION = "TabAuthentication",
   TABADPOST = "TabAdPost",
   HOMESTACK = "homeStack",
+  ADS = "Ads",
 }
 
 export default ScreenNames;

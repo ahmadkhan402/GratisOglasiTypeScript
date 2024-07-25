@@ -10,4 +10,5 @@ export type RootStackParamList = {
   [ScreenNames.PROFILE]: undefined;
   [ScreenNames.MYADS]: undefined;
   [ScreenNames.AUTHENTICATION]: undefined;
+  [ScreenNames.ADS]: { cate?: string; subCate?: string };
 };

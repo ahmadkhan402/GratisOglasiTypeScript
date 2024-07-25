@@ -14,6 +14,7 @@ import {
 } from "../screen";
 import BottomTab from "./Bottom";
 import { RootStackParamList } from "../utils/params";
+import Ads from "../screen/ads";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function Route() {
@@ -33,6 +34,7 @@ export default function Route() {
         />
         <Stack.Screen name={ScreenNames.PROFILE} component={ProfileScreen} />
         <Stack.Screen name={ScreenNames.MYADS} component={MyAdsScreen} />
+        <Stack.Screen name={ScreenNames.ADS} component={Ads} />
         <Stack.Screen
           name={ScreenNames.AUTHENTICATION}
           component={AuthScreen}
