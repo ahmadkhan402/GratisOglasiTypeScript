@@ -38,7 +38,7 @@ export default function BottomTab() {
       }}
     >
       <Tab.Screen
-        name={ScreenNames.HOME}
+        name={ScreenNames.TABHOME}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather

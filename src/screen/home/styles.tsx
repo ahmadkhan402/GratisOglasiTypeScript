@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.white,
     borderRadius: 10,
     borderWidth: 1,
+    marginBottom: height(1),
   },
   browserCatagories: {
     marginTop: height(3),
