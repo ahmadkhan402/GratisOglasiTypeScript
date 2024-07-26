@@ -11,6 +11,9 @@ enum ScreenNames {
   TABADPOST = "TabAdPost",
   HOMESTACK = "homeStack",
   ADS = "Ads",
+  CATEGORIES = "Categories",
+  LOCATION = "Location",
+  SUBCATEGORIES = "SubCategories",
 }
 
 export default ScreenNames;

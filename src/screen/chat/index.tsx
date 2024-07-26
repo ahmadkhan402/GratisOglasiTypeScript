@@ -9,8 +9,8 @@ export default function Chat() {
   const route = useRoute<ChatScreenRouteProp>();
   return (
     <View>
-      <Text>Email: {route.params?.Email}</Text>
-      <Text>Pasword: {route.params?.Password}</Text>
+      <Text>Email</Text>
+      <Text>Pasword</Text>
     </View>
   );
 }

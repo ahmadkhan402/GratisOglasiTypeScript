@@ -65,11 +65,11 @@ const styles = StyleSheet.create({
   loadingView: {
     justifyContent: "center",
     alignItems: "center",
-    flex: 1,
+    height: height(50),
   },
   loaderImg: {
-    width: width(50),
-    height: height(20),
+    width: width(45),
+    height: height(18),
     resizeMode: "contain",
   },
 });
