@@ -11,6 +11,11 @@ const styles = StyleSheet.create({
     height: height(32),
     alignSelf: "center",
   },
+  modalImage: {
+    width: width(100),
+    height: height(50),
+    resizeMode: "contain",
+  },
   image: {
     width: width(70),
     height: height(30),
@@ -18,6 +23,8 @@ const styles = StyleSheet.create({
   },
   slide1: {
     flex: 1,
+    // width: width(100),
+    // height: height(32),
     justifyContent: "center",
     alignItems: "center",
   },
@@ -219,6 +226,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
+    alignSelf: "flex-end",
   },
   footerBtn: {
     width: width(25),
@@ -236,6 +244,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: width(1),
     textAlign: "center",
     borderRadius: 7,
+  },
+  modal: {
+    // flex: 1,
+    width: width(100),
+    height: height(100),
+    justifyContent: "center",
+    alignSelf: "center",
+    backgroundColor: "black",
+  },
+  croseIconView: {
+    alignSelf: "flex-end",
+    marginTop: height(3),
+    marginRight: width(5),
   },
 });
 

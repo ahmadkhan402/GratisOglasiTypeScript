@@ -9,6 +9,7 @@ import Swiper from "react-native-swiper";
 import AppColors from "../../utils/AppColors";
 import {
   AntDesign,
+  Entypo,
   Fontisto,
   Ionicons,
   MaterialCommunityIcons,
@@ -16,13 +17,14 @@ import {
   SimpleLineIcons,
 } from "@expo/vector-icons";
 import { format, formatDistanceToNow } from "date-fns";
-import SubSring from "../../utils/Methord";
 import { getUser } from "../../api/user";
 import { ScreenWrapper } from "react-native-screen-wrapper";
 import MapView, { Marker } from "react-native-maps";
 import Button from "../../component/button";
 import { useTranslation } from "react-i18next";
 import subString from "../../utils/Methord";
+import Modal from "react-native-modal";
+import { height, width } from "../../utils/Dimension";
 
 type DetailRouteProps = RouteProp<RootStackParamList, ScreenNames.DETAILS>;
 
@@ -32,6 +34,8 @@ export default function Details() {
   const { t } = useTranslation();
   const [toggleShow, setToggleShow] = useState<boolean>(false);
   const [user, setUser] = useState<any>();
+  const [showImageModal, setShowImageModal] = useState<boolean>(false);
+  const [imgIndex, setImgIndex] = useState<number>(0);
   // console.log(params.adsData);
 
   const ToggleDescription = () => {
@@ -75,20 +79,28 @@ export default function Details() {
           <View style={styles.swiperView}>
             <Swiper
               showsHorizontalScrollIndicator={false}
+              automaticallyAdjustContentInsets={true}
               activeDotColor={AppColors.primary}
               showsButtons={false}
               dotStyle={styles.dotStyle}
               activeDotStyle={styles.dotStyle}
+              index={imgIndex}
             >
               {/* <Text style={styles.text}>Hello Swiper</Text> */}
               {params?.adsData.images.map((image: string, index: number) => (
-                <View key={index} style={styles.slide1}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setShowImageModal(!showImageModal), setImgIndex(index);
+                  }}
+                  key={index}
+                  style={styles.slide1}
+                >
                   <Image
                     key={index}
                     source={{ uri: image }}
                     style={styles.image}
                   />
-                </View>
+                </TouchableOpacity>
               ))}
             </Swiper>
           </View>
@@ -274,6 +286,36 @@ export default function Details() {
             <Text style={styles.footerBtnText}>{t("details.chat")}</Text>
           </TouchableOpacity>
         </View>
+
+        <Modal isVisible={showImageModal}>
+          <View style={styles.modal}>
+            <TouchableOpacity
+              onPress={() => setShowImageModal(false)}
+              style={styles.croseIconView}
+            >
+              <MaterialIcons name="close" size={30} color={AppColors.white} />
+            </TouchableOpacity>
+
+            <Swiper
+              showsHorizontalScrollIndicator={false}
+              showsButtons={false}
+              // dotStyle={styles.dotStyle}
+              // activeDotStyle={styles.dotStyle}
+              showsPagination={false}
+            >
+              {/* <Text style={styles.text}>Hello Swiper</Text> */}
+              {params?.adsData.images.map((image: string, index: number) => (
+                <View key={index} style={styles.slide1}>
+                  <Image
+                    key={index}
+                    source={{ uri: image }}
+                    style={styles.modalImage}
+                  />
+                </View>
+              ))}
+            </Swiper>
+          </View>
+        </Modal>
       </View>
     </ScreenWrapper>
   );
