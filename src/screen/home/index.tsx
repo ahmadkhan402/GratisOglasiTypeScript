@@ -23,6 +23,7 @@ import { getLatestAds, getTopAds } from "../../api/ads";
 import Card from "../../component/card";
 import { ScreenWrapper } from "react-native-screen-wrapper";
 import AppColors from "../../utils/AppColors";
+import { useTranslation } from "react-i18next";
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   ScreenNames.HOME
@@ -30,7 +31,7 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<
 
 export default function Home() {
   const navigation = useNavigation<HomeScreenNavigationProp>();
-
+  const { t } = useTranslation();
   const [catagoriesList, setCatagoriesList] = useState<any[]>([]);
   const [latestAds, setLatestAds] = useState<any[]>([]);
   const [mobileAds, setMobileAds] = useState<any[]>([]);
@@ -105,7 +106,7 @@ export default function Home() {
     return (
       <View style={styles.catagoryView}>
         <Image source={{ uri: item.image }} style={styles.catagoryImg} />
-        <Text style={styles.catagoryText}>{item.name}</Text>
+        <Text style={styles.catagoryText}>{t(`categories.${item?.name}`)}</Text>
       </View>
     );
   };
@@ -121,7 +122,7 @@ export default function Home() {
 
         {/* Search btn */}
         <TouchableOpacity style={styles.searchBtn}>
-          <Text>What are you looking for?</Text>
+          <Text>{t("home.looking")}</Text>
           <EvilIcons name="search" size={30} color="black" />
         </TouchableOpacity>
 
@@ -143,9 +144,11 @@ export default function Home() {
 
             <View style={styles.browserCatagories}>
               <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>Browser Catagories</Text>
+                <Text style={styles.catagoryTitleText}>
+                  {t("home.browseCate")}
+                </Text>
                 <TouchableOpacity>
-                  <Text style={styles.seeAllText}>See All</Text>
+                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>
 
@@ -162,9 +165,11 @@ export default function Home() {
             {/* Latest ads */}
             <View style={styles.latestAdsView}>
               <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>Latest Ads</Text>
+                <Text style={styles.catagoryTitleText}>
+                  {t("attributes.latest")}
+                </Text>
                 <TouchableOpacity>
-                  <Text style={styles.seeAllText}>See All</Text>
+                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>
               {/* Card */}
@@ -182,9 +187,11 @@ export default function Home() {
                 {/* Mobile Ads */}
                 <View style={styles.latestAdsView}>
                   <View style={styles.browserCatagoriesTextView}>
-                    <Text style={styles.catagoryTitleText}>Mobiles</Text>
+                    <Text style={styles.catagoryTitleText}>
+                      {t("categories.Mobiles")}
+                    </Text>
                     <TouchableOpacity onPress={() => handleSeeAll("Mobiles")}>
-                      <Text style={styles.seeAllText}>See All</Text>
+                      <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                     </TouchableOpacity>
                   </View>
                   {/* Card */}
@@ -201,9 +208,11 @@ export default function Home() {
             {/* Vehicles Ads */}
             <View style={styles.latestAdsView}>
               <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>Vehicles</Text>
+                <Text style={styles.catagoryTitleText}>
+                  {t("categories.Vehicles")}
+                </Text>
                 <TouchableOpacity onPress={() => handleSeeAll("Vehicles")}>
-                  <Text style={styles.seeAllText}>See All</Text>
+                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>
               {/* Card */}
@@ -219,11 +228,13 @@ export default function Home() {
             {/* Property for Sale Ads */}
             <View style={styles.latestAdsView}>
               <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>Property for Sale</Text>
+                <Text style={styles.catagoryTitleText}>
+                  {t(`categories.${"Property for Sale"}`)}
+                </Text>
                 <TouchableOpacity
                   onPress={() => handleSeeAll("Property for Sale")}
                 >
-                  <Text style={styles.seeAllText}>See All</Text>
+                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>
               {/* Card */}
@@ -239,11 +250,13 @@ export default function Home() {
             {/* property for rent Ads */}
             <View style={styles.latestAdsView}>
               <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>Property for Rent</Text>
+                <Text style={styles.catagoryTitleText}>
+                  {t(`categories.${"Property for Rent"}`)}
+                </Text>
                 <TouchableOpacity
                   onPress={() => handleSeeAll("Property for Rent")}
                 >
-                  <Text style={styles.seeAllText}>See All</Text>
+                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>
               {/* Card */}
@@ -259,9 +272,11 @@ export default function Home() {
             {/* Bikes Ads */}
             <View style={styles.latestAdsView}>
               <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>Bikes</Text>
+                <Text style={styles.catagoryTitleText}>
+                  {t("categories.Bikes")}
+                </Text>
                 <TouchableOpacity>
-                  <Text style={styles.seeAllText}>See All</Text>
+                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>
               {/* Card */}
@@ -277,9 +292,11 @@ export default function Home() {
             {/* Jobs Ads */}
             <View style={styles.latestAdsView}>
               <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>Jobs</Text>
+                <Text style={styles.catagoryTitleText}>
+                  {t(`categories.Jobs`)}
+                </Text>
                 <TouchableOpacity>
-                  <Text style={styles.seeAllText}>See All</Text>
+                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>
               {/* Card */}
@@ -295,10 +312,12 @@ export default function Home() {
             {/* Animal Ads */}
             <View style={styles.latestAdsView}>
               <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>Animals</Text>
+                <Text style={styles.catagoryTitleText}>
+                  {t(`categories.Animals`)}
+                </Text>
 
                 <TouchableOpacity>
-                  <Text style={styles.seeAllText}>See All</Text>
+                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>
               {/* Card */}

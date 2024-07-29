@@ -49,13 +49,13 @@ const styles = StyleSheet.create({
   },
   catagoryImg: {
     alignSelf: "center",
-    width: width(24),
-    height: height(10),
+    width: width(22),
+    height: height(8),
     resizeMode: "contain",
   },
   catagoryText: {
-    width: width(22),
-    fontSize: 14,
+    width: width(20),
+    fontSize: 12,
     textAlign: "center",
     alignSelf: "center",
   },
@@ -63,13 +63,14 @@ const styles = StyleSheet.create({
     marginTop: height(1),
   },
   loadingView: {
-    justifyContent: "center",
+    // justifyContent: "center",
+    marginTop: height(10),
     alignItems: "center",
     flex: 1,
   },
   loaderImg: {
-    width: width(50),
-    height: height(20),
+    width: width(30),
+    height: height(18),
     resizeMode: "contain",
   },
 });

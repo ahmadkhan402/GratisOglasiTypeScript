@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { height, width } from "../../utils/Dimension";
 import AppColors from "../../utils/AppColors";
 
@@ -82,15 +82,160 @@ const styles = StyleSheet.create({
     color: AppColors.black,
     fontWeight: "bold",
   },
+  titleText: {
+    // height: height(7),
+    marginTop: height(2),
+    fontSize: 20,
+    color: AppColors.black,
+    fontWeight: "bold",
+    textAlignVertical: "center",
+  },
+  descriptionView: {
+    flex: 1,
+    backgroundColor: AppColors.white,
+    borderRadius: 10,
+    padding: width(2),
+  },
   categoryItemView: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: width(70),
+    width: width(80),
     marginLeft: width(4),
+  },
+  categoryItemName: {
+    width: width(35),
+    marginVertical: height(0.5),
+    fontWeight: "600",
+    textAlign: "left",
   },
   categoryItem: {
     marginVertical: height(0.5),
     fontWeight: "600",
+    textAlign: "left",
+    width: width(35),
+  },
+  readMoreBtn: {
+    borderRadius: 10,
+    marginVertical: height(0.5),
+    paddingHorizontal: width(1),
+    width: width(28),
+    height: height(3),
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: AppColors.primary,
+    alignItems: "center",
+  },
+  readMoreIcon: {
+    width: width(5),
+    height: height(3),
+    // backgroundColor: AppColors.white,
+    alignItems: "flex-start",
+    verticalAlign: "middle",
+  },
+  readMoreText: {
+    fontSize: 12,
+    // backgroundColor: AppColors.white,
+    width: width(22),
+    textAlign: "center",
+    // color: AppColors.white,
+  },
+  userView: {
+    width: width(90),
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    // marginTop: height(2),
+    backgroundColor: AppColors.cruise,
+    borderRadius: 10,
+    padding: width(2),
+    marginVertical: height(1),
+    height: height(10),
+  },
+  userImage: {
+    width: width(15),
+    height: height(7),
+    borderRadius: 5,
+    resizeMode: "cover",
+    // marginHorizontal: width(1),
+  },
+  userNameView: {
+    width: width(38),
+    height: height(8),
+    justifyContent: "center",
+    paddingLeft: width(2),
+  },
+  userName: {
+    // textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  seeAllAdsBtn: {
+    marginRight: width(3),
+    width: width(22),
+    height: height(4),
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: AppColors.yellow,
+    borderRadius: 10,
+    ...Platform.select({
+      ios: {
+        shadowColor: AppColors.black,
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
+  },
+  seeAllAdsText: {
+    width: width(21),
+    fontSize: 12,
+    textAlign: "center",
+    // fontWeight: "500",
+  },
+  userUpdateAtText: {
+    color: AppColors.gray,
+  },
+  mapView: {
+    flex: 1,
+    marginVertical: height(1),
+  },
+  map: {
+    borderRadius: 2,
+    width: width(90),
+    height: height(20),
+  },
+  contactBtn: {
+    width: width(100),
+    borderTopWidth: 2,
+    borderTopColor: AppColors.gray,
+    backgroundColor: AppColors.white,
+    height: height(7),
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  footerBtn: {
+    width: width(25),
+    height: height(5),
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: AppColors.primary,
+    borderRadius: 7,
+  },
+  footerBtnText: {
+    // width: width(),
+    // height: height(5),
+    fontWeight: "bold",
+    paddingHorizontal: width(1),
+    textAlign: "center",
+    borderRadius: 7,
   },
 });
 

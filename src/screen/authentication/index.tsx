@@ -25,6 +25,7 @@ import {
 import StatusBarCustom from "react-native-custom-statusbar";
 import { Menu, MenuItem, MenuDivider } from "react-native-material-menu";
 import { height, width } from "../../utils/Dimension";
+import i18n from "../../translation";
 
 interface LoginState {
   email: string;
@@ -39,6 +40,12 @@ export default function Authentication() {
   const [ShowMenu, setShowMenu] = useState<string>("English");
 
   const hideMenu = (value: string) => {
+    // console.log(value);
+    if (value === "English") {
+      i18n.changeLanguage("en");
+    } else {
+      i18n.changeLanguage("bs");
+    }
     setVisible(false);
     setShowMenu(value);
   };
@@ -133,7 +140,7 @@ export default function Authentication() {
             <MenuDivider />
             <MenuItem
               textStyle={styles.MenuText}
-              onPress={() => hideMenu("Bonian")}
+              onPress={() => hideMenu("Bosnian")}
             >
               Bonian
             </MenuItem>
