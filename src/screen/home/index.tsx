@@ -69,7 +69,7 @@ export default function Home() {
         getTopAds("Jobs", 1, 10),
       ]);
 
-      setCatagoriesList(categories);
+      setCatagoriesList(categories ? categories : []);
       setLatestAds(latestAds);
       setMobileAds(mobileAds.items);
       setVehiclesAds(vehiclesAds.items);
@@ -98,10 +98,10 @@ export default function Home() {
     });
   };
 
-  const onRefresh = useCallback(() => {
+  const onRefresh = () => {
     setRefreshing(true);
     getApiRequest().then(() => setRefreshing(false));
-  }, []);
+  };
   const renderItems = ({ item }: any) => {
     return (
       <View style={styles.catagoryView}>

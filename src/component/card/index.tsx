@@ -31,12 +31,9 @@ export default function Card({ item }: CardProps) {
       }
     >
       <Image source={{ uri: item.images[0] }} style={styles.cardImage} />
-      <AntDesign
-        name="hearto"
-        size={20}
-        color={AppColors.gray}
-        style={styles.heartIcon}
-      />
+      <TouchableOpacity style={styles.heartView}>
+        <AntDesign name="hearto" size={20} color={AppColors.gray} />
+      </TouchableOpacity>
       {item.category !== "Jobs" ? (
         <View>
           <Text style={styles.priceKM}>

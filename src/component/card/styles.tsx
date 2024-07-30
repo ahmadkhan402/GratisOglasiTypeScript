@@ -28,17 +28,27 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     alignSelf: "center",
   },
+  heartView: {
+    alignSelf: "flex-end",
+    width: width(8),
+    height: height(4),
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
+  },
   title: {
     maxWidth: width(41),
     fontSize: 15,
     fontWeight: "900",
   },
-  heartIcon: {
-    alignSelf: "flex-end",
-    width: width(8),
-    height: height(4),
-    verticalAlign: "middle",
-  },
+  // heartIcon: {
+  //   alignSelf: "flex-end",
+  //   width: width(8),
+  //   height: height(5),
+  //   // verticalAlign: "middle",
+  // },
   priceKM: {
     fontSize: 16,
     fontWeight: "900",

@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { height, width } from "../../utils/Dimension";
 import AppColors from "../../utils/AppColors";
 
@@ -54,12 +54,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     // verticalAlign: "middle",
   },
-  searchIcon: {
-    width: width(8),
-    height: width(6),
-    alignItems: "center",
-    // backgroundColor: AppColors.primary,
-  },
+  // searchIcon: {
+  //   width: width(8),
+  //   // height: width(6),
+  //   alignItems: "center",
+  // },
   filterIcon: {
     borderRadius: 5,
     borderWidth: 1,
@@ -136,6 +135,26 @@ const styles = StyleSheet.create({
   gridCardStyle: {
     width: width(46),
     marginLeft: 0,
+  },
+  scrollButton: {
+    position: "absolute",
+    bottom: height(2),
+    right: width(5),
+    backgroundColor: AppColors.wildSand,
+
+    width: width(8),
+    height: height(4),
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    ...(Platform.OS === "ios"
+      ? {
+          shadowColor: AppColors.black,
+          shadowOffset: { width: 0, height: 1 },
+          shadowOpacity: 0.5,
+          shadowRadius: 2,
+        }
+      : { elevation: 5 }),
   },
 });
 

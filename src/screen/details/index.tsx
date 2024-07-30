@@ -32,15 +32,15 @@ export default function Details() {
   const route = useRoute<DetailRouteProps>();
   const { params } = route;
   const { t } = useTranslation();
-  const [toggleShow, setToggleShow] = useState<boolean>(false);
+  const [readLessOrMore, setReadLessOrMore] = useState<boolean>(false);
   const [user, setUser] = useState<any>();
   const [showImageModal, setShowImageModal] = useState<boolean>(false);
   const [imgIndex, setImgIndex] = useState<number>(0);
   const [swiperKey, setSwiperKey] = useState<number>(0);
   // console.log(params.adsData);
 
-  const ToggleDescription = () => {
-    setToggleShow(!toggleShow);
+  const handleReadLessOrMore = () => {
+    setReadLessOrMore(!readLessOrMore);
   };
 
   let locationData = {
@@ -197,7 +197,7 @@ export default function Details() {
             <Text style={styles.titleText}> {t("details.description")}</Text>
 
             <View style={styles.descriptionView}>
-              {toggleShow ? (
+              {readLessOrMore ? (
                 <Text>{params?.adsData.description}</Text>
               ) : (
                 <Text selectable={true}>
@@ -208,9 +208,9 @@ export default function Details() {
 
             <TouchableOpacity
               style={styles.readMoreBtn}
-              onPress={() => ToggleDescription()}
+              onPress={() => handleReadLessOrMore()}
             >
-              {toggleShow ? (
+              {readLessOrMore ? (
                 <View style={styles.showInRow}>
                   <Text style={styles.readMoreText}>
                     {t("details.readLess")}
