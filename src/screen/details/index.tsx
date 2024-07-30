@@ -36,17 +36,12 @@ export default function Details() {
   const [user, setUser] = useState<any>();
   const [showImageModal, setShowImageModal] = useState<boolean>(false);
   const [imgIndex, setImgIndex] = useState<number>(0);
+  const [swiperKey, setSwiperKey] = useState<number>(0);
   // console.log(params.adsData);
 
   const ToggleDescription = () => {
     setToggleShow(!toggleShow);
   };
-  useEffect(() => {
-    getUser(params?.adsData?.addedBy).then((data) => {
-      console.log("User Data ", data);
-      setUser(data);
-    });
-  }, []);
 
   let locationData = {
     address: "",
@@ -58,9 +53,6 @@ export default function Details() {
 
   try {
     locationData = JSON.parse(params?.adsData?.location);
-    console.log("====================================");
-    console.log(locationData);
-    console.log("====================================");
   } catch (error) {
     console.error("Error parsing address:", error);
   }
@@ -71,6 +63,21 @@ export default function Details() {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };
+  // Ke
+  const handleImagePress = (index: number) => {
+    if (imgIndex !== index) {
+      setImgIndex(index);
+      setSwiperKey(swiperKey + 1);
+    }
+    setShowImageModal(!showImageModal);
+  };
+  useEffect(() => {
+    getUser(params?.adsData?.addedBy).then((data) => {
+      console.log("User Data ", data);
+      setUser(data);
+    });
+  }, []);
+
   return (
     <ScreenWrapper statusBarColor={AppColors.primary}>
       <View style={styles.parentView}>
@@ -78,6 +85,7 @@ export default function Details() {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.swiperView}>
             <Swiper
+              key={swiperKey}
               showsHorizontalScrollIndicator={false}
               automaticallyAdjustContentInsets={true}
               activeDotColor={AppColors.primary}
@@ -89,10 +97,8 @@ export default function Details() {
               {/* <Text style={styles.text}>Hello Swiper</Text> */}
               {params?.adsData.images.map((image: string, index: number) => (
                 <TouchableOpacity
-                  onPress={() => {
-                    setShowImageModal(!showImageModal), setImgIndex(index);
-                  }}
                   key={index}
+                  onPress={() => handleImagePress(index)}
                   style={styles.slide1}
                 >
                   <Image
