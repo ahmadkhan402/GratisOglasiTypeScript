@@ -7,3 +7,4 @@ export { default as AdPostScreen } from "./adPost";
 export { default as EditProfileScreen } from "./editProfile";
 export { default as CategoriesScreen } from "./categories";
 export { default as DetailsScreen } from "./details";
+export { default as AdsScreen } from "./ads";

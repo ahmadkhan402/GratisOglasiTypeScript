@@ -5,6 +5,7 @@ import { View, Text, Image } from "react-native";
 import ScreenNames from "../routes";
 import {
   AdPostScreen,
+  AdsScreen,
   AuthScreen,
   CategoriesScreen,
   ChatScreen,
@@ -32,6 +33,7 @@ const HomeStack = () => {
         component={EditProfileScreen}
       />
       <Stack.Screen name={ScreenNames.ADPOST} component={AdPostScreen} />
+      <Stack.Screen name={ScreenNames.ADS} component={AdsScreen} />
     </Stack.Navigator>
   );
 };

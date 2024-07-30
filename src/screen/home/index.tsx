@@ -90,7 +90,7 @@ export default function Home() {
   }, []);
 
   const handleSeeAll = (item: string) => {
-    console.log("item", item);
+    // console.log("item", item);
 
     navigation.navigate(ScreenNames.ADS, {
       subCate: "",
@@ -114,7 +114,7 @@ export default function Home() {
     <ScreenWrapper
       bottomSafeAreaColor={AppColors.primary}
       statusBarColor={AppColors.primary}
-      // scrollType="scroll"
+      barStyle="dark-content"
     >
       <View style={styles.parentView}>
         {/* Logo Img*/}
@@ -139,6 +139,7 @@ export default function Home() {
                 colors={[AppColors.primary]}
               />
             }
+            showsVerticalScrollIndicator={false}
           >
             {/* BrowserCatagories */}
 
@@ -168,7 +169,7 @@ export default function Home() {
                 <Text style={styles.catagoryTitleText}>
                   {t("attributes.latest")}
                 </Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => handleSeeAll("latest")}>
                   <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>
@@ -275,7 +276,7 @@ export default function Home() {
                 <Text style={styles.catagoryTitleText}>
                   {t("categories.Bikes")}
                 </Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => handleSeeAll("Bikes")}>
                   <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>
@@ -295,7 +296,7 @@ export default function Home() {
                 <Text style={styles.catagoryTitleText}>
                   {t(`categories.Jobs`)}
                 </Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => handleSeeAll("Jobs")}>
                   <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>
@@ -316,7 +317,7 @@ export default function Home() {
                   {t(`categories.Animals`)}
                 </Text>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => handleSeeAll("Animals")}>
                   <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>
