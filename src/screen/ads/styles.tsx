@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
     // paddingTop:height(6),
   },
 
-  adsHeader: {
+  miniTopContainer: {
+    backgroundColor: AppColors.primary,
     width: width(100),
     height: height(14),
     alignSelf: "center",
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
   },
   adsIconView: {
     flexDirection: "row",
-    width: width(12),
+    width: width(14),
     marginLeft: width(2),
     // backgroundColor: AppColors.red,
   },
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     width: width(6),
     alignItems: "center",
     justifyContent: "center",
-    marginRight: width(1),
+    marginRight: width(2),
   },
   gridFlatListStyle: {
     flex: 1,

@@ -34,6 +34,7 @@ import { ScreenWrapper } from "react-native-screen-wrapper";
 import { Menu, MenuItem, MenuDivider } from "react-native-material-menu";
 import { useTranslation } from "react-i18next";
 import Images from "../../assets/images";
+import ListCard from "../../component/listCard";
 
 type navigationProps = NativeStackNavigationProp<
   RootStackParamList,
@@ -60,6 +61,7 @@ export default function Ads() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [totalAds, setTotalAds] = useState<number>(0);
   const [showButton, setShowButton] = useState<boolean>(false);
+  const [adsDisplay, setAdsDisplay] = useState<any>("grid"); // [setAdsDisplay];
 
   const showMenuDropdown = () => {
     setShowMenu(true);
@@ -103,23 +105,16 @@ export default function Ads() {
   };
 
   const handleLoadMore = async () => {
-    // console.log("handleLoadMore", allAds);
-
-    // console.log("handleLoadMore", allAds.items.length, totalAds);
-
     try {
       if (isLoading) return;
       // if (allAds?.items.length >= totalAds) return;
       setIsLoading(true);
-
       let allAds;
-
       if (category !== "latest") {
         allAds = await getCategoryAds(category, "", loadIndex);
       } else {
         allAds = await getAllLatestAds(loadIndex);
       }
-
       // Check if there are more items to load (assuming your API provides this information)
       const hasMore = allAds.items.length > 0;
       setTotalAds(allAds.totalAds);
@@ -157,6 +152,10 @@ export default function Ads() {
       setShowButton(true);
     }
   };
+
+  const handleSelectAdsDisplay = (item: any) => {
+    setAdsDisplay(item);
+  };
   useEffect(() => {
     getApiRequest(category, "", loadIndex);
   }, []);
@@ -169,121 +168,152 @@ export default function Ads() {
         </View>
       ) : (
         <View style={styles.parentView}>
-          <View style={styles.adsHeader}>
-            <View style={styles.adsHeaderContentView}>
-              <TouchableOpacity
-                onPress={() => navigation.goBack()}
-                style={styles.backBtn}
-              >
-                <Ionicons name="chevron-back" size={24} color="black" />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.searchBtn}>
-                <Text>What are you looking for?</Text>
-                {/* <View style={styles.searchIcon}> */}
-                <EvilIcons name="search" size={22} color="black" />
-                {/* </View> */}
-              </TouchableOpacity>
+          {/* <View style={styles.miniTopContainer}> */}
+          <View style={styles.adsHeaderContentView}>
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={styles.backBtn}
+            >
+              <Ionicons name="chevron-back" size={24} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.searchBtn}>
+              <Text>What are you looking for?</Text>
+              {/* <View style={styles.searchIcon}> */}
+              <EvilIcons name="search" size={22} color="black" />
+              {/* </View> */}
+            </TouchableOpacity>
 
-              <TouchableOpacity style={styles.filterIcon}>
-                <FontAwesome
-                  name="sliders"
-                  size={25}
-                  color={AppColors.primary}
-                />
-              </TouchableOpacity>
-            </View>
-            <View style={styles.displayView}>
-              <Text>
-                {t("ads.showing")} {totalAds} {t("ads.result")}
-              </Text>
-              <View style={styles.sortView}>
-                <View>
-                  <TouchableOpacity
-                    onPress={showMenuDropdown}
-                    style={styles.sortBtn}
-                  >
-                    <Text style={styles.buttonText}>
-                      {t(`ads.${sortOption}`)}
-                    </Text>
-                    <MaterialCommunityIcons
-                      name="menu-down"
-                      size={20}
-                      color="black"
-                    />
-                  </TouchableOpacity>
-                  <Menu visible={showMenu} onRequestClose={() => hideMenu()}>
-                    <MenuItem onPress={() => handleSortOption("latest")}>
-                      {t("ads.latest")}
-                    </MenuItem>
-                    <MenuDivider />
-                    <MenuItem onPress={() => handleSortOption("oldest")}>
-                      {t("ads.oldest")}
-                    </MenuItem>
-                    <MenuDivider />
-                    <MenuItem onPress={() => handleSortOption("highLow")}>
-                      {t("ads.highLow")}
-                    </MenuItem>
-                    <MenuDivider />
+            <TouchableOpacity style={styles.filterIcon}>
+              <FontAwesome name="sliders" size={25} color={AppColors.primary} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.displayView}>
+            <Text>
+              {t("ads.showing")} {totalAds} {t("ads.result")}
+            </Text>
+            <View style={styles.sortView}>
+              <View>
+                <TouchableOpacity
+                  onPress={showMenuDropdown}
+                  style={styles.sortBtn}
+                >
+                  <Text style={styles.buttonText}>
+                    {t(`ads.${sortOption}`)}
+                  </Text>
+                  <MaterialCommunityIcons
+                    name="menu-down"
+                    size={20}
+                    color="black"
+                  />
+                </TouchableOpacity>
+                <Menu visible={showMenu} onRequestClose={() => hideMenu()}>
+                  <MenuItem onPress={() => handleSortOption("latest")}>
+                    {t("ads.latest")}
+                  </MenuItem>
+                  <MenuDivider />
+                  <MenuItem onPress={() => handleSortOption("oldest")}>
+                    {t("ads.oldest")}
+                  </MenuItem>
+                  <MenuDivider />
+                  <MenuItem onPress={() => handleSortOption("highLow")}>
+                    {t("ads.highLow")}
+                  </MenuItem>
+                  <MenuDivider />
 
-                    <MenuItem onPress={() => handleSortOption("lowHigh")}>
-                      {t("ads.lowHigh")}
-                    </MenuItem>
-                    <MenuDivider />
-                    <MenuItem onPress={() => handleSortOption("aZ")}>
-                      {t("ads.aZ")}
-                    </MenuItem>
-                    <MenuDivider />
+                  <MenuItem onPress={() => handleSortOption("lowHigh")}>
+                    {t("ads.lowHigh")}
+                  </MenuItem>
+                  <MenuDivider />
+                  <MenuItem onPress={() => handleSortOption("aZ")}>
+                    {t("ads.aZ")}
+                  </MenuItem>
+                  <MenuDivider />
 
-                    <MenuItem onPress={() => handleSortOption("zA")}>
-                      {t("ads.zA")}
-                    </MenuItem>
-                  </Menu>
-                </View>
+                  <MenuItem onPress={() => handleSortOption("zA")}>
+                    {t("ads.zA")}
+                  </MenuItem>
+                </Menu>
+              </View>
 
-                <View style={styles.adsIconView}>
-                  {/* List Icon */}
-                  <TouchableOpacity
-                    style={styles.adViewIcon}
-                    // onPress={handleSelectList}
-                  >
-                    <MaterialIcons name="list" size={25} />
-                  </TouchableOpacity>
+              <View style={styles.adsIconView}>
+                {/* List Icon */}
+                <TouchableOpacity
+                  style={styles.adViewIcon}
+                  onPress={() => handleSelectAdsDisplay("list")}
+                >
+                  <MaterialIcons
+                    name="list"
+                    size={25}
+                    color={
+                      adsDisplay === "list"
+                        ? AppColors.primary
+                        : AppColors.black
+                    }
+                  />
+                </TouchableOpacity>
 
-                  {/* Grid Icon */}
-                  <TouchableOpacity
-                    style={styles.adViewIcon}
-                    // onPress={handleSelectGrid}
-                  >
-                    <MaterialIcons
-                      name="grid-view"
-                      size={20}
-                      color={AppColors.primary}
-                    />
-                  </TouchableOpacity>
-                </View>
+                {/* Grid Icon */}
+                <TouchableOpacity
+                  style={styles.adViewIcon}
+                  onPress={() => handleSelectAdsDisplay("grid")}
+                >
+                  <MaterialIcons
+                    name="grid-view"
+                    size={20}
+                    color={
+                      adsDisplay === "grid"
+                        ? AppColors.primary
+                        : AppColors.black
+                    }
+                  />
+                </TouchableOpacity>
               </View>
             </View>
           </View>
+          {/* </View> */}
 
-          <FlatList
-            ref={flatListRef}
-            showsVerticalScrollIndicator={false}
-            // scrollEnabled={false}
-            data={allAds.items}
-            numColumns={2}
-            renderItem={({ item }) => <Card item={item} />}
-            onEndReached={handleLoadMore}
-            ListFooterComponent={renderFooter}
-            onEndReachedThreshold={5}
-            onScroll={handleScroll}
-            refreshControl={
-              <RefreshControl
-                refreshing={refreshing}
-                onRefresh={onRefresh}
-                colors={[AppColors.primary]}
-              />
-            }
-          />
+          {adsDisplay === "grid" && (
+            <FlatList
+              ref={flatListRef}
+              showsVerticalScrollIndicator={false}
+              // scrollEnabled={false}
+              data={allAds.items}
+              numColumns={2}
+              renderItem={({ item }) => <Card item={item} />}
+              onEndReached={handleLoadMore}
+              ListFooterComponent={renderFooter}
+              onEndReachedThreshold={5}
+              onScroll={handleScroll}
+              refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={onRefresh}
+                  colors={[AppColors.primary]}
+                />
+              }
+            />
+          )}
+          {adsDisplay === "list" && (
+            <FlatList
+              ref={flatListRef}
+              showsVerticalScrollIndicator={false}
+              // scrollEnabled={false}
+              data={allAds.items}
+              // numColumns={2}
+              renderItem={({ item }) => <ListCard item={item} />}
+              onEndReached={handleLoadMore}
+              ListFooterComponent={renderFooter}
+              onEndReachedThreshold={5}
+              onScroll={handleScroll}
+              refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={onRefresh}
+                  colors={[AppColors.primary]}
+                />
+              }
+            />
+          )}
           {showButton && (
             <TouchableOpacity style={styles.scrollButton} onPress={scrollToTop}>
               <MaterialCommunityIcons
