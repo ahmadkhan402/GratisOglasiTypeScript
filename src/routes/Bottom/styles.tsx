@@ -10,5 +10,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginBottom: height(4),
   },
+  tabBarLabelStyle: {
+    fontSize: 10,
+    color: AppColors.black,
+    paddingBottom: height(0.5),
+  },
+  tabBarStyle: {
+    borderTopColor: AppColors.primary,
+    borderTopWidth: 2,
+  },
 });
 export default styles;

@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   title: {
     maxWidth: width(41),
     fontSize: 15,
-    fontWeight: "900",
+    fontWeight: "bold",
   },
   // heartIcon: {
   //   alignSelf: "flex-end",
@@ -51,13 +51,13 @@ const styles = StyleSheet.create({
   // },
   priceKM: {
     fontSize: 16,
-    fontWeight: "900",
+    fontWeight: "bold",
     color: AppColors.primary,
   },
   priceEur: {
     marginVertical: height(0.5),
-    fontSize: 16,
-    fontWeight: "900",
+    fontSize: 14,
+    fontWeight: "bold",
     color: AppColors.gray,
   },
   location: {

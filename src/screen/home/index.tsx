@@ -70,14 +70,18 @@ export default function Home() {
       ]);
 
       setCatagoriesList(categories ? categories : []);
-      setLatestAds(latestAds);
-      setMobileAds(mobileAds.items);
-      setVehiclesAds(vehiclesAds.items);
-      setBikesAds(bikesAds.items);
-      setPropertyForSaleAds(propertyForSaleAds.items);
-      setPropertyForRentAds(propertyForRentAds.items);
-      setAnimalsAds(animalsAds.items);
-      setJobsAds(jobsAds.items);
+      setLatestAds(latestAds ? latestAds : []);
+      setMobileAds(mobileAds.items ? mobileAds.items : []);
+      setVehiclesAds(vehiclesAds?.items ? vehiclesAds.items : []);
+      setBikesAds(bikesAds?.items ? bikesAds.items : []);
+      setPropertyForSaleAds(
+        propertyForSaleAds.items ? propertyForSaleAds.items : []
+      );
+      setPropertyForRentAds(
+        propertyForRentAds.items ? propertyForRentAds.items : []
+      );
+      setAnimalsAds(animalsAds.items ? animalsAds.items : []);
+      setJobsAds(jobsAds.items ? jobsAds.items : []);
 
       setLoading(false);
     } catch (error) {
@@ -90,14 +94,11 @@ export default function Home() {
   }, []);
 
   const handleSeeAll = (item: string) => {
-    // console.log("item", item);
-
-    navigation.navigate(ScreenNames.ADS, {
-      subCate: "",
-      cate: item,
-    });
+    navigation.navigate(
+      ScreenNames.ADS,
+      item === "latest" ? { latest: item } : { cate: item }
+    );
   };
-
   const onRefresh = () => {
     setRefreshing(true);
     getApiRequest().then(() => setRefreshing(false));
@@ -207,129 +208,137 @@ export default function Home() {
               </View>
             )}
             {/* Vehicles Ads */}
-            <View style={styles.latestAdsView}>
-              <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>
-                  {t("categories.Vehicles")}
-                </Text>
-                <TouchableOpacity onPress={() => handleSeeAll("Vehicles")}>
-                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
-                </TouchableOpacity>
+            {vehiclesAds.length > 0 && (
+              <View style={styles.latestAdsView}>
+                <View style={styles.browserCatagoriesTextView}>
+                  <Text style={styles.catagoryTitleText}>
+                    {t("categories.Vehicles")}
+                  </Text>
+                  <TouchableOpacity onPress={() => handleSeeAll("Vehicles")}>
+                    <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
+                  </TouchableOpacity>
+                </View>
+                {/* Card */}
+                {/* <Card data={vehiclesAds} horizental={true} /> */}
+                <FlatList
+                  data={vehiclesAds}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  renderItem={({ item }) => <Card item={item} />}
+                />
               </View>
-              {/* Card */}
-              {/* <Card data={vehiclesAds} horizental={true} /> */}
-              <FlatList
-                data={vehiclesAds}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => <Card item={item} />}
-              />
-            </View>
+            )}
 
             {/* Property for Sale Ads */}
-            <View style={styles.latestAdsView}>
-              <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>
-                  {t(`categories.${"Property for Sale"}`)}
-                </Text>
-                <TouchableOpacity
-                  onPress={() => handleSeeAll("Property for Sale")}
-                >
-                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
-                </TouchableOpacity>
+            {propertyForSale.length > 0 && (
+              <View style={styles.latestAdsView}>
+                <View style={styles.browserCatagoriesTextView}>
+                  <Text style={styles.catagoryTitleText}>
+                    {t(`categories.${"Property for Sale"}`)}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => handleSeeAll("Property for Sale")}
+                  >
+                    <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
+                  </TouchableOpacity>
+                </View>
+                {/* Card */}
+                {/* <Card data={propertyForSale} horizental={true} /> */}
+                <FlatList
+                  data={propertyForSale}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  renderItem={({ item }) => <Card item={item} />}
+                />
               </View>
-              {/* Card */}
-              {/* <Card data={propertyForSale} horizental={true} /> */}
-              <FlatList
-                data={propertyForSale}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => <Card item={item} />}
-              />
-            </View>
-
+            )}
             {/* property for rent Ads */}
-            <View style={styles.latestAdsView}>
-              <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>
-                  {t(`categories.${"Property for Rent"}`)}
-                </Text>
-                <TouchableOpacity
-                  onPress={() => handleSeeAll("Property for Rent")}
-                >
-                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
-                </TouchableOpacity>
+            {propertyForRent.length > 0 && (
+              <View style={styles.latestAdsView}>
+                <View style={styles.browserCatagoriesTextView}>
+                  <Text style={styles.catagoryTitleText}>
+                    {t(`categories.${"Property for Rent"}`)}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => handleSeeAll("Property for Rent")}
+                  >
+                    <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
+                  </TouchableOpacity>
+                </View>
+                {/* Card */}
+                {/* <Card data={propertyForRent} horizental={true} /> */}
+                <FlatList
+                  data={propertyForRent}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  renderItem={({ item }) => <Card item={item} />}
+                />
               </View>
-              {/* Card */}
-              {/* <Card data={propertyForRent} horizental={true} /> */}
-              <FlatList
-                data={propertyForRent}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => <Card item={item} />}
-              />
-            </View>
-
+            )}
             {/* Bikes Ads */}
-            <View style={styles.latestAdsView}>
-              <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>
-                  {t("categories.Bikes")}
-                </Text>
-                <TouchableOpacity onPress={() => handleSeeAll("Bikes")}>
-                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
-                </TouchableOpacity>
+            {bikesAds.length > 0 && (
+              <View style={styles.latestAdsView}>
+                <View style={styles.browserCatagoriesTextView}>
+                  <Text style={styles.catagoryTitleText}>
+                    {t("categories.Bikes")}
+                  </Text>
+                  <TouchableOpacity onPress={() => handleSeeAll("Bikes")}>
+                    <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
+                  </TouchableOpacity>
+                </View>
+                {/* Card */}
+                {/* <Card data={bikesAds} horizental={true} /> */}
+                <FlatList
+                  data={bikesAds}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  renderItem={({ item }) => <Card item={item} />}
+                />
               </View>
-              {/* Card */}
-              {/* <Card data={bikesAds} horizental={true} /> */}
-              <FlatList
-                data={bikesAds}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => <Card item={item} />}
-              />
-            </View>
-
+            )}
             {/* Jobs Ads */}
-            <View style={styles.latestAdsView}>
-              <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>
-                  {t(`categories.Jobs`)}
-                </Text>
-                <TouchableOpacity onPress={() => handleSeeAll("Jobs")}>
-                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
-                </TouchableOpacity>
+            {jobsAds.length > 0 && (
+              <View style={styles.latestAdsView}>
+                <View style={styles.browserCatagoriesTextView}>
+                  <Text style={styles.catagoryTitleText}>
+                    {t(`categories.Jobs`)}
+                  </Text>
+                  <TouchableOpacity onPress={() => handleSeeAll("Jobs")}>
+                    <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
+                  </TouchableOpacity>
+                </View>
+                {/* Card */}
+                {/* <Card data={jobsAds} horizental={true} /> */}
+                <FlatList
+                  data={jobsAds}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  renderItem={({ item }) => <Card item={item} />}
+                />
               </View>
-              {/* Card */}
-              {/* <Card data={jobsAds} horizental={true} /> */}
-              <FlatList
-                data={jobsAds}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => <Card item={item} />}
-              />
-            </View>
-
+            )}
             {/* Animal Ads */}
-            <View style={styles.latestAdsView}>
-              <View style={styles.browserCatagoriesTextView}>
-                <Text style={styles.catagoryTitleText}>
-                  {t(`categories.Animals`)}
-                </Text>
+            {animalsAds.length > 0 && (
+              <View style={styles.latestAdsView}>
+                <View style={styles.browserCatagoriesTextView}>
+                  <Text style={styles.catagoryTitleText}>
+                    {t(`categories.Animals`)}
+                  </Text>
 
-                <TouchableOpacity onPress={() => handleSeeAll("Animals")}>
-                  <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
-                </TouchableOpacity>
+                  <TouchableOpacity onPress={() => handleSeeAll("Animals")}>
+                    <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
+                  </TouchableOpacity>
+                </View>
+                {/* Card */}
+                {/* <Card data={animalsAds} horizental={true} /> */}
+                <FlatList
+                  data={animalsAds}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  renderItem={({ item }) => <Card item={item} />}
+                />
               </View>
-              {/* Card */}
-              {/* <Card data={animalsAds} horizental={true} /> */}
-              <FlatList
-                data={animalsAds}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => <Card item={item} />}
-              />
-            </View>
+            )}
           </ScrollView>
         )}
       </View>

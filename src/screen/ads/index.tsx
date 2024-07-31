@@ -45,8 +45,11 @@ export default function Ads() {
   const navigation = useNavigation<navigationProps>();
   const { t } = useTranslation();
   let data = route.params;
+  // console.log(`data`, data);
+
   const category = data?.cate ?? "";
-  let subCategory = data.subCate ?? "";
+  const latest = data.latest ?? "";
+
   const flatListRef = useRef<any>(null);
   const [allAds, setAllAds] = useState<any>([]);
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -78,11 +81,11 @@ export default function Ads() {
       setLoading(true);
       let allAds;
 
-      if (category !== "latest") {
+      if (category) {
         [allAds] = await Promise.all([
           getCategoryAds(category, subCategory, pageNum),
         ]);
-      } else {
+      } else if (latest) {
         [allAds] = await Promise.all([getAllLatestAds(1)]);
       }
       setTotalAds(allAds.totalAds);
@@ -96,9 +99,7 @@ export default function Ads() {
 
   const onRefresh = () => {
     setRefreshing(true);
-    getApiRequest(category, subCategory, loadIndex).then(() =>
-      setRefreshing(false)
-    );
+    getApiRequest(category, "", loadIndex).then(() => setRefreshing(false));
   };
 
   const handleLoadMore = async () => {
@@ -114,7 +115,7 @@ export default function Ads() {
       let allAds;
 
       if (category !== "latest") {
-        allAds = await getCategoryAds(category, subCategory, loadIndex);
+        allAds = await getCategoryAds(category, "", loadIndex);
       } else {
         allAds = await getAllLatestAds(loadIndex);
       }
@@ -157,7 +158,7 @@ export default function Ads() {
     }
   };
   useEffect(() => {
-    getApiRequest(category, subCategory, loadIndex);
+    getApiRequest(category, "", loadIndex);
   }, []);
 
   return (
@@ -273,7 +274,7 @@ export default function Ads() {
             renderItem={({ item }) => <Card item={item} />}
             onEndReached={handleLoadMore}
             ListFooterComponent={renderFooter}
-            onEndReachedThreshold={0.5}
+            onEndReachedThreshold={5}
             onScroll={handleScroll}
             refreshControl={
               <RefreshControl

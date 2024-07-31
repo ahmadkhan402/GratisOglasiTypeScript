@@ -28,6 +28,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  loadingView: {
+    justifyContent: "center",
+    // marginTop: height(10),
+    alignItems: "center",
+    flex: 1,
+  },
+  loaderImg: {
+    width: width(30),
+    height: height(18),
+    resizeMode: "contain",
+  },
   dotStyle: {
     marginBottom: height(3.5),
   },
@@ -246,7 +257,6 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   modal: {
-    // flex: 1,
     width: width(100),
     height: height(100),
     justifyContent: "center",
@@ -254,9 +264,12 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
   },
   croseIconView: {
+    // backgroundColor: AppColors.primary,
     alignSelf: "flex-end",
-    marginTop: height(3),
-    marginRight: width(5),
+    width: width(20),
+    height: height(10),
+    justifyContent: "flex-end",
+    alignItems: "flex-start",
   },
 });
 

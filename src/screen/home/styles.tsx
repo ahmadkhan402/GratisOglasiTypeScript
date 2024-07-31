@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     marginBottom: height(1),
   },
   browserCatagories: {
-    marginTop: height(3),
+    marginTop: height(1),
   },
   browserCatagoriesTextView: {
     flexDirection: "row",

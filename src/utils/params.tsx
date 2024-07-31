@@ -10,6 +10,6 @@ export type RootStackParamList = {
   [ScreenNames.PROFILE]: undefined;
   [ScreenNames.MYADS]: undefined;
   [ScreenNames.AUTHENTICATION]: undefined;
-  [ScreenNames.ADS]: { cate?: string; subCate?: string };
+  [ScreenNames.ADS]: { cate?: string; latest?: string };
   [ScreenNames.DETAILS]: { adsData?: any };
 };
