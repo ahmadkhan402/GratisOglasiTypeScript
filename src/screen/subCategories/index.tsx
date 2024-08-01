@@ -24,9 +24,9 @@ type SubCategoriesProps = RouteProp<
 };
 export default function SubCategories() {
   const route = useRoute<SubCategoriesProps>();
-  const { category, subCategory, image } = route.params;
+  const { category, subCategory, image, wantTo } = route.params;
 
-  console.log(category, subCategory);
+  console.log(category, subCategory, wantTo);
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (

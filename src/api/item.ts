@@ -52,7 +52,7 @@ const getMakeBycategory = async (cate: string, subCate: string) => {
   }
 };
 
-const getModel = async (subCategory: string, make: string) => {
+const getModel = async (subCategory: string, make: any) => {
   try {
     let response = await fetch(
       mainUrl + `info/models/get_${subCategory}Models/${make}`

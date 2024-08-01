@@ -44,11 +44,22 @@ export default function AdPost() {
   const { t } = useTranslation();
   const route = useRoute<AdPostProps>();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  // const { category, subCategory, image, condition } = route.params;
+  // const { category, subCategory, image, condition } = route?.params || {};
   let category = route?.params?.category || "";
   let subCategory = route?.params?.subCategory || "";
   let image = route?.params?.image || "";
   let condition = route?.params?.condition || "";
+
+  console.log(
+    "categotrie ===",
+    category,
+    " subCategory ==",
+    subCategory,
+    "image ==",
+    image,
+    "condition === ",
+    condition
+  );
 
   const [selectedImage, setSelectedImage] = useState<string>();
   const [modalVisible, setModalVisible] = useState<boolean>(false);

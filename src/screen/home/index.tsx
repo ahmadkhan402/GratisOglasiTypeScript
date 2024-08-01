@@ -105,10 +105,20 @@ export default function Home() {
   };
   const renderItems = ({ item }: any) => {
     return (
-      <View style={styles.catagoryView}>
+      <TouchableOpacity
+        style={styles.catagoryView}
+        onPress={() =>
+          navigation.navigate(ScreenNames.SUBCATEGORIES, {
+            category: item.name,
+            subCategory: item.subcategories,
+            image: item.image,
+            wantTo: "seeAllAds",
+          })
+        }
+      >
         <Image source={{ uri: item.image }} style={styles.catagoryImg} />
         <Text style={styles.catagoryText}>{t(`categories.${item?.name}`)}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
   return (
@@ -149,7 +159,13 @@ export default function Home() {
                 <Text style={styles.catagoryTitleText}>
                   {t("home.browseCate")}
                 </Text>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate(ScreenNames.CATEGORIES, {
+                      wantTo: "seeAllAds",
+                    })
+                  }
+                >
                   <Text style={styles.seeAllText}>{t("home.seeAll")}</Text>
                 </TouchableOpacity>
               </View>

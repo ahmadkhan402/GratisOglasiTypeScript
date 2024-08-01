@@ -21,6 +21,8 @@ export type RootStackParamList = {
     category?: string;
     subCategory?: string;
     image?: string;
+    wantTo?: string;
   };
   [ScreenNames.LOCATION]: undefined;
+  [ScreenNames.CATEGORIES]: { wantTo?: string | "" };
 };

@@ -14,15 +14,23 @@ import { useTranslation } from "react-i18next";
 import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { getCategories } from "../../api/categories";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
+import {
+  NavigationProp,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import ScreenNames from "../../routes/routes";
 import { RootStackParamList } from "../../utils/params";
 import Header from "../../component/header";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
+type categoryRoute = RouteProp<RootStackParamList, ScreenNames.CATEGORIES>;
 export default function Categories() {
   const { t } = useTranslation();
+  const route = useRoute<categoryRoute>();
+  const { wantTo } = route.params || {};
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
   const [image, setImage] = useState<string>();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [data, setData] = useState<string[]>([]);
@@ -32,7 +40,24 @@ export default function Categories() {
     // console.log("This is result", result);
     setData(result);
   };
-  console.log("This is data", data);
+  const handlePress = (item: any) => () => {
+    console.log("press Item", item);
+    if (wantTo === "seeAllAds") {
+      navigation.navigate(ScreenNames.SUBCATEGORIES, {
+        category: item.name,
+        subCategory: item.subcategories,
+        image: item.image,
+        wantTo: "seeAllAds",
+      });
+    } else {
+      navigation.navigate(ScreenNames.SUBCATEGORIES, {
+        category: item.name,
+        subCategory: item.subcategories,
+        image: item.image,
+        wantTo: "adPost",
+      });
+    }
+  };
   useEffect(() => {
     getCategoriesData();
   }, []);
@@ -45,13 +70,7 @@ export default function Categories() {
             <TouchableOpacity
               key={index}
               style={styles.categoryItem}
-              onPress={() =>
-                navigation.navigate(ScreenNames.SUBCATEGORIES, {
-                  category: item.name,
-                  subCategory: item.subcategories,
-                  image: item.image,
-                })
-              }
+              onPress={handlePress(item)}
             >
               <Image
                 source={{ uri: item.image }}
