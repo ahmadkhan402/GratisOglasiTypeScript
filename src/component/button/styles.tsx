@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     height: height(6),
     alignItems: "center",
     justifyContent: "center",
-    marginVertical: height(2.5),
+    marginVertical: height(1.5),
   },
   btnText: {
     fontSize: 20,

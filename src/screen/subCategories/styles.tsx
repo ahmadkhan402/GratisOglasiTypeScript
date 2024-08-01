@@ -12,7 +12,12 @@ const styles = StyleSheet.create({
     marginTop: height(1),
   },
   subCategoryItem: {
-    marginVertical: width(4),
+    marginTop: height(2),
+    height: height(5),
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    borderBottomColor: AppColors.lightGrey,
   },
   subCategoryText: {
     fontSize: 16,

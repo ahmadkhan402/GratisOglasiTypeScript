@@ -93,7 +93,7 @@ export default function Authentication() {
             console.log("Back icon");
           }}
         >
-          <Ionicons name="chevron-back" size={30} color="black" />
+          <Ionicons name="chevron-back" size={20} color="black" />
         </TouchableOpacity>
         {/* <StatusBar style={} /> */}
         <View style={styles.logoContainer}>

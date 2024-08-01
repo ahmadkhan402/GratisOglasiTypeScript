@@ -37,6 +37,7 @@ import Images from "../../assets/images";
 import ListCard from "../../component/listCard";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { setItems } from "../../utils/Methord";
+import { sub } from "date-fns";
 
 type navigationProps = NativeStackNavigationProp<
   RootStackParamList,
@@ -52,6 +53,7 @@ export default function Ads() {
 
   const category = data?.cate ?? "";
   const latest = data.latest ?? "";
+  const subCategory = data?.subCategory || "";
 
   const flatListRef = useRef<any>(null);
   const [allAds, setAllAds] = useState<any>([]);
@@ -103,29 +105,31 @@ export default function Ads() {
 
   const onRefresh = () => {
     setRefreshing(true);
-    getApiRequest(category, "", loadIndex).then(() => setRefreshing(false));
+    getApiRequest(category, subCategory, loadIndex).then(() =>
+      setRefreshing(false)
+    );
   };
 
   const handleLoadMore = async () => {
     try {
       if (isLoading) return;
+      if (allAds?.items.length >= totalAds) return;
       // if (allAds?.items.length >= totalAds) return;
       setIsLoading(true);
-      let allAds;
-      if (category !== "latest") {
-        allAds = await getCategoryAds(category, "", loadIndex);
-      } else {
-        allAds = await getAllLatestAds(loadIndex);
-      }
-      // Check if there are more items to load (assuming your API provides this information)
-      const hasMore = allAds.items.length > 0;
-      setTotalAds(allAds.totalAds);
-      setAllAds((prevAds: any) => ({
-        items: [...prevAds.items, ...allAds.items], // Append new items
-      }));
 
+      let allItemAds: any;
+      if (category) {
+        allItemAds = await getCategoryAds(category, subCategory, loadIndex);
+      } else if (latest) {
+        allItemAds = await getAllLatestAds(loadIndex);
+      }
+      const hasMore = allAds.items.length >= 10;
+      setTotalAds(allItemAds.totalAds);
       // Update the load index for the next page
       if (hasMore) {
+        setAllAds((prevAds: any) => ({
+          items: [...prevAds?.items, ...allItemAds.items], // Append new items
+        }));
         setLoadIndex((prevIndex) => prevIndex + 1);
       }
 
@@ -165,8 +169,9 @@ export default function Ads() {
     }
   };
   useEffect(() => {
+    // setAllAds([]);
     getItemsData("adsDisplay");
-    getApiRequest(category, "", loadIndex);
+    getApiRequest(category, subCategory, loadIndex);
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import { View, Text, Keyboard } from "react-native";
+import { View, Text, Keyboard, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import Input from "../../component/Input";
@@ -6,7 +6,6 @@ import AppColors from "../../utils/AppColors";
 import Checkbox from "expo-checkbox";
 // import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import ButtonLight from "../../component/ButtonLight";
 import SignUp from "../signup";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -39,7 +38,6 @@ export default function Login({ onSignUpPress }: SignInProps) {
   return (
     <View style={styles.parentView}>
       <Text style={styles.label}>Email</Text>
-
       <Input
         hide={false}
         placeholder="Email"
@@ -59,13 +57,13 @@ export default function Login({ onSignUpPress }: SignInProps) {
           />
           <Text style={styles.labelRemember}>Remember Me</Text>
         </View>
-        <ButtonLight
-          press={() => setModalVisible(true)}
-          title="Forgot Password?"
-        />
-        {/* <Text style={styles.forgotPassword}>Forgot Password?</Text> */}
+        <TouchableOpacity
+          onPress={() => setModalVisible(true)}
+          // style={styles.forgotbtn}
+        >
+          <Text style={styles.forgotText}>Forgot Password?</Text>
+        </TouchableOpacity>
       </View>
-
       <Button
         onPress={() => {
           navigation.navigate(ScreenNames.HOME);
@@ -74,8 +72,9 @@ export default function Login({ onSignUpPress }: SignInProps) {
       />
       <View style={styles.dontHaveAccount}>
         <Text style={styles.labelRemember}>Don't have an account?</Text>
-        <ButtonLight press={() => onSignUpPress()} title="Sign Up!" />
-        {/* <Text style={styles.labelSignUp}>Sign up!</Text> */}
+        <TouchableOpacity onPress={onSignUpPress} style={styles.signUpBtn}>
+          <Text style={styles.signUpText}>Sign Up</Text>
+        </TouchableOpacity>
       </View>
 
       <ConfirmationModal

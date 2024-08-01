@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.primary,
   },
   logoContainer: {
-    paddingTop: height(2),
+    // paddingTop: height(1),
     alignItems: "center",
   },
   logoStyle: {
@@ -21,10 +21,11 @@ const styles = StyleSheet.create({
   },
 
   back: {
-    // backgroundColor:AppColors.primary,
+    // backgroundColor: AppColors.primary,
     height: height(5),
     width: width(10),
     alignItems: "center",
+    justifyContent: "center",
   },
   textContainer: {
     paddingTop: height(1),
@@ -40,13 +41,12 @@ const styles = StyleSheet.create({
     fontWeight: "300",
   },
   gradientContainer: {
-    marginTop: height(2),
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     alignSelf: "center",
     backgroundColor: AppColors.primary,
-    width: width(80),
+    width: width(85),
     borderRadius: 30,
   },
   loginContainer: {
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   MenuIcon: {
     color: "black",
-paddingLeft:width(1),
+    paddingLeft: width(1),
     textAlign: "center",
   },
 });

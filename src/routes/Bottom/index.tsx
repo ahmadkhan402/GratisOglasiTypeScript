@@ -13,6 +13,7 @@ import {
   HomeScreen,
   MyAdsScreen,
   ProfileScreen,
+  SubCategoriesScreen,
 } from "../../screen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Feather, Ionicons } from "@expo/vector-icons";
@@ -33,7 +34,15 @@ const HomeStack = () => {
         component={EditProfileScreen}
       />
       <Stack.Screen name={ScreenNames.ADPOST} component={AdPostScreen} />
-      <Stack.Screen name={ScreenNames.ADS} component={AdsScreen} options={{}} />
+      <Stack.Screen name={ScreenNames.ADS} component={AdsScreen} />
+      <Stack.Screen
+        name={ScreenNames.CATEGORIES}
+        component={CategoriesScreen}
+      />
+      <Stack.Screen
+        name={ScreenNames.SUBCATEGORIES}
+        component={SubCategoriesScreen}
+      />
     </Stack.Navigator>
   );
 };

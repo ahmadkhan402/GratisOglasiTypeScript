@@ -11,7 +11,7 @@ import { ScreenWrapper } from "react-native-screen-wrapper";
 import AppColors from "../../utils/AppColors";
 import styles from "./styles";
 import { useTranslation } from "react-i18next";
-import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
+import { AntDesign, Entypo, FontAwesome5 } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { getCategories } from "../../api/categories";
 import {
@@ -29,7 +29,9 @@ type categoryRoute = RouteProp<RootStackParamList, ScreenNames.CATEGORIES>;
 export default function Categories() {
   const { t } = useTranslation();
   const route = useRoute<categoryRoute>();
-  const { wantTo } = route.params || {};
+  const { wantTo } = route.params || { wantTo: "adPost" };
+  // const navigateTo = wantTo === "seeAllAds" ? "seeAllAds" : "adPost";
+
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [image, setImage] = useState<string>();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -41,7 +43,6 @@ export default function Categories() {
     setData(result);
   };
   const handlePress = (item: any) => () => {
-    console.log("press Item", item);
     if (wantTo === "seeAllAds") {
       navigation.navigate(ScreenNames.SUBCATEGORIES, {
         category: item.name,
@@ -49,7 +50,7 @@ export default function Categories() {
         image: item.image,
         wantTo: "seeAllAds",
       });
-    } else {
+    } else if (wantTo === "adPost") {
       navigation.navigate(ScreenNames.SUBCATEGORIES, {
         category: item.name,
         subCategory: item.subcategories,
@@ -63,7 +64,7 @@ export default function Categories() {
   }, []);
   return (
     <ScreenWrapper statusBarColor={AppColors.primary} barStyle="dark-content">
-      <Header back={false} title="All Categories" />
+      <Header back={wantTo === "seeAllAds"} title="All Categories" />
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.categoryContainer}>
           {data.map((item: any, index: number) => (
@@ -79,7 +80,7 @@ export default function Categories() {
               <View style={styles.categoryNameContainer}>
                 <Text style={styles.categoryName}>{item.name}</Text>
               </View>
-              <AntDesign name="right" size={24} color="black" />
+              <Entypo name="chevron-small-right" size={30} color="black" />
             </TouchableOpacity>
           ))}
         </View>
