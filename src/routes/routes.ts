@@ -13,6 +13,8 @@ enum ScreenNames {
   ADS = "Ads",
   CATEGORIES = "Categories",
   DETAILS = "Details",
+  SUBCATEGORIES = "SubCategories",
+  LOCATION = "Location",
 }
 
 export default ScreenNames;

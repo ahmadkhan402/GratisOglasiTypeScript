@@ -5,7 +5,14 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleProp,
+  ViewProps,
+  ViewStyle,
+} from "react-native";
 import styles from "./styles";
 import AppColors from "../../utils/AppColors";
 import ScreenNames from "../../routes/routes";
@@ -16,15 +23,16 @@ interface Props {
   back?: boolean;
   title?: string;
   icon?: boolean;
+  style?: StyleProp<ViewStyle> | undefined;
 }
 type navigationProps = NativeStackNavigationProp<
   RootStackParamList,
   ScreenNames.DETAILS
 >;
-export default function Header({ back, title, icon }: Props) {
+export default function Header({ back, title, icon, style }: Props) {
   const navigation = useNavigation<navigationProps>();
   return (
-    <View style={styles.headerView}>
+    <View style={[styles.headerView, style]}>
       {back && (
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -33,6 +41,7 @@ export default function Header({ back, title, icon }: Props) {
           <Ionicons name="chevron-back" size={26} color={AppColors.black} />
         </TouchableOpacity>
       )}
+      {title && <Text style={styles.title}>{title}</Text>}
       <View>
         {icon && (
           <View style={styles.iconView}>

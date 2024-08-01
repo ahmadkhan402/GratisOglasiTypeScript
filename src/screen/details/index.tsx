@@ -106,7 +106,7 @@ export default function Details() {
         </View>
       ) : (
         <View style={styles.parentView}>
-          <Header back={true} icon={true} />
+          <Header back={true} icon={true} style={styles.header} />
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.swiperView}>
               <Swiper

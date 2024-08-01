@@ -9,8 +9,10 @@ import {
   ChatScreen,
   EditProfileScreen,
   HomeScreen,
+  LocationScreen,
   MyAdsScreen,
   ProfileScreen,
+  SubCategoriesScreen,
 } from "../screen";
 import BottomTab from "./Bottom";
 import { RootStackParamList } from "../utils/params";
@@ -37,9 +39,14 @@ export default function Route() {
         <Stack.Screen name={ScreenNames.MYADS} component={MyAdsScreen} />
         <Stack.Screen name={ScreenNames.ADS} component={Ads} />
         <Stack.Screen name={ScreenNames.DETAILS} component={Details} />
+        <Stack.Screen name={ScreenNames.LOCATION} component={LocationScreen} />
         <Stack.Screen
           name={ScreenNames.AUTHENTICATION}
           component={AuthScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.SUBCATEGORIES}
+          component={SubCategoriesScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

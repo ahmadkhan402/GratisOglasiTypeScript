@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     width: width(100),
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: AppColors.primary,
+    // backgroundColor: AppColors.primary,
     alignItems: "center",
   },
   backView: {
@@ -30,6 +30,13 @@ const styles = StyleSheet.create({
     height: height(6),
     justifyContent: "center",
     alignItems: "center",
+  },
+  title: {
+    flex: 1,
+    // color: AppColors.black,
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
 

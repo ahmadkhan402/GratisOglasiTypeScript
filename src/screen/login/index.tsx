@@ -13,7 +13,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../utils/params";
 import ScreenNames from "../../routes/routes";
 import Button from "../../component/button";
-import CustomModal from "../../component/customModal";
+import ConfirmationModal from "../../component/confirmationModal";
 
 interface SignInProps {
   onSignUpPress: () => void; // Callback function to handle navigation to SignIn
@@ -78,7 +78,7 @@ export default function Login({ onSignUpPress }: SignInProps) {
         {/* <Text style={styles.labelSignUp}>Sign up!</Text> */}
       </View>
 
-      <CustomModal
+      <ConfirmationModal
         visible={modalVisible}
         onCancel={handleCancel}
         onReset={handleReset}

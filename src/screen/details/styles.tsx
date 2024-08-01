@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
   parentView: {
     flex: 1,
   },
+  header: {
+    backgroundColor: AppColors.primary,
+  },
   swiperView: {
     width: width(95),
     height: height(32),
