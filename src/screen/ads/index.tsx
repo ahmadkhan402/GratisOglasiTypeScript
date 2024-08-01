@@ -35,6 +35,8 @@ import { Menu, MenuItem, MenuDivider } from "react-native-material-menu";
 import { useTranslation } from "react-i18next";
 import Images from "../../assets/images";
 import ListCard from "../../component/listCard";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { setItems } from "../../utils/Methord";
 
 type navigationProps = NativeStackNavigationProp<
   RootStackParamList,
@@ -61,7 +63,7 @@ export default function Ads() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [totalAds, setTotalAds] = useState<number>(0);
   const [showButton, setShowButton] = useState<boolean>(false);
-  const [adsDisplay, setAdsDisplay] = useState<any>("grid"); // [setAdsDisplay];
+  const [adsDisplay, setAdsDisplay] = useState<string>(""); // [setAdsDisplay];
 
   const showMenuDropdown = () => {
     setShowMenu(true);
@@ -156,7 +158,14 @@ export default function Ads() {
   const handleSelectAdsDisplay = (item: any) => {
     setAdsDisplay(item);
   };
+  const getItemsData = async (key: string) => {
+    const data = await AsyncStorage.getItem(key);
+    if (data !== null) {
+      setAdsDisplay(data);
+    }
+  };
   useEffect(() => {
+    getItemsData("adsDisplay");
     getApiRequest(category, "", loadIndex);
   }, []);
 
@@ -239,7 +248,10 @@ export default function Ads() {
                 {/* List Icon */}
                 <TouchableOpacity
                   style={styles.adViewIcon}
-                  onPress={() => handleSelectAdsDisplay("list")}
+                  onPress={() => {
+                    handleSelectAdsDisplay("list"),
+                      setItems("adsDisplay", "list");
+                  }}
                 >
                   <MaterialIcons
                     name="list"
@@ -255,7 +267,10 @@ export default function Ads() {
                 {/* Grid Icon */}
                 <TouchableOpacity
                   style={styles.adViewIcon}
-                  onPress={() => handleSelectAdsDisplay("grid")}
+                  onPress={() => {
+                    handleSelectAdsDisplay("grid"),
+                      setItems("adsDisplay", "grid");
+                  }}
                 >
                   <MaterialIcons
                     name="grid-view"

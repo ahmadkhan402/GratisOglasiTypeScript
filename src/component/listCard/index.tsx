@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import AppColors from "../../utils/AppColors";
@@ -20,6 +20,8 @@ type CardNavigationProps = NativeStackNavigationProp<
 
 export default function ListCard({ item }: CardProps) {
   const navigation = useNavigation<CardNavigationProps>();
+  const [favorite, setFavorite] = useState<boolean>(false);
+
   const updatedAt = new Date(item.updatedAt);
   const timeAgo = formatDistanceToNow(updatedAt, { addSuffix: true });
 
@@ -33,8 +35,17 @@ export default function ListCard({ item }: CardProps) {
       <Image source={{ uri: item.images[0] }} style={styles.cardImage} />
 
       <View style={styles.cardContentView}>
-        <TouchableOpacity style={styles.heartView}>
-          <AntDesign name="hearto" size={20} color={AppColors.gray} />
+        <TouchableOpacity
+          style={styles.heartView}
+          onPress={() => {
+            setFavorite(!favorite);
+          }}
+        >
+          <AntDesign
+            name={favorite ? "heart" : "hearto"}
+            size={20}
+            color={favorite ? AppColors.red : AppColors.gray}
+          />
         </TouchableOpacity>
         {item.category !== "Jobs" ? (
           <View>

@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     // justifyContent: "center",
   },
+
   title: {
     maxWidth: width(41),
     fontSize: 15,
