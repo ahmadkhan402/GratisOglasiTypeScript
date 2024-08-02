@@ -35,6 +35,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   checkbox: {
+    width: width(5),
+    height: height(2.5),
     margin: width(2),
   },
 
@@ -63,6 +65,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500",
     color: AppColors.blueType,
+  },
+  errorMessage: {
+    color: AppColors.red,
+    textAlign: "left",
+    width: width(82),
+    alignSelf: "center",
   },
   // forgotbtn: {},
   forgotText: {

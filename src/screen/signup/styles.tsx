@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   errorMessage: {
     color: AppColors.red,
     textAlign: "left",
-    width: width(90),
+    width: width(82),
   },
   label: {
     fontWeight: "600",
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
 
   checkboxContainer: {
-    width: width(75),
+    width: width(78),
     marginVertical: height(1),
     justifyContent: "flex-start",
     flexDirection: "row",

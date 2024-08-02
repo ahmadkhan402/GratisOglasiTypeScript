@@ -4,7 +4,7 @@ import { height, width } from "../../utils/Dimension";
 
 const styles = StyleSheet.create({
   parentView: {
-    width: width(90),
+    width: width(85),
     alignSelf: "center",
     marginTop: height(2),
     // alignItems: "center",
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     marginStart: width(10),
   },
   inputPhoneContainer: {
-    width: width(90),
+    width: width(85),
     marginBottom: height(1),
     borderWidth: 1,
     borderColor: AppColors.primary,

@@ -29,10 +29,11 @@ export default function SignUp({ onSignInPress }: SignUpProps) {
   const [firstName, setfirstName] = useState<string>("");
   const [lastName, setlastName] = useState<string>("");
   const [phNumber, setPhNumber] = useState<string>();
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+
   const [errorMessage, setErrorMessage] = useState<{ [key: string]: string }>(
     {}
   );
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const handleBlur = (field: string, value: string) => {
     if (!value) {

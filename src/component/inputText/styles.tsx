@@ -4,19 +4,19 @@ import { height, width } from "../../utils/Dimension";
 
 const styles = StyleSheet.create({
   // parentView: {
-  //   width: width(90),
+  //   width: width(85),
   //   alignSelf: "center",
   //   marginTop: height(2),
   // },
   textStyle: {
-    width: width(90),
+    width: width(85),
     fontSize: 20,
     fontWeight: "600",
     marginTop: height(1),
-    // marginLeft: width(3),
+    marginLeft: width(2),
   },
   iconInputView: {
-    width: width(90),
+    width: width(85),
     height: height(6),
     display: "flex",
     flexDirection: "row",
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     borderColor: AppColors.primary,
     borderRadius: 30,
     paddingLeft: 15,
-    marginBottom: 1,
+    // marginBottom: height(1),
     marginTop: height(1),
     justifyContent: "space-between",
   },

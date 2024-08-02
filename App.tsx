@@ -7,6 +7,7 @@ import { AuthScreen } from "./src/screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./src/translation";
+import FlashMessage from "react-native-flash-message";
 
 export default function App() {
   React.useLayoutEffect(() => {
@@ -17,6 +18,7 @@ export default function App() {
     <SafeAreaProvider>
       <I18nextProvider i18n={i18n}>
         <Route />
+        <FlashMessage position="top" />
       </I18nextProvider>
     </SafeAreaProvider>
   );

@@ -13,6 +13,7 @@ import { RootStackParamList } from "../../utils/params";
 import ScreenNames from "../../routes/routes";
 import Button from "../../component/button";
 import ConfirmationModal from "../../component/confirmationModal";
+import InputText from "../../component/inputText";
 
 interface SignInProps {
   onSignUpPress: () => void; // Callback function to handle navigation to SignIn
@@ -22,11 +23,26 @@ type loginNavigationProps = NativeStackNavigationProp<
   ScreenNames.HOME
 >;
 export default function Login({ onSignUpPress }: SignInProps) {
+  const navigation = useNavigation<loginNavigationProps>();
   const [isChecked, setChecked] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<{ [key: string]: string }>(
+    {}
+  );
 
-  const navigation = useNavigation<loginNavigationProps>();
+  const handleBlur = (field: string, value: string) => {
+    if (!value) {
+      setErrorMessage((prevErrors) => ({
+        ...prevErrors,
+        [field]: "Required*",
+      }));
+    } else {
+      setErrorMessage((prevErrors) => ({ ...prevErrors, [field]: "" }));
+    }
+  };
+
   const handleCancel = () => {
     setModalVisible(false);
   };
@@ -37,16 +53,29 @@ export default function Login({ onSignUpPress }: SignInProps) {
   };
   return (
     <View style={styles.parentView}>
-      <Text style={styles.label}>Email</Text>
-      <Input
-        hide={false}
+      <InputText
+        onBlur={() => handleBlur("email", email)}
+        errorMessage={errorMessage.email}
         placeholder="Email"
-        mode="text"
-        type="email-address"
+        label="Email"
+        onChangeText={setEmail}
+        value={email}
       />
-      <Text style={styles.label}>Password</Text>
-
-      <Input hide={true} placeholder="Password" mode="text" type="default" />
+      {errorMessage.email !== "" && email.length <= 0 && (
+        <Text style={styles.errorMessage}>{errorMessage.email}</Text>
+      )}
+      <InputText
+        onBlur={() => handleBlur("password", password)}
+        errorMessage={errorMessage.password}
+        password={true}
+        placeholder="Password"
+        label="Password"
+        onChangeText={setPassword}
+        value={password}
+      />
+      {errorMessage.password !== "" && password.length <= 0 && (
+        <Text style={styles.errorMessage}>{errorMessage.password}</Text>
+      )}
       <View style={styles.section}>
         <View style={styles.checkboxContainer}>
           <Checkbox
