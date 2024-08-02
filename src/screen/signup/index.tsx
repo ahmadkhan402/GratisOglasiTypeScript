@@ -4,12 +4,13 @@ import styles from "./styles";
 import Input from "../../component/Input";
 import AppColors from "../../utils/AppColors";
 import Checkbox from "expo-checkbox";
-import ButtonLight from "../../component/ButtonLight";
 import { useNavigation } from "@react-navigation/native";
 import ScreenNames from "../../routes/routes";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../utils/params";
 import Button from "../../component/button";
+import InputText from "../../component/inputText";
+import ChangeNumber from "../../component/changeNumber";
 
 type SignUpScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -20,102 +21,149 @@ interface SignUpProps {
   onSignInPress: () => void;
 }
 export default function SignUp({ onSignInPress }: SignUpProps) {
+  const navigation = useNavigation<SignUpScreenNavigationProp>();
+
   const [isChecked, setChecked] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const navigation = useNavigation<SignUpScreenNavigationProp>();
+  const [firstName, setfirstName] = useState<string>("");
+  const [lastName, setlastName] = useState<string>("");
+  const [phNumber, setPhNumber] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<{ [key: string]: string }>(
+    {}
+  );
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+
+  const handleBlur = (field: string, value: string) => {
+    if (!value) {
+      setErrorMessage((prevErrors) => ({
+        ...prevErrors,
+        [field]: "Required*",
+      }));
+    } else {
+      setErrorMessage((prevErrors) => ({ ...prevErrors, [field]: "" }));
+    }
+  };
   return (
     <View style={styles.parentView}>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>First Name</Text>
+      {/* <View style={styles.inputContainer}> */}
+      <InputText
+        onBlur={() => handleBlur("firstName", firstName)}
+        errorMessage={errorMessage.firstName}
+        placeholder="First Name"
+        label="First Name"
+        onChangeText={setfirstName}
+        value={firstName}
+      />
+      {errorMessage.firstName !== "" && firstName.length <= 0 && (
+        <Text style={styles.errorMessage}>{errorMessage.firstName}</Text>
+      )}
 
-        <Input
-          val=""
-          style={{}}
-          hide={false}
-          placeholder="First Name"
-          mode="text"
-        />
-        <Text style={styles.label}>Last Name</Text>
-        <Input
-          val=""
-          style={{}}
-          hide={false}
-          placeholder="Last Name"
-          mode="text"
-        />
-        <Text style={styles.label}>Email</Text>
-        <Input
-          val={email}
-          style={{}}
-          hide={false}
-          placeholder="Email"
-          mode="text"
-          onChangeText={(e) => setEmail(e)}
-        />
-        <Text style={styles.label}>Password</Text>
-        <Input
-          val={password}
-          style={{}}
-          hide={true}
-          placeholder="Password"
-          mode="text"
-          onChangeText={(e) => setPassword(e)}
-        />
-        <Text style={styles.label}>Confirm Password</Text>
-        <Input
-          val=""
-          style={{}}
-          hide={true}
-          placeholder="Confirm Password"
-          mode="text"
-        />
-        <Text style={styles.label}>Phone Number</Text>
+      <InputText
+        onBlur={() => handleBlur("lastName", lastName)}
+        errorMessage={errorMessage.lastName}
+        placeholder="Last Name"
+        label="Last Name"
+        onChangeText={setlastName}
+        value={lastName}
+      />
+      {errorMessage.lastName !== "" && lastName.length <= 0 && (
+        <Text style={styles.errorMessage}>{errorMessage.lastName}</Text>
+      )}
+
+      <InputText
+        onBlur={() => handleBlur("email", email)}
+        errorMessage={errorMessage.email}
+        placeholder="Email"
+        label="Email"
+        onChangeText={setEmail}
+        value={email}
+      />
+      {errorMessage.email !== "" && email.length <= 0 && (
+        <Text style={styles.errorMessage}>{errorMessage.email}</Text>
+      )}
+      <InputText
+        onBlur={() => handleBlur("password", password)}
+        errorMessage={errorMessage.password}
+        password={true}
+        placeholder="Password"
+        label="Password"
+        onChangeText={setPassword}
+        value={password}
+      />
+      {errorMessage.password !== "" && password.length <= 0 && (
+        <Text style={styles.errorMessage}>{errorMessage.password}</Text>
+      )}
+      <InputText
+        onBlur={() => handleBlur("confirmPassword", confirmPassword)}
+        errorMessage={errorMessage.confirmPassword}
+        password={true}
+        placeholder="Confirm Password"
+        label="Confirm Password"
+        onChangeText={setConfirmPassword}
+        value={confirmPassword}
+      />
+      {errorMessage.confirmPassword !== "" && confirmPassword.length <= 0 && (
+        <Text style={styles.errorMessage}>{errorMessage.confirmPassword}</Text>
+      )}
+
+      <ChangeNumber
+        text="Phone Number"
+        value=""
+        changeValue=""
+        setChangeValue={setPhNumber}
+      />
+      {/* <Text style={styles.label}>Phone Number</Text>
         <Input
           val=""
           style={{}}
           hide={false}
           placeholder="Phone Number"
           mode="numeric"
+        /> */}
+
+      <View style={styles.checkboxContainer}>
+        <Checkbox
+          style={styles.checkbox}
+          value={isChecked}
+          onValueChange={setChecked}
+          color={isChecked ? AppColors.java : AppColors.java}
         />
-
-        <View style={styles.checkboxContainer}>
-          <Checkbox
-            style={styles.checkbox}
-            value={isChecked}
-            onValueChange={setChecked}
-            color={isChecked ? AppColors.java : AppColors.java}
-          />
-          {/* </View> */}
-          <View style={styles.labelContainer}>
-            <Text style={styles.labelRemember}>
-              I have read and agree to the gratis
-            </Text>
-
-            <TouchableOpacity>
-              <Text style={{ color: AppColors.primary }}>
-                Terms and Conditions
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <Button
-          onPress={() =>
-            navigation.navigate(ScreenNames.CHAT, {
-              Email: email,
-              Password: password,
-            })
-          }
-          title="Sign up"
-        />
-
-        <View style={styles.haveAccount}>
-          <Text style={styles.alreadyAccoutLabel}>
-            Already have an account?
+        {/* </View> */}
+        <View style={styles.labelContainer}>
+          <Text style={styles.labelRemember}>
+            I have read and agree to the gratis
           </Text>
-          <ButtonLight press={() => onSignInPress()} title="Sign In!" />
-          {/* <Text style={styles.labelSignIn}>Sign In!</Text> */}
+
+          <TouchableOpacity>
+            <Text style={{ color: AppColors.primary }}>
+              Terms and Conditions
+            </Text>
+          </TouchableOpacity>
         </View>
+      </View>
+      {/* </View> */}
+
+      <Button
+        onPress={() =>
+          navigation.navigate(ScreenNames.CHAT, {
+            Email: email,
+            Password: password,
+          })
+        }
+        title="Sign up"
+        style={styles.signUpbtn}
+      />
+
+      <View style={styles.haveAccount}>
+        <Text style={styles.alreadyAccoutLabel}>Already have an account?</Text>
+        <TouchableOpacity
+          onPress={() => onSignInPress()}
+          style={styles.signInBtn}
+        >
+          <Text style={styles.signInText}>Sign In</Text>
+        </TouchableOpacity>
+        {/* <Text style={styles.labelSignIn}>Sign In!</Text> */}
       </View>
     </View>
   );

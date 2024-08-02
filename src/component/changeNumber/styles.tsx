@@ -7,8 +7,10 @@ const styles = StyleSheet.create({
     width: width(90),
     alignSelf: "center",
     marginTop: height(2),
+    // alignItems: "center",
   },
   textStyle: {
+    textAlign: "left",
     fontSize: 20,
     fontWeight: "600",
     marginBottom: height(1),
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.wildSand,
   },
   inputStyle: {
-    width: width(78),
+    width: width(85),
     height: height(6),
     fontSize: 16,
   },
@@ -42,6 +44,26 @@ const styles = StyleSheet.create({
   errorText: {
     color: AppColors.red,
     marginStart: width(10),
+  },
+  inputPhoneContainer: {
+    width: width(90),
+    marginBottom: height(1),
+    borderWidth: 1,
+    borderColor: AppColors.primary,
+    borderRadius: 26,
+    paddingHorizontal: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center",
+  },
+  phoneInputContainer: {
+    height: height(6),
+  },
+  inputPhoneTextContainer: {
+    height: height(6),
+    backgroundColor: AppColors.white,
+    borderRadius: 20,
+    justifyContent: "center",
   },
 });
 export default styles;

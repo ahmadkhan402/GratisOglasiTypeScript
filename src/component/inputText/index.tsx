@@ -37,11 +37,13 @@ export default function InputText({
           {...rest}
           secureTextEntry={secure}
         />
+
         {password && (
           <TouchableOpacity
             onPress={() => {
               setSecure(!secure);
             }}
+            style={styles.eyeIcon}
           >
             <Entypo
               name={!secure ? "eye" : "eye-with-line"}

@@ -3,18 +3,20 @@ import AppColors from "../../utils/AppColors";
 import { height, width } from "../../utils/Dimension";
 
 const styles = StyleSheet.create({
-  parentView: {
-    width: width(90),
-    alignSelf: "center",
-    marginTop: height(2),
-  },
+  // parentView: {
+  //   width: width(90),
+  //   alignSelf: "center",
+  //   marginTop: height(2),
+  // },
   textStyle: {
+    width: width(90),
     fontSize: 20,
     fontWeight: "600",
-    marginTop: height(2),
+    marginTop: height(1),
+    // marginLeft: width(3),
   },
   iconInputView: {
-    width: width(80),
+    width: width(90),
     height: height(6),
     display: "flex",
     flexDirection: "row",
@@ -25,6 +27,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     marginBottom: 1,
     marginTop: height(1),
+    justifyContent: "space-between",
   },
   iconView: {
     width: width(10),
@@ -41,6 +44,12 @@ const styles = StyleSheet.create({
     width: width(68),
     height: height(6),
     fontSize: 14,
+  },
+  eyeIcon: {
+    width: width(12),
+    height: height(6),
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 export default styles;

@@ -59,12 +59,20 @@ export default function ChangeNumber({
         </View>
       ) : (
         <View style={{ flex: 1 }}>
-          <View style={styles.inputView}>
+          <View
+            style={[
+              styles.inputView,
+              {
+                borderBottomWidth: 0,
+              },
+            ]}
+          >
             <PhoneInput
               ref={phoneInput}
               defaultValue={changeValue !== "" ? changeValue : undefined}
-              containerStyle={styles.phoneContainer}
-              textContainerStyle={styles.textInput}
+              containerStyle={styles.inputPhoneContainer}
+              textInputStyle={styles.phoneInputContainer}
+              textContainerStyle={styles.inputPhoneTextContainer}
               onChangeFormattedText={handlePhoneChange}
               // onChangeFormattedText={(text) => {
               //   setChangeValue(text);
@@ -73,9 +81,9 @@ export default function ChangeNumber({
               layout="second"
               placeholder="6XXXXXXX"
             />
-            <TouchableOpacity style={styles.iconStyle} onPress={handleClose}>
+            {/* <TouchableOpacity style={styles.iconStyle} onPress={handleClose}>
               <AntDesign name="close" size={20} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           {changeValue.length !== 13 && changeValue.length !== 0 && (
             <Text style={styles.errorText}>Invalid Number</Text>
