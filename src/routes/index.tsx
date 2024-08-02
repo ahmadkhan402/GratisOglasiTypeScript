@@ -8,6 +8,7 @@ import {
   AuthScreen,
   ChatScreen,
   EditProfileScreen,
+  EmailVerficationScreen,
   HomeScreen,
   LocationScreen,
   MyAdsScreen,
@@ -24,7 +25,7 @@ export default function Route() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={ScreenNames.AUTHENTICATION}
+        initialRouteName={ScreenNames.EMAIL_VERIFICATION}
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name={ScreenNames.HOME} component={BottomTab} />
@@ -40,6 +41,10 @@ export default function Route() {
         <Stack.Screen name={ScreenNames.ADS} component={Ads} />
         <Stack.Screen name={ScreenNames.DETAILS} component={Details} />
         <Stack.Screen name={ScreenNames.LOCATION} component={LocationScreen} />
+        <Stack.Screen
+          name={ScreenNames.EMAIL_VERIFICATION}
+          component={EmailVerficationScreen}
+        />
         <Stack.Screen
           name={ScreenNames.AUTHENTICATION}
           component={AuthScreen}

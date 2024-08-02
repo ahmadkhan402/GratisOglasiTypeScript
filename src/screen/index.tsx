@@ -10,3 +10,4 @@ export { default as DetailsScreen } from "./details";
 export { default as AdsScreen } from "./ads";
 export { default as SubCategoriesScreen } from "./subCategories";
 export { default as LocationScreen } from "./location";
+export { default as EmailVerficationScreen } from "./emailVerification";

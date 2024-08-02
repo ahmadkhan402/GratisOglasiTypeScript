@@ -1,6 +1,6 @@
 import { mainUrl } from "../env";
 
-const getUser = async (id) => {
+const getUser = async (id: string) => {
   try {
     let response = await fetch(mainUrl + `user/get/${id}`);
     let json = await response.json();
@@ -15,7 +15,7 @@ const getUser = async (id) => {
   }
 };
 
-const logInUser = async (email, pasword) => {
+const logInUser = async (email: string, pasword: string) => {
   try {
     let response = await fetch(mainUrl + "auth/login", {
       method: "POST",
@@ -37,7 +37,13 @@ const logInUser = async (email, pasword) => {
   }
 };
 
-const signUpUser = async (firstName, lastName, email, pasword, pNum) => {
+const signUpUser = async (
+  firstName: string,
+  lastName: string,
+  email: string,
+  pasword: string,
+  pNum: string
+) => {
   try {
     let response = await fetch(mainUrl + "auth/register", {
       method: "POST",
@@ -62,7 +68,7 @@ const signUpUser = async (firstName, lastName, email, pasword, pNum) => {
   }
 };
 
-const verifyUser = async (email, userId) => {
+const verifyUser = async (email: string, userId: string) => {
   try {
     let response = await fetch(mainUrl + "email/emailVerification/sendMail", {
       method: "POST",
@@ -84,7 +90,7 @@ const verifyUser = async (email, userId) => {
   }
 };
 
-const changePassword = async (id, oldPass, newPass) => {
+const changePassword = async (id: string, oldPass: string, newPass: string) => {
   try {
     let response = await fetch(mainUrl + `auth/changePassword/${id}`, {
       method: "PUT",
@@ -105,7 +111,7 @@ const changePassword = async (id, oldPass, newPass) => {
   }
 };
 
-const resetPassword = async (email) => {
+const resetPassword = async (email: string) => {
   try {
     let response = await fetch(mainUrl + "password/forgotPassword/sendMail", {
       method: "POST",
@@ -125,7 +131,7 @@ const resetPassword = async (email) => {
   }
 };
 
-const deleteUser = async (id, pasword) => {
+const deleteUser = async (id: string, pasword: string) => {
   try {
     let response = await fetch(mainUrl + `user/deleteUserAndItems/${id}`, {
       method: "DELETE",
@@ -146,7 +152,7 @@ const deleteUser = async (id, pasword) => {
   }
 };
 
-const updatePrivacy = async (id, showAds) => {
+const updatePrivacy = async (id: string, showAds: boolean) => {
   try {
     let response = await fetch(mainUrl + `user/updateShowAllAds/${id}`, {
       method: "PUT",
@@ -166,7 +172,7 @@ const updatePrivacy = async (id, showAds) => {
   }
 };
 
-const editProfile = async (user, id) => {
+const editProfile = async (user: string, id: string) => {
   try {
     let response = await fetch(mainUrl + `user/update/${id}`, {
       method: "PUT",
@@ -184,7 +190,7 @@ const editProfile = async (user, id) => {
   }
 };
 
-const getReceiverList = async (lst) => {
+const getReceiverList = async (lst: any) => {
   try {
     let response = await fetch(mainUrl + "user/getUsersByIds", {
       method: "POST",
@@ -203,7 +209,7 @@ const getReceiverList = async (lst) => {
     return error;
   }
 };
-const reportUser = async (reportData) => {
+const reportUser = async (reportData: any) => {
   try {
     let response = await fetch(mainUrl + `email/report/sendReport`, {
       method: "POST",
@@ -221,9 +227,9 @@ const reportUser = async (reportData) => {
     console.log("User", error);
     return error;
   }
-}
+};
 
-const resendVerificationEmail = async (email) => {
+const resendVerificationEmail = async (email: string) => {
   try {
     let response = await fetch(
       mainUrl + "email/resendEmailVerification/sendMail",
@@ -245,7 +251,7 @@ const resendVerificationEmail = async (email) => {
     console.log("User", error);
   }
 };
-const googleLoginUser = async (token) => {
+const googleLoginUser = async (token: string) => {
   try {
     let response = await fetch(mainUrl + "GoogleAuth/login", {
       method: "POST",
@@ -277,5 +283,5 @@ export {
   getReceiverList,
   resendVerificationEmail,
   reportUser,
-  googleLoginUser
+  googleLoginUser,
 };

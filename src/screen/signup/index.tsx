@@ -11,6 +11,9 @@ import { RootStackParamList } from "../../utils/params";
 import Button from "../../component/button";
 import InputText from "../../component/inputText";
 import ChangeNumber from "../../component/changeNumber";
+import { showMessage } from "react-native-flash-message";
+import { signUpUser } from "../../api/user";
+import Login from "../login";
 
 type SignUpScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -28,7 +31,7 @@ export default function SignUp({ onSignInPress }: SignUpProps) {
   const [password, setPassword] = useState<string>("");
   const [firstName, setfirstName] = useState<string>("");
   const [lastName, setlastName] = useState<string>("");
-  const [phNumber, setPhNumber] = useState<string>();
+  const [phNumber, setPhNumber] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const [errorMessage, setErrorMessage] = useState<{ [key: string]: string }>(
@@ -43,6 +46,48 @@ export default function SignUp({ onSignInPress }: SignUpProps) {
       }));
     } else {
       setErrorMessage((prevErrors) => ({ ...prevErrors, [field]: "" }));
+    }
+  };
+
+  const handleSignUp = async () => {
+    if (firstName && lastName && email && password && confirmPassword) {
+      if (password !== confirmPassword) {
+        showMessage({
+          message: "Password mismatch",
+          type: "danger",
+        });
+        return;
+      }
+      // Assuming signup logic here
+
+      const res = await signUpUser(
+        firstName,
+        lastName,
+        email,
+        password,
+        phNumber
+      );
+
+      console.log("resSignup", res);
+
+      if (res && res.message !== "User already exists") {
+        showMessage({
+          message: "Sign up successful",
+          type: "success",
+        });
+        navigation.navigate(ScreenNames.EMAIL_VERIFICATION);
+      } else {
+        showMessage({
+          message: "User already exists",
+          type: "danger",
+        });
+      }
+    } else {
+      showMessage({
+        message: "Term and Conditions",
+        description: "Please fill all required fields",
+        type: "danger",
+      });
     }
   };
   return (
@@ -114,14 +159,6 @@ export default function SignUp({ onSignInPress }: SignUpProps) {
         changeValue=""
         setChangeValue={setPhNumber}
       />
-      {/* <Text style={styles.label}>Phone Number</Text>
-        <Input
-          val=""
-          style={{}}
-          hide={false}
-          placeholder="Phone Number"
-          mode="numeric"
-        /> */}
 
       <View style={styles.checkboxContainer}>
         <Checkbox
@@ -145,16 +182,7 @@ export default function SignUp({ onSignInPress }: SignUpProps) {
       </View>
       {/* </View> */}
 
-      <Button
-        onPress={() =>
-          navigation.navigate(ScreenNames.CHAT, {
-            Email: email,
-            Password: password,
-          })
-        }
-        title="Sign up"
-        style={styles.signUpbtn}
-      />
+      <Button onPress={handleSignUp} title="Sign up" style={styles.signUpbtn} />
 
       <View style={styles.haveAccount}>
         <Text style={styles.alreadyAccoutLabel}>Already have an account?</Text>

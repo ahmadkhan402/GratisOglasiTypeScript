@@ -14,6 +14,8 @@ import ScreenNames from "../../routes/routes";
 import Button from "../../component/button";
 import ConfirmationModal from "../../component/confirmationModal";
 import InputText from "../../component/inputText";
+import { logInUser } from "../../api/user";
+import { showMessage } from "react-native-flash-message";
 
 interface SignInProps {
   onSignUpPress: () => void; // Callback function to handle navigation to SignIn
@@ -50,6 +52,21 @@ export default function Login({ onSignUpPress }: SignInProps) {
   const handleReset = () => {
     setEmail("");
     setModalVisible(false);
+  };
+
+  const handleLogin = async () => {
+    const res = await logInUser(email, password);
+    console.log("====================================");
+    console.log(res);
+    console.log("====================================");
+    if (res && res !== "user not found") {
+      navigation.navigate(ScreenNames.HOME);
+    } else {
+      showMessage({
+        message: "User not found",
+        type: "danger",
+      });
+    }
   };
   return (
     <View style={styles.parentView}>
@@ -93,12 +110,7 @@ export default function Login({ onSignUpPress }: SignInProps) {
           <Text style={styles.forgotText}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
-      <Button
-        onPress={() => {
-          navigation.navigate(ScreenNames.HOME);
-        }}
-        title="Login"
-      />
+      <Button onPress={handleLogin} title="Login" />
       <View style={styles.dontHaveAccount}>
         <Text style={styles.labelRemember}>Don't have an account?</Text>
         <TouchableOpacity onPress={onSignUpPress} style={styles.signUpBtn}>

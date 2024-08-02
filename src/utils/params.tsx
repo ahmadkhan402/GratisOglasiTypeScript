@@ -29,4 +29,5 @@ export type RootStackParamList = {
   };
   [ScreenNames.LOCATION]: undefined;
   [ScreenNames.CATEGORIES]: { wantTo?: string | "" };
+  [ScreenNames.EMAIL_VERIFICATION]: undefined;
 };

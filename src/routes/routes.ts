@@ -15,6 +15,7 @@ enum ScreenNames {
   DETAILS = "Details",
   SUBCATEGORIES = "SubCategories",
   LOCATION = "Location",
+  EMAIL_VERIFICATION = "EmailVerification",
 }
 
 export default ScreenNames;
