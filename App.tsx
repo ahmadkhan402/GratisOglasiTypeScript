@@ -8,6 +8,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./src/translation";
 import FlashMessage from "react-native-flash-message";
+import { Provider } from "react-redux";
+import store from "./src/redux/store";
 
 export default function App() {
   React.useLayoutEffect(() => {
@@ -16,10 +18,12 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <I18nextProvider i18n={i18n}>
-        <Route />
-        <FlashMessage position="top" />
-      </I18nextProvider>
+      <Provider store={store}>
+        <I18nextProvider i18n={i18n}>
+          <Route />
+          <FlashMessage position="top" />
+        </I18nextProvider>
+      </Provider>
     </SafeAreaProvider>
   );
 }

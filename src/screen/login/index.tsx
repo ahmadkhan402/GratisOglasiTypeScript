@@ -16,6 +16,8 @@ import ConfirmationModal from "../../component/confirmationModal";
 import InputText from "../../component/inputText";
 import { logInUser } from "../../api/user";
 import { showMessage } from "react-native-flash-message";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../redux/user";
 
 interface SignInProps {
   onSignUpPress: () => void; // Callback function to handle navigation to SignIn
@@ -25,6 +27,7 @@ type loginNavigationProps = NativeStackNavigationProp<
   ScreenNames.HOME
 >;
 export default function Login({ onSignUpPress }: SignInProps) {
+  const dispach = useDispatch();
   const navigation = useNavigation<loginNavigationProps>();
   const [isChecked, setChecked] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -57,15 +60,24 @@ export default function Login({ onSignUpPress }: SignInProps) {
   const handleLogin = async () => {
     const res = await logInUser(email, password);
     console.log("====================================");
-    console.log(res);
+    console.log("responce of login user", res);
     console.log("====================================");
-    if (res && res !== "user not found") {
-      navigation.navigate(ScreenNames.HOME);
-    } else {
-      showMessage({
-        message: "User not found",
-        type: "danger",
+    if (res && res === "Please verify your email") {
+      navigation.navigate(ScreenNames.EMAIL_VERIFICATION, {
+        stateToVerify: "OnLogin",
+        email: email,
       });
+    } else {
+      if (res && res !== "user not found") {
+        dispach(addUser(res));
+
+        navigation.navigate(ScreenNames.HOME);
+      } else {
+        showMessage({
+          message: "User not found",
+          type: "danger",
+        });
+      }
     }
   };
   return (

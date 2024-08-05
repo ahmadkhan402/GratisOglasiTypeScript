@@ -6,6 +6,7 @@ import ScreenNames from "./routes";
 import {
   AdPostScreen,
   AuthScreen,
+  ChangePasswordScreen,
   ChatScreen,
   EditProfileScreen,
   EmailVerficationScreen,
@@ -13,6 +14,7 @@ import {
   LocationScreen,
   MyAdsScreen,
   ProfileScreen,
+  SettingScreen,
   SubCategoriesScreen,
 } from "../screen";
 import BottomTab from "./Bottom";
@@ -25,7 +27,7 @@ export default function Route() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={ScreenNames.EMAIL_VERIFICATION}
+        initialRouteName={ScreenNames.AUTHENTICATION}
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name={ScreenNames.HOME} component={BottomTab} />
@@ -36,6 +38,11 @@ export default function Route() {
           name={ScreenNames.EDITPROFILE}
           component={EditProfileScreen}
         />
+        <Stack.Screen
+          name={ScreenNames.CHANGE_PASSWORD}
+          component={ChangePasswordScreen}
+        />
+        <Stack.Screen name={ScreenNames.SETTINGS} component={SettingScreen} />
         <Stack.Screen name={ScreenNames.PROFILE} component={ProfileScreen} />
         <Stack.Screen name={ScreenNames.MYADS} component={MyAdsScreen} />
         <Stack.Screen name={ScreenNames.ADS} component={Ads} />

@@ -43,9 +43,9 @@ type navigationProps = NativeStackNavigationProp<
   RootStackParamList,
   ScreenNames.ADS
 >;
-type ChatScreenRouteProp = RouteProp<RootStackParamList, ScreenNames.ADS>;
+type AdsScreenRouteProp = RouteProp<RootStackParamList, ScreenNames.ADS>;
 export default function Ads() {
-  const route = useRoute<ChatScreenRouteProp>();
+  const route = useRoute<AdsScreenRouteProp>();
   const navigation = useNavigation<navigationProps>();
   const { t } = useTranslation();
   let data = route.params;

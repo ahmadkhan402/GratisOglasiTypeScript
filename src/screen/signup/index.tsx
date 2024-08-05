@@ -75,7 +75,11 @@ export default function SignUp({ onSignInPress }: SignUpProps) {
           message: "Sign up successful",
           type: "success",
         });
-        navigation.navigate(ScreenNames.EMAIL_VERIFICATION);
+        navigation.navigate(ScreenNames.EMAIL_VERIFICATION, {
+          stateToVerify: "OnSignUp",
+          email: email,
+          userId: res._id,
+        });
       } else {
         showMessage({
           message: "User already exists",

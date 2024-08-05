@@ -3,11 +3,10 @@ import AppColors from "../../utils/AppColors";
 import { height, width } from "../../utils/Dimension";
 
 const styles = StyleSheet.create({
-  // parentView: {
-  //   width: width(85),
-  //   alignSelf: "center",
-  //   marginTop: height(2),
-  // },
+  parentView: {
+    width: width(85),
+    alignSelf: "center",
+  },
   textStyle: {
     width: width(85),
     fontSize: 20,

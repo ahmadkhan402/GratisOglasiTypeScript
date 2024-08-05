@@ -14,7 +14,7 @@ export type RootStackParamList = {
   [ScreenNames.EDITPROFILE]?: undefined;
   [ScreenNames.PROFILE]: undefined;
   [ScreenNames.MYADS]: undefined;
-  [ScreenNames.AUTHENTICATION]: undefined;
+  [ScreenNames.AUTHENTICATION]: { showView?: string | "" };
   [ScreenNames.ADS]: {
     cate?: string;
     latest?: string;
@@ -29,5 +29,11 @@ export type RootStackParamList = {
   };
   [ScreenNames.LOCATION]: undefined;
   [ScreenNames.CATEGORIES]: { wantTo?: string | "" };
-  [ScreenNames.EMAIL_VERIFICATION]: undefined;
+  [ScreenNames.EMAIL_VERIFICATION]: {
+    stateToVerify?: string | "";
+    email?: string;
+    userId?: string | "";
+  };
+  [ScreenNames.CHANGE_PASSWORD]: undefined;
+  [ScreenNames.SETTINGS]: undefined;
 };

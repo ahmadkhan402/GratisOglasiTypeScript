@@ -16,6 +16,8 @@ enum ScreenNames {
   SUBCATEGORIES = "SubCategories",
   LOCATION = "Location",
   EMAIL_VERIFICATION = "EmailVerification",
+  CHANGE_PASSWORD = "ChangePassword",
+  SETTINGS = "Settings",
 }
 
 export default ScreenNames;

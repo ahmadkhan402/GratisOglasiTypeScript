@@ -26,16 +26,24 @@ import StatusBarCustom from "react-native-custom-statusbar";
 import { Menu, MenuItem, MenuDivider } from "react-native-material-menu";
 import { height, width } from "../../utils/Dimension";
 import i18n from "../../translation";
+import { RootStackParamList } from "../../utils/params";
+import ScreenNames from "../../routes/routes";
+import { RouteProp, useRoute } from "@react-navigation/native";
 
 interface LoginState {
   email: string;
   password: string;
 }
 
+type RouteProps = RouteProp<RootStackParamList, ScreenNames.AUTHENTICATION>;
 export default function Authentication() {
+  const route = useRoute<RouteProps>();
+  const { params } = route;
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [focusedButton, setFocusedButton] = useState<string | null>("login"); // Track focused button
+  const [focusedButton, setFocusedButton] = useState<string | null>(
+    params?.showView ? params?.showView : "login"
+  ); // Track focused button
   const [visible, setVisible] = useState(false);
   const [ShowMenu, setShowMenu] = useState<string>("English");
 
