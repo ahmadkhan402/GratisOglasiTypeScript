@@ -6,13 +6,16 @@ import ScreenNames from "./routes";
 import {
   AdPostScreen,
   AuthScreen,
+  ChangeLanguageScreen,
   ChangePasswordScreen,
   ChatScreen,
   EditProfileScreen,
   EmailVerficationScreen,
   HomeScreen,
   LocationScreen,
+  ManageAccountScreen,
   MyAdsScreen,
+  PrivacyScreen,
   ProfileScreen,
   SettingScreen,
   SubCategoriesScreen,
@@ -42,6 +45,15 @@ export default function Route() {
           name={ScreenNames.CHANGE_PASSWORD}
           component={ChangePasswordScreen}
         />
+        <Stack.Screen
+          name={ScreenNames.CHANGE_LANGUAGE}
+          component={ChangeLanguageScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.MANAGE_ACCOUNT}
+          component={ManageAccountScreen}
+        />
+        <Stack.Screen name={ScreenNames.PRIVACY} component={PrivacyScreen} />
         <Stack.Screen name={ScreenNames.SETTINGS} component={SettingScreen} />
         <Stack.Screen name={ScreenNames.PROFILE} component={ProfileScreen} />
         <Stack.Screen name={ScreenNames.MYADS} component={MyAdsScreen} />

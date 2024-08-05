@@ -18,6 +18,9 @@ enum ScreenNames {
   EMAIL_VERIFICATION = "EmailVerification",
   CHANGE_PASSWORD = "ChangePassword",
   SETTINGS = "Settings",
+  PRIVACY = "Privacy",
+  MANAGE_ACCOUNT = "ManageAccount",
+  CHANGE_LANGUAGE = "ChangeLanguage",
 }
 
 export default ScreenNames;

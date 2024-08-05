@@ -24,7 +24,7 @@ export default function Setting() {
         title="Privacy"
         arrow={true}
         onPress={() => {
-          navigation.navigate(ScreenNames.SETTINGS);
+          navigation.navigate(ScreenNames.PRIVACY);
         }}
       />
       <ProfileItem
@@ -32,7 +32,7 @@ export default function Setting() {
         title="Manage Account"
         arrow={true}
         onPress={() => {
-          navigation.navigate(ScreenNames.SETTINGS);
+          navigation.navigate(ScreenNames.MANAGE_ACCOUNT);
         }}
       />
       <ProfileItem
@@ -42,7 +42,7 @@ export default function Setting() {
         title="Change Language"
         arrow={true}
         onPress={() => {
-          navigation.navigate(ScreenNames.SETTINGS);
+          navigation.navigate(ScreenNames.CHANGE_LANGUAGE);
         }}
       />
     </View>

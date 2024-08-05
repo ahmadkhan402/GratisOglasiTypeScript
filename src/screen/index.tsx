@@ -13,3 +13,6 @@ export { default as LocationScreen } from "./location";
 export { default as EmailVerficationScreen } from "./emailVerification";
 export { default as ChangePasswordScreen } from "./changePassword";
 export { default as SettingScreen } from "./setting";
+export { default as PrivacyScreen } from "./privacy";
+export { default as ManageAccountScreen } from "./manageAccount";
+export { default as ChangeLanguageScreen } from "./changeLanguage";
