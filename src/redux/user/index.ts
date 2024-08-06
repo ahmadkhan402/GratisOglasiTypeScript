@@ -29,9 +29,12 @@ const userSlice = createSlice({
         state.userData.push(action.payload);
       }
     },
+    emptyUserData: (state) => {
+      state.userData = [];
+    },
     // add more reducers as needed
   },
 });
 
-export const { addUser } = userSlice.actions;
+export const { addUser, emptyUserData } = userSlice.actions;
 export default userSlice.reducer;

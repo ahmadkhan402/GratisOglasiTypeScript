@@ -42,7 +42,9 @@ export default function Header({ back, title, icon, style }: Props) {
         </TouchableOpacity>
       )}
       {title && (
-        <Text style={back ? styles.backTitle : styles.title}>{title}</Text>
+        <View style={back ? styles.backTitleView : styles.titleView}>
+          <Text style={back ? styles.backTitle : styles.title}>{title}</Text>
+        </View>
       )}
       <View>
         {icon && (

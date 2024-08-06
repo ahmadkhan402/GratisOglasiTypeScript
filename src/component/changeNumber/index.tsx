@@ -1,15 +1,26 @@
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  StyleProp,
+  Text,
+  TextInput,
+  TextStyle,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { SetStateAction, useRef, useState } from "react";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import PhoneInput from "react-native-phone-number-input";
 import { useTranslation } from "react-i18next";
 import styles from "./styles";
+import { ScreenWrapper } from "react-native-screen-wrapper";
+import AppColors from "../../utils/AppColors";
+import { ViewStyle } from "react-native-phone-input";
 
 interface ChangeNumberProps {
-  value: string;
+  value?: string;
   changeValue: string;
   setChangeValue: (value: string) => void;
-  text: string;
+  text?: string;
+  inputStyle?: TextStyle;
 }
 
 export default function ChangeNumber({
@@ -17,10 +28,11 @@ export default function ChangeNumber({
   changeValue,
   setChangeValue,
   text,
+  inputStyle,
 }: ChangeNumberProps) {
   const { t } = useTranslation();
 
-  const [edit, setEdit] = useState(true);
+  const [edit, setEdit] = useState<boolean>(true);
   const phoneInput = useRef<PhoneInput>(null);
   const [isValid, setIsValid] = useState<boolean>(true);
 
@@ -48,7 +60,7 @@ export default function ChangeNumber({
       {value && edit ? (
         <View style={styles.inputView}>
           <TextInput
-            style={styles.inputStyle}
+            style={[styles.inputStyle, inputStyle]}
             // placeholder={placeholder}
             value={value}
             editable={false}

@@ -20,9 +20,11 @@ const styles = StyleSheet.create({
     // borderRadius: 50,
     // backgroundColor: AppColors.white,
   },
+  userNameView: {
+    height: height(5),
+    justifyContent: "center",
+  },
   userName: {
-    height: height(6),
-    textAlignVertical: "center",
     fontSize: 20,
     fontWeight: "bold",
     color: AppColors.black,
@@ -79,6 +81,18 @@ const styles = StyleSheet.create({
     //     elevation: 5,
     //   },
     // }),
+  },
+
+  cancelBtn: {
+    backgroundColor: AppColors.white,
+    borderColor: AppColors.black,
+    borderWidth: 1,
+    height: height(6),
+  },
+  actionBtn: {
+    backgroundColor: AppColors.red,
+
+    height: height(6),
   },
 });
 export default styles;

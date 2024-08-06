@@ -14,6 +14,7 @@ import ChangeNumber from "../../component/changeNumber";
 import { showMessage } from "react-native-flash-message";
 import { signUpUser } from "../../api/user";
 import Login from "../login";
+import { width } from "../../utils/Dimension";
 
 type SignUpScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -98,6 +99,7 @@ export default function SignUp({ onSignInPress }: SignUpProps) {
     <View style={styles.parentView}>
       {/* <View style={styles.inputContainer}> */}
       <InputText
+        viewStyle={styles.viewStyle}
         onBlur={() => handleBlur("firstName", firstName)}
         errorMessage={errorMessage.firstName}
         placeholder="First Name"
@@ -110,6 +112,7 @@ export default function SignUp({ onSignInPress }: SignUpProps) {
       )}
 
       <InputText
+        viewStyle={styles.viewStyle}
         onBlur={() => handleBlur("lastName", lastName)}
         errorMessage={errorMessage.lastName}
         placeholder="Last Name"
@@ -122,6 +125,7 @@ export default function SignUp({ onSignInPress }: SignUpProps) {
       )}
 
       <InputText
+        viewStyle={styles.viewStyle}
         onBlur={() => handleBlur("email", email)}
         errorMessage={errorMessage.email}
         placeholder="Email"
@@ -133,6 +137,7 @@ export default function SignUp({ onSignInPress }: SignUpProps) {
         <Text style={styles.errorMessage}>{errorMessage.email}</Text>
       )}
       <InputText
+        viewStyle={styles.viewStyle}
         onBlur={() => handleBlur("password", password)}
         errorMessage={errorMessage.password}
         password={true}
@@ -145,6 +150,7 @@ export default function SignUp({ onSignInPress }: SignUpProps) {
         <Text style={styles.errorMessage}>{errorMessage.password}</Text>
       )}
       <InputText
+        viewStyle={styles.viewStyle}
         onBlur={() => handleBlur("confirmPassword", confirmPassword)}
         errorMessage={errorMessage.confirmPassword}
         password={true}

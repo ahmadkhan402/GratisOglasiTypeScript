@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   ViewStyle,
   TouchableOpacityProps,
+  TextStyle,
 } from "react-native";
 import React from "react";
 import styles from "./styles";
@@ -14,9 +15,16 @@ interface ButtonProps extends TouchableOpacityProps {
   title: string;
   style?: ViewStyle;
   icon?: boolean;
+  textStyle?: TextStyle;
 }
 
-export default function Button({ title, style, icon, ...rest }: ButtonProps) {
+export default function Button({
+  title,
+  style,
+  icon,
+  textStyle,
+  ...rest
+}: ButtonProps) {
   return (
     <TouchableOpacity
       style={[icon ? styles.btnContainerWithIcon : styles.btnContainer, style]}
@@ -31,7 +39,9 @@ export default function Button({ title, style, icon, ...rest }: ButtonProps) {
         />
       )}
 
-      <Text style={styles.btnText}>{title}</Text>
+      <View style={styles.btnTextContainer}>
+        <Text style={{ ...styles.btnText, ...textStyle }}>{title}</Text>
+      </View>
     </TouchableOpacity>
   );
 }

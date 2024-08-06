@@ -23,13 +23,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 5,
   },
-  title: {
+  titleView: {
     fontSize: 16,
-    fontWeight: "500",
     paddingLeft: width(3),
     width: width(60),
     height: height(6),
-    textAlignVertical: "center",
+    justifyContent: "center",
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: "500",
     textAlign: "left",
   },
 });

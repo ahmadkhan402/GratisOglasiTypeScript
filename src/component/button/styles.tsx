@@ -20,9 +20,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginVertical: height(1.5),
   },
+  btnTextContainer: {
+    height: height(6),
+    justifyContent: "center",
+  },
   btnText: {
     fontSize: 20,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     color: AppColors.black,
   },
   icon: {

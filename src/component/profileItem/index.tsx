@@ -18,7 +18,9 @@ export default function ProfileItem({ icon, title, arrow, onPress }: Props) {
         {/* <Text style={styles.icon}>{icon}</Text> */}
         {icon}
       </View>
-      <Text style={styles.title}>{title}</Text>
+      <View style={styles.titleView}>
+        <Text style={styles.title}>{title}</Text>
+      </View>
       {arrow && (
         <Entypo name="chevron-small-right" size={25} color={AppColors.black} />
       )}

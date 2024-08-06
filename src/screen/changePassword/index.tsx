@@ -6,6 +6,8 @@ import InputText from "../../component/inputText";
 import { width } from "../../utils/Dimension";
 import Button from "../../component/button";
 import { showMessage } from "react-native-flash-message";
+import { ScreenWrapper } from "react-native-screen-wrapper";
+import AppColors from "../../utils/AppColors";
 
 export default function ChangePassword() {
   const [oldPassword, setOldPassword] = useState<string>("");
@@ -30,46 +32,48 @@ export default function ChangePassword() {
     }
   };
   return (
-    <View style={styles.parentView}>
-      <Header title="Change Password" back={true} />
-      {/* <View style={styles.contentView}> */}
-      <InputText
-        label="Old Password"
-        placeholder="Enter Old Password"
-        password={true}
-        viewStyle={styles.inputView}
-        style={styles.inputStyle}
-        parentStyle={styles.parentStyle}
-        value={oldPassword}
-        onChangeText={setOldPassword}
-      />
+    <ScreenWrapper statusBarColor={AppColors.primary} barStyle="dark-content">
+      <View style={styles.parentView}>
+        <Header title="Change Password" back={true} />
+        {/* <View style={styles.contentView}> */}
+        <InputText
+          label="Old Password"
+          placeholder="Enter Old Password"
+          password={true}
+          viewStyle={styles.inputView}
+          style={styles.inputStyle}
+          parentStyle={styles.parentStyle}
+          value={oldPassword}
+          onChangeText={setOldPassword}
+        />
 
-      <InputText
-        label="New Password"
-        placeholder="Enter New Password"
-        password={true}
-        viewStyle={styles.inputView}
-        style={styles.inputStyle}
-        parentStyle={styles.parentStyle}
-        value={newPassword}
-        onChangeText={setNewPassword}
-      />
-      <InputText
-        label="Confirm Password"
-        placeholder="Enter Confirm Password"
-        password={true}
-        viewStyle={styles.inputView}
-        style={styles.inputStyle}
-        parentStyle={styles.parentStyle}
-        value={confrim}
-        onChangeText={setConfrim}
-      />
+        <InputText
+          label="New Password"
+          placeholder="Enter New Password"
+          password={true}
+          viewStyle={styles.inputView}
+          style={styles.inputStyle}
+          parentStyle={styles.parentStyle}
+          value={newPassword}
+          onChangeText={setNewPassword}
+        />
+        <InputText
+          label="Confirm Password"
+          placeholder="Enter Confirm Password"
+          password={true}
+          viewStyle={styles.inputView}
+          style={styles.inputStyle}
+          parentStyle={styles.parentStyle}
+          value={confrim}
+          onChangeText={setConfrim}
+        />
 
-      <Button
-        title="Change"
-        style={styles.btnStyle}
-        onPress={handleChangePassword}
-      />
-    </View>
+        <Button
+          title="Change"
+          style={styles.btnStyle}
+          onPress={handleChangePassword}
+        />
+      </View>
+    </ScreenWrapper>
   );
 }

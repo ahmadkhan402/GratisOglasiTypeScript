@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "600",
     marginTop: height(1),
-    marginLeft: width(2),
+    // marginLeft: width(2),
   },
   iconInputView: {
     width: width(85),
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: AppColors.primary,
     borderRadius: 30,
-    paddingLeft: 15,
     // marginBottom: height(1),
     marginTop: height(1),
     justifyContent: "space-between",

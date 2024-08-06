@@ -18,6 +18,7 @@ import { logInUser } from "../../api/user";
 import { showMessage } from "react-native-flash-message";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../redux/user";
+import { width } from "../../utils/Dimension";
 
 interface SignInProps {
   onSignUpPress: () => void; // Callback function to handle navigation to SignIn
@@ -89,6 +90,7 @@ export default function Login({ onSignUpPress }: SignInProps) {
         label="Email"
         onChangeText={setEmail}
         value={email}
+        viewStyle={{ paddingLeft: width(4) }}
       />
       {errorMessage.email !== "" && email.length <= 0 && (
         <Text style={styles.errorMessage}>{errorMessage.email}</Text>
@@ -101,6 +103,7 @@ export default function Login({ onSignUpPress }: SignInProps) {
         label="Password"
         onChangeText={setPassword}
         value={password}
+        viewStyle={{ paddingLeft: width(4) }}
       />
       {errorMessage.password !== "" && password.length <= 0 && (
         <Text style={styles.errorMessage}>{errorMessage.password}</Text>
@@ -132,8 +135,10 @@ export default function Login({ onSignUpPress }: SignInProps) {
 
       <ConfirmationModal
         visible={modalVisible}
-        onCancel={handleCancel}
-        onReset={handleReset}
+        pressCancel={handleCancel}
+        pressAction={handleReset}
+        cancelBtnText="Cancel"
+        actionBtnText="Reset"
         email={email}
         setEmail={setEmail}
       />

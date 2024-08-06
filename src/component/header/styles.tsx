@@ -32,6 +32,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  titleView: {
+    flex: 1,
+  },
   title: {
     flex: 1,
     // color: AppColors.black,
@@ -39,11 +42,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  backTitle: {
+  backTitleView: {
     position: "absolute",
     // backgroundColor: AppColors.primary,
     width: width(100),
     height: height(6),
+    justifyContent: "center",
+  },
+  backTitle: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",

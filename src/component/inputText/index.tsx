@@ -23,13 +23,13 @@ interface inputProps extends TextInputProps {
 export default function InputText({
   label,
   errorMessage,
-  password = false,
+  password,
   style,
   viewStyle,
   parentStyle,
   ...rest
 }: inputProps) {
-  const [secure, setSecure] = useState<boolean>(password);
+  const [secure, setSecure] = useState<boolean>(password ? true : false);
   return (
     <View style={[styles.parentView, parentStyle]}>
       {label && <Text style={styles.textStyle}>{label}</Text>}

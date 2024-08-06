@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "100%",
   },
+  viewStyle: {
+    paddingLeft: width(4),
+  },
   errorMessage: {
     color: AppColors.red,
     textAlign: "left",

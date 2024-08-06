@@ -59,7 +59,7 @@ export default function EmailVerification() {
   //   }
   // }, []);
   return (
-    <ScreenWrapper statusBarColor={AppColors.primary}>
+    <ScreenWrapper statusBarColor={AppColors.primary} barStyle="dark-content">
       <View style={styles.parentView}>
         <Header title="Email Verification" back={true} />
 

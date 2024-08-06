@@ -39,4 +39,5 @@ export type RootStackParamList = {
   [ScreenNames.PRIVACY]: undefined;
   [ScreenNames.MANAGE_ACCOUNT]: undefined;
   [ScreenNames.CHANGE_LANGUAGE]: undefined;
+  [ScreenNames.TABHOME]: undefined;
 };

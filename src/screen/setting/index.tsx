@@ -9,6 +9,7 @@ import ScreenNames from "../../routes/routes";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../utils/params";
 import { useNavigation } from "@react-navigation/native";
+import { ScreenWrapper } from "react-native-screen-wrapper";
 
 type navigationProps = NativeStackNavigationProp<
   RootStackParamList,
@@ -17,34 +18,40 @@ type navigationProps = NativeStackNavigationProp<
 export default function Setting() {
   const navigation = useNavigation<navigationProps>();
   return (
-    <View style={styles.parentView}>
-      <Header back={true} title={"Settings"} />
-      <ProfileItem
-        icon={<Feather name="user" size={20} color={AppColors.tangerine} />}
-        title="Privacy"
-        arrow={true}
-        onPress={() => {
-          navigation.navigate(ScreenNames.PRIVACY);
-        }}
-      />
-      <ProfileItem
-        icon={<Feather name="lock" size={20} color={AppColors.tangerine} />}
-        title="Manage Account"
-        arrow={true}
-        onPress={() => {
-          navigation.navigate(ScreenNames.MANAGE_ACCOUNT);
-        }}
-      />
-      <ProfileItem
-        icon={
-          <FontAwesome name="language" size={20} color={AppColors.tangerine} />
-        }
-        title="Change Language"
-        arrow={true}
-        onPress={() => {
-          navigation.navigate(ScreenNames.CHANGE_LANGUAGE);
-        }}
-      />
-    </View>
+    <ScreenWrapper statusBarColor={AppColors.primary} barStyle="dark-content">
+      <View style={styles.parentView}>
+        <Header back={true} title={"Settings"} />
+        <ProfileItem
+          icon={<Feather name="user" size={20} color={AppColors.tangerine} />}
+          title="Privacy"
+          arrow={true}
+          onPress={() => {
+            navigation.navigate(ScreenNames.PRIVACY);
+          }}
+        />
+        <ProfileItem
+          icon={<Feather name="lock" size={20} color={AppColors.tangerine} />}
+          title="Manage Account"
+          arrow={true}
+          onPress={() => {
+            navigation.navigate(ScreenNames.MANAGE_ACCOUNT);
+          }}
+        />
+        <ProfileItem
+          icon={
+            <FontAwesome
+              name="language"
+              size={20}
+              color={AppColors.tangerine}
+            />
+          }
+          title="Change Language"
+          arrow={true}
+          onPress={() => {
+            navigation.navigate(ScreenNames.CHANGE_LANGUAGE);
+          }}
+        />
+      </View>
+    </ScreenWrapper>
   );
 }

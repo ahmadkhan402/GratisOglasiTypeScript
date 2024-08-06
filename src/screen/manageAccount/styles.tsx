@@ -11,5 +11,16 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 5,
   },
+  cancelBtn: {
+    backgroundColor: AppColors.white,
+    borderColor: AppColors.black,
+    borderWidth: 1,
+    height: height(6),
+  },
+  actionBtn: {
+    backgroundColor: AppColors.red,
+
+    height: height(6),
+  },
 });
 export default styles;
