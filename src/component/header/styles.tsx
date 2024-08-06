@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     height: height(6),
     justifyContent: "center",
     alignItems: "center",
+    zIndex: 1,
   },
   iconView: {
     width: width(22),
@@ -34,6 +35,15 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     // color: AppColors.black,
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  backTitle: {
+    position: "absolute",
+    // backgroundColor: AppColors.primary,
+    width: width(100),
+    height: height(6),
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",

@@ -6,5 +6,10 @@ const styles = StyleSheet.create({
   parentView: {
     flex: 1,
   },
+  dltBtn: {
+    width: width(90),
+    alignSelf: "center",
+    borderRadius: 5,
+  },
 });
 export default styles;

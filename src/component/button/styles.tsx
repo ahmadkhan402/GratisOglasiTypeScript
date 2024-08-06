@@ -11,10 +11,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginVertical: height(1.5),
   },
+  btnContainerWithIcon: {
+    flexDirection: "row",
+    backgroundColor: AppColors.yellow,
+    borderRadius: 25,
+    height: height(6),
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: height(1.5),
+  },
   btnText: {
     fontSize: 20,
     fontWeight: "bold",
     color: AppColors.black,
+  },
+  icon: {
+    width: width(8),
+    // height: height(4),
   },
 });
 

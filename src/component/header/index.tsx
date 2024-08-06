@@ -41,7 +41,9 @@ export default function Header({ back, title, icon, style }: Props) {
           <Ionicons name="chevron-back" size={26} color={AppColors.black} />
         </TouchableOpacity>
       )}
-      {title && <Text style={styles.title}>{title}</Text>}
+      {title && (
+        <Text style={back ? styles.backTitle : styles.title}>{title}</Text>
+      )}
       <View>
         {icon && (
           <View style={styles.iconView}>
