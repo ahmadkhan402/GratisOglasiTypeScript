@@ -6,6 +6,7 @@ import {
   RefreshControl,
   ActivityIndicator,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { getFavorite } from "../../api/favorites";
 import { useSelector } from "react-redux";
@@ -26,9 +27,10 @@ export default function MyFavorites() {
   const [loadIndex, setLoadIndex] = useState<number>(1);
   const [showButton, setShowButton] = useState<boolean>(false);
   const getApiRequest = async () => {
-    const response = await getFavorite(loginUser._id);
-    console.log("response", response);
-    setFavtItems(response.items);
+    getFavorite(loginUser._id).then((response) => {
+      setFavtItems(response);
+      setTotalAds(response.totalAds);
+    });
   };
   const onRefresh = () => {
     setRefreshing(true);
@@ -38,11 +40,16 @@ export default function MyFavorites() {
   const handleLoadMore = async () => {
     try {
       if (isLoading) return;
-      if (favtItems?.length >= totalAds) return;
-      // if (favtItems?.items.length >= totalAds) return;
+
+      if (favtItems?.items.length >= totalAds) return;
+      console.log("Load More");
+      console.log("Fvt item length", favtItems?.length, "totalAds", totalAds);
       setIsLoading(true);
+      // if (favtItems?.items.length >= totalAds) return;
 
       let allFavItems: any;
+      console.log("load INdex", loadIndex, "all Favt log", allFavItems);
+
       try {
         allFavItems = await getFavorites(loginUser._id, loadIndex);
       } catch (error) {
@@ -50,6 +57,8 @@ export default function MyFavorites() {
       }
 
       const hasMore = favtItems.items.length >= 10;
+      console.log("hasMore", hasMore);
+
       setTotalAds(allFavItems.totalAds);
       // Update the load index for the next page
       if (hasMore) {
@@ -57,9 +66,9 @@ export default function MyFavorites() {
           items: [...prevAds?.items, ...allFavItems.items], // Append new items
         }));
         setLoadIndex((prevIndex) => prevIndex + 1);
+      } else {
+        setIsLoading(false);
       }
-
-      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching ads:", error);
       setIsLoading(false);
@@ -92,11 +101,12 @@ export default function MyFavorites() {
     <ScreenWrapper
       barStyle="dark-content"
       statusBarColor={AppColors.primary}
-      scrollType="scroll"
+      // scrollType="scroll"
     >
+      {/* <ScrollView> */}
       <FlatList
-        scrollEnabled={false}
-        data={favtItems}
+        scrollEnabled={true}
+        data={favtItems.items}
         showsVerticalScrollIndicator={false}
         // scrollEnabled={false}
         numColumns={2}
@@ -122,6 +132,7 @@ export default function MyFavorites() {
           />
         </TouchableOpacity>
       )}
+      {/* </ScrollView> */}
     </ScreenWrapper>
   );
 }
