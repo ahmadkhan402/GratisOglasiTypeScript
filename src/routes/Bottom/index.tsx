@@ -21,6 +21,7 @@ import AppColors from "../../utils/AppColors";
 import Images from "../../assets/images";
 import styles from "./styles";
 import { height } from "../../utils/Dimension";
+import PersonalAds from "../../screen/personalAds";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -105,8 +106,8 @@ export default function BottomTab() {
         }}
       />
       <Tab.Screen
-        name={ScreenNames.MYADS}
-        component={MyAdsScreen}
+        name={ScreenNames.PERSONAL_ADS}
+        component={PersonalAds}
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons

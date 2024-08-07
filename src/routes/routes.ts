@@ -21,6 +21,8 @@ enum ScreenNames {
   PRIVACY = "Privacy",
   MANAGE_ACCOUNT = "ManageAccount",
   CHANGE_LANGUAGE = "ChangeLanguage",
+  FAVORITES = "Favorites",
+  PERSONAL_ADS = "PersonalAds",
 }
 
 export default ScreenNames;

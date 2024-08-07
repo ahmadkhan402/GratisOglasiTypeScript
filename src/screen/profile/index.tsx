@@ -34,13 +34,13 @@ export default function Profile() {
   };
 
   const handleLogout = () => {
+    console.log("Logout");
+
     setTimeout(() => {
-      setLoading(true);
-      // dispatch(emptyUserData());
-      // navigation.navigate(ScreenNames.AUTHENTICATION, { showView: "OnLogin" });
-      // setLoading(false);
-    }, 200);
-    setLoading(false);
+      dispatch(emptyUserData());
+      navigation.navigate(ScreenNames.AUTHENTICATION, { showView: "OnLogin" });
+      setLoading(false);
+    }, 1000);
     // navigation.navigate(ScreenNames.TABHOME);
   };
 
@@ -117,8 +117,9 @@ export default function Profile() {
           pressAction={() => {
             setLogoutShowModal(false),
               setTimeout(() => {
+                setLoading(true);
                 handleLogout();
-              }, 300);
+              }, 500);
           }}
           label="Are you sure you want to logout?"
           cancelBtnStyle={styles.cancelBtn}

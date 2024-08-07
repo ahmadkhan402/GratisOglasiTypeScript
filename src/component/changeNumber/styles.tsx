@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     marginBottom: height(1),
   },
+  parentPhoneInputView: {
+    flexDirection: "row",
+    borderBottomColor: AppColors.lightGrey,
+  },
   inputView: {
     flexDirection: "row",
     borderBottomWidth: 1,
@@ -30,7 +34,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: AppColors.wildSand,
   },
-  inputStyle: {
+  textInputStyle: {
     width: width(85),
     height: height(6),
     fontSize: 16,

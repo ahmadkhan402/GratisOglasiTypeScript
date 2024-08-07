@@ -73,15 +73,11 @@ export default function Authentication() {
   };
 
   return (
-    //   <ScreenWrapper
-    //   statusBarColor={AppColors.primary}
-    //   barStyle="dark-content"
-    //   scrollType="keyboard"
-    //   scrollViewProps={{ showsVerticalScrollIndicator: false }}
-    // >
-    <StatusBarCustom
-      backgroundColor={AppColors.primary}
+    <ScreenWrapper
+      statusBarColor={AppColors.primary}
       barStyle="dark-content"
+      scrollType="keyboard"
+      scrollViewProps={{ showsVerticalScrollIndicator: false }}
     >
       {/* <KeyboardAwareScrollView style={[styles.parentView,{
       // Paddings to handle safe area
@@ -193,7 +189,7 @@ export default function Authentication() {
         )}
       </KeyboardAwareScrollView>
       {/* </KeyboardAwareScrollView> */}
-    </StatusBarCustom>
-    // </ScreenWrapper>
+      {/* </StatusBarCustom> */}
+    </ScreenWrapper>
   );
 }

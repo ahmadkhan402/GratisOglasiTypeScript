@@ -21,6 +21,11 @@ interface ChangeNumberProps {
   setChangeValue: (value: string) => void;
   text?: string;
   inputStyle?: TextStyle;
+  phoneNumberContainerStyle?: ViewStyle;
+  phoneNumberInputStyle?: TextStyle;
+  phoneNumberTextStyle?: TextStyle;
+  closed?: boolean;
+  parentPhoneInputViewStyle?: ViewStyle;
 }
 
 export default function ChangeNumber({
@@ -29,6 +34,11 @@ export default function ChangeNumber({
   setChangeValue,
   text,
   inputStyle,
+  phoneNumberContainerStyle,
+  phoneNumberInputStyle,
+  phoneNumberTextStyle,
+  closed,
+  parentPhoneInputViewStyle,
 }: ChangeNumberProps) {
   const { t } = useTranslation();
 
@@ -60,7 +70,7 @@ export default function ChangeNumber({
       {value && edit ? (
         <View style={styles.inputView}>
           <TextInput
-            style={[styles.inputStyle, inputStyle]}
+            style={[styles.textInputStyle, inputStyle]}
             // placeholder={placeholder}
             value={value}
             editable={false}
@@ -72,19 +82,23 @@ export default function ChangeNumber({
       ) : (
         <View style={{ flex: 1 }}>
           <View
-            style={[
-              styles.inputView,
-              {
-                borderBottomWidth: 0,
-              },
-            ]}
+            style={[styles.parentPhoneInputView, parentPhoneInputViewStyle]}
           >
             <PhoneInput
               ref={phoneInput}
               defaultValue={changeValue !== "" ? changeValue : undefined}
-              containerStyle={styles.inputPhoneContainer}
-              textInputStyle={styles.phoneInputContainer}
-              textContainerStyle={styles.inputPhoneTextContainer}
+              containerStyle={[
+                styles.inputPhoneContainer,
+                phoneNumberContainerStyle,
+              ]}
+              textInputStyle={[
+                styles.phoneInputContainer,
+                phoneNumberInputStyle,
+              ]}
+              textContainerStyle={[
+                styles.inputPhoneTextContainer,
+                phoneNumberTextStyle,
+              ]}
               onChangeFormattedText={handlePhoneChange}
               // onChangeFormattedText={(text) => {
               //   setChangeValue(text);
@@ -93,9 +107,11 @@ export default function ChangeNumber({
               layout="second"
               placeholder="6XXXXXXX"
             />
-            {/* <TouchableOpacity style={styles.iconStyle} onPress={handleClose}>
-              <AntDesign name="close" size={20} />
-            </TouchableOpacity> */}
+            {closed && (
+              <TouchableOpacity style={styles.iconStyle} onPress={handleClose}>
+                <AntDesign name="close" size={20} />
+              </TouchableOpacity>
+            )}
           </View>
           {changeValue.length !== 13 && changeValue.length !== 0 && (
             <Text style={styles.errorText}>Invalid Number</Text>

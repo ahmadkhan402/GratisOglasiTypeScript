@@ -19,6 +19,12 @@ import { showMessage } from "react-native-flash-message";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../redux/user";
 import { width } from "../../utils/Dimension";
+import {
+  getCredentials,
+  removeCredentials,
+  setItems,
+  storeCredentials,
+} from "../../utils/Methord";
 
 interface SignInProps {
   onSignUpPress: () => void; // Callback function to handle navigation to SignIn
@@ -28,11 +34,11 @@ type loginNavigationProps = NativeStackNavigationProp<
   ScreenNames.HOME
 >;
 export default function Login({ onSignUpPress }: SignInProps) {
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const navigation = useNavigation<loginNavigationProps>();
   const [isChecked, setChecked] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<{ [key: string]: string }>(
     {}
@@ -58,20 +64,44 @@ export default function Login({ onSignUpPress }: SignInProps) {
     setModalVisible(false);
   };
 
-  const handleLogin = async () => {
-    const res = await logInUser(email, password);
-    console.log("====================================");
-    console.log("responce of login user", res);
-    console.log("====================================");
+  const handleRememberMe = async () => {
+    setChecked((prevChecked) => !prevChecked);
+    if (!isChecked) {
+      await storeCredentials(email, password);
+    } else {
+      await removeCredentials();
+    }
+  };
+  const handleRetrieveCredentials = async () => {
+    const credentials = await getCredentials();
+    if (credentials) {
+      setEmail(credentials.email ? credentials.email : email);
+      setPassword(credentials.password ? credentials.password : password);
+      if (credentials.email !== "" && credentials.password !== "") {
+        setChecked(true);
+        handleLogin(credentials.email, credentials.password);
+      }
+    }
+  };
+  const handleLogin = async (
+    emailToLogin = email,
+    passwordToLogin = password
+  ) => {
+    if (!emailToLogin || !passwordToLogin) {
+      return showMessage({
+        message: "Please enter email and password",
+        type: "danger",
+      });
+    }
+    const res = await logInUser(emailToLogin, passwordToLogin);
     if (res && res === "Please verify your email") {
       navigation.navigate(ScreenNames.EMAIL_VERIFICATION, {
         stateToVerify: "OnLogin",
-        email: email,
+        email: emailToLogin,
       });
     } else {
       if (res && res !== "user not found") {
-        dispach(addUser(res));
-
+        dispatch(addUser(res));
         navigation.navigate(ScreenNames.HOME);
       } else {
         showMessage({
@@ -81,6 +111,10 @@ export default function Login({ onSignUpPress }: SignInProps) {
       }
     }
   };
+
+  useEffect(() => {
+    handleRetrieveCredentials();
+  }, []);
   return (
     <View style={styles.parentView}>
       <InputText
@@ -113,7 +147,7 @@ export default function Login({ onSignUpPress }: SignInProps) {
           <Checkbox
             style={styles.checkbox}
             value={isChecked}
-            onValueChange={setChecked}
+            onValueChange={handleRememberMe}
             color={isChecked ? AppColors.yellow : AppColors.yellow}
           />
           <Text style={styles.labelRemember}>Remember Me</Text>
@@ -125,7 +159,7 @@ export default function Login({ onSignUpPress }: SignInProps) {
           <Text style={styles.forgotText}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
-      <Button onPress={handleLogin} title="Login" />
+      <Button onPress={() => handleLogin(email, password)} title="Login" />
       <View style={styles.dontHaveAccount}>
         <Text style={styles.labelRemember}>Don't have an account?</Text>
         <TouchableOpacity onPress={onSignUpPress} style={styles.signUpBtn}>

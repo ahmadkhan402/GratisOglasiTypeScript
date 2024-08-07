@@ -16,3 +16,4 @@ export { default as SettingScreen } from "./setting";
 export { default as PrivacyScreen } from "./privacy";
 export { default as ManageAccountScreen } from "./manageAccount";
 export { default as ChangeLanguageScreen } from "./changeLanguage";
+export { default as PersonalAdsScreen } from "./personalAds";
