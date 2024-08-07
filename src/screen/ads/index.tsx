@@ -65,7 +65,7 @@ export default function Ads() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [totalAds, setTotalAds] = useState<number>(0);
   const [showButton, setShowButton] = useState<boolean>(false);
-  const [adsDisplay, setAdsDisplay] = useState<string>(""); // [setAdsDisplay];
+  const [adsDisplay, setAdsDisplay] = useState<string>("grid"); // [setAdsDisplay];
 
   const showMenuDropdown = () => {
     setShowMenu(true);

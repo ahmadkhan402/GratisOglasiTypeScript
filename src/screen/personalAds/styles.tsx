@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     backgroundColor: AppColors.primary,
     width: width(90),
     borderRadius: 30,
-    marginVertical: height(4),
+    marginVertical: height(3),
   },
   myAdsContainer: {
     // backgroundColor: AppColors.white,
@@ -56,5 +56,20 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
+  },
+  btnContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomWidth: 2,
+    borderBottomColor: AppColors.primary,
+    paddingBottom: height(2),
+    // padding: 10,
+  },
+  button: {
+    flex: 1,
+    alignItems: "center",
+  },
+  buttonText: {
+    fontSize: 16,
   },
 });

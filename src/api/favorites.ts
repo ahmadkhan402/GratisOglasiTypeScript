@@ -1,6 +1,6 @@
 import { mainUrl } from "../env";
 
-const getFavorite = async (userid) => {
+const getFavorite = async (userid: string) => {
   try {
     let response = await fetch(mainUrl + `item/favorites/get/${userid}`);
     let json = await response.json();
@@ -11,7 +11,7 @@ const getFavorite = async (userid) => {
   }
 };
 
-const addToFavorite = async (userid, itemid) => {
+const addToFavorite = async (userid: string, itemid: string) => {
   try {
     let response = await fetch(
       mainUrl + `item/favorites/add/${userid}/${itemid}`,
@@ -31,7 +31,7 @@ const addToFavorite = async (userid, itemid) => {
   }
 };
 
-const removeFromFavorite = async (userid, itemid) => {
+const removeFromFavorite = async (userid: string, itemid: string) => {
   try {
     let response = await fetch(
       mainUrl + `item/favorites/remove/${userid}/${itemid}`,

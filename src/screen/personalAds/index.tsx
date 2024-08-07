@@ -4,6 +4,8 @@ import { ScreenWrapper } from "react-native-screen-wrapper";
 import AppColors from "../../utils/AppColors";
 import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "./styles";
+import MyAds from "../../component/myAds";
+import MyFavorites from "../../component/myFavorites";
 
 export default function PersonalAds() {
   const [focusedButton, setFocusedButton] = useState<string | null>("MyAds");
@@ -45,6 +47,10 @@ export default function PersonalAds() {
             <Text style={styles.myFavText}>My Favorites</Text>
           </TouchableOpacity>
         </LinearGradient>
+
+        {/* <View style={styles.container}> */}
+        {focusedButton === "MyAds" ? <MyAds /> : <MyFavorites />}
+        {/* </View> */}
       </View>
     </ScreenWrapper>
   );

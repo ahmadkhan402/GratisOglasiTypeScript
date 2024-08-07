@@ -19,9 +19,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action: PayloadAction<userItem>) => {
-      console.log("payload", action.payload);
-      console.log("state", state.userData);
-
       const userExists = state.userData.find(
         (user) => user.id === action.payload.id
       );
