@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import ScreenNames from "./routes";
@@ -24,9 +24,22 @@ import BottomTab from "./Bottom";
 import { RootStackParamList } from "../utils/params";
 import Ads from "../screen/ads";
 import Details from "../screen/details";
+import { useDispatch, useSelector } from "react-redux";
+import { getFavorite } from "../api/favorites";
+import { addFavorite } from "../redux/favorites";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function Route() {
+  const loginUser = useSelector((state: any) => state.user.userData);
+  // const dispatch = useDispatch();
+  // const getApiRequest = async () => {
+  //   getFavorite(loginUser._id).then((response) => {
+  //     dispatch(addFavorite(response));
+  //   });
+  // };
+  // useEffect(() => {
+  //   getApiRequest();
+  // }, []);
   return (
     <NavigationContainer>
       <Stack.Navigator

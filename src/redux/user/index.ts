@@ -1,33 +1,25 @@
 // store/exampleSlice.js
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-interface userItem {
-  id: number;
-  name: string;
-}
 
 // Define the type for the slice state
 interface userState {
-  userData: userItem[];
+  userData?: object;
 }
 
 // Define the initial state
 const initialState: userState = {
-  userData: [],
+  userData: {},
 };
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    addUser: (state, action: PayloadAction<userItem>) => {
-      const userExists = state.userData.find(
-        (user) => user.id === action.payload.id
-      );
-      if (!userExists) {
-        state.userData.push(action.payload);
-      }
+    addUser: (state, action: PayloadAction<object>) => {
+      state.userData = action.payload;
     },
-    emptyUserData: (state) => {
-      state.userData = [];
+
+    emptyUserData: (state: any) => {
+      state.userData = null;
     },
     // add more reducers as needed
   },

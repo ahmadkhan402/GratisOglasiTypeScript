@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   userImg: {
     width: width(45),
     height: height(22),
-    // borderRadius: 50,
+    borderRadius: 100,
     // backgroundColor: AppColors.white,
   },
   userNameView: {

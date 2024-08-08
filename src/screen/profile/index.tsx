@@ -45,7 +45,7 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    setUser(userData[0]);
+    setUser(userData);
   }, [userData]);
   return (
     <ScreenWrapper statusBarColor={AppColors.primary} barStyle="dark-content">

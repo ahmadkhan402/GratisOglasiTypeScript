@@ -13,8 +13,6 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import { LinearGradient } from "expo-linear-gradient";
 import AppColors from "../../utils/AppColors";
-import Login from "../login";
-import SignUp from "../signup";
 import { ScreenWrapper } from "react-native-screen-wrapper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -29,6 +27,8 @@ import i18n from "../../translation";
 import { RootStackParamList } from "../../utils/params";
 import ScreenNames from "../../routes/routes";
 import { RouteProp, useRoute } from "@react-navigation/native";
+import Login from "../../component/login";
+import SignUp from "../../component/signup";
 
 interface LoginState {
   email: string;

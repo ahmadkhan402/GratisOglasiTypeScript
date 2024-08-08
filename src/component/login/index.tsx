@@ -25,6 +25,7 @@ import {
   setItems,
   storeCredentials,
 } from "../../utils/Methord";
+import { addFavorite, setFavorites } from "../../redux/favorites";
 
 interface SignInProps {
   onSignUpPress: () => void; // Callback function to handle navigation to SignIn
@@ -101,6 +102,7 @@ export default function Login({ onSignUpPress }: SignInProps) {
       });
     } else {
       if (res && res !== "user not found") {
+        dispatch(setFavorites(res.favorites));
         dispatch(addUser(res));
         navigation.navigate(ScreenNames.HOME);
       } else {

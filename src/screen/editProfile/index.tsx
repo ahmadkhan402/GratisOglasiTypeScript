@@ -16,7 +16,7 @@ import * as ImagePicker from "expo-image-picker";
 export default function EditProfile() {
   const { t } = useTranslation();
   const userData = useSelector((state: any) => state.user.userData);
-  const [user, setUser] = useState<any>(userData[0]);
+  const [user, setUser] = useState<any>(userData);
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<string>();
