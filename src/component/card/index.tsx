@@ -31,32 +31,21 @@ export default function Card({ item }: CardProps) {
     (state: any) => state.favorites.favoriteData
   );
   const navigation = useNavigation<CardNavigationProps>();
-  // console.log("====================================");
-  // console.log("Fav", favoritesData);
-  // console.log("====================================");
-  const [user, setUser] = useState<any>();
-  // let isFavorite = loginUser && loginUser?.favorites.includes(item._id);
+
   const isFavorite = favoritesData.includes(item?._id);
   const [showHeart, setShowHeart] = useState<boolean>(isFavorite);
-  const updatedAt = new Date(item.updatedAt);
+
+  const updatedAt = new Date(item.createdAt);
   const timeAgo = formatDistanceToNow(updatedAt, { addSuffix: true });
 
   const handleFavorites = async (itemId: string) => {
     try {
       if (isFavorite || showHeart) {
         const res = await removeFromFavorite(loginUser._id, itemId);
-        // if (res) getUserData();
-        console.log("====================================");
-        console.log("removed ", res);
-        console.log("====================================");
         dispatch(removeFavorite(itemId));
         setShowHeart(false);
       } else {
         const res = await addToFavorite(loginUser._id, itemId);
-        // if (res) getUserData();
-        console.log("====================================");
-        console.log("Add responce", res);
-        console.log("====================================");
         dispatch(addFavorite(itemId));
         setShowHeart(true);
       }
@@ -67,7 +56,7 @@ export default function Card({ item }: CardProps) {
 
   useEffect(() => {
     setShowHeart(isFavorite);
-  }, [favoritesData, isFavorite]);
+  }, [isFavorite]);
   return (
     <TouchableOpacity
       style={styles.cardView}

@@ -41,28 +41,21 @@ export default function MyFavorites() {
   const [showButton, setShowButton] = useState<boolean>(false);
 
   const getApiRequest = async () => {
-    const response = await getFavorites(loginUser._id, loadIndex);
-    console.log("This is response", response);
+    console.log("total ads in redux", favoriteData.length, favoriteData);
+
+    // const response = await getFavorites(loginUser._id, loadIndex);
     getFavorite(loginUser._id).then((response) => {
+      console.log("response", response);
       setFavtItems({ items: response.items && response?.items.reverse() });
-      // dispatch(addFavorite(res));
+
       setLoadIndex(1);
       setTotalAds(response.totalAds);
     });
-    // const sortedItems = response.items.sort(
-    //   (a: ItemType, b: ItemType) =>
-    //     new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-    // );
-
-    // // Set the sorted items
-    // setFavtItems({ ...response, items: sortedItems });
-    // dispatch(addFavorite(response));
   };
   const onRefresh = () => {
     setRefreshing(true);
     getFavorites(loginUser._id, 1).then((response) => {
       setFavtItems({ ...response, items: response.items.reverse() });
-      // dispatch(addFavorite(res));
       setLoadIndex(1);
       setRefreshing(false);
     });
@@ -70,7 +63,18 @@ export default function MyFavorites() {
 
   const handleLoadMore = async () => {
     if (isLoading || favtItems?.items.length >= totalAds) return;
-
+    // console.log(
+    //   "total ads",
+    //   totalAds,
+    //   favtItems?.items.length,
+    //   "check",
+    //   totalAds <= favtItems?.items.length
+    // );
+    if (totalAds <= favtItems?.items.length) {
+      // If total ads are less than or equal to favorite items, stop loading
+      setIsLoading(false);
+      return;
+    }
     try {
       setIsLoading(true);
 
@@ -89,8 +93,8 @@ export default function MyFavorites() {
         setFavtItems((prevAds: any) => ({
           items: [...prevAds?.items, ...allFavItems.items.reverse()], // Append new items
         }));
-
-        // dispatch(addFavorite(allFavItems));
+      } else {
+        setIsLoading(false);
       }
 
       setIsLoading(false);
@@ -101,7 +105,7 @@ export default function MyFavorites() {
   };
 
   const renderFooter = () => {
-    return isLoading ? (
+    return isLoading && favtItems?.items.length < totalAds ? (
       <ActivityIndicator size="large" color={AppColors.primary} />
     ) : null;
   };
@@ -119,11 +123,11 @@ export default function MyFavorites() {
     }
   };
 
-  useFocusEffect(
-    useCallback(() => {
-      getApiRequest();
-    }, [favoriteData])
-  );
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     getApiRequest();
+  //   }, [favoriteData])
+  // );
   useEffect(() => {
     getApiRequest();
   }, [favoriteData]);

@@ -2,6 +2,5 @@
 // export const mainUrl = "https://gratis-backend-atyuo.ondigitalocean.app/";
 
 export const mainUrl = "https://gratis-backend-2-ydadh.ondigitalocean.app/";
-
-("https://gratis-bosnia-test-mzmve.ondigitalocean.app/");
+//   "https://gratis-bosnia-test-mzmve.ondigitalocean.app/";
 // "https://gratis-backend-atyuo.ondigitalocean.app/"

@@ -102,6 +102,9 @@ export default function Login({ onSignUpPress }: SignInProps) {
       });
     } else {
       if (res && res !== "user not found") {
+        console.log("====================================");
+        console.log(res.favorites);
+        console.log("====================================");
         dispatch(setFavorites(res.favorites));
         dispatch(addUser(res));
         navigation.navigate(ScreenNames.HOME);
