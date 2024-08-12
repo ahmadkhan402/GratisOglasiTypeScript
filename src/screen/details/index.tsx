@@ -44,6 +44,7 @@ export default function Details() {
   const [item, setItem] = useState<any>(null);
   const [loading, setLoading] = useState<Boolean>(false);
   const [locationData, setLocationData] = useState<any>(null);
+  const [region, setRegion] = useState<any>({});
 
   const getItemData = async () => {
     setLoading(true);
@@ -55,7 +56,13 @@ export default function Details() {
         setUser(userData);
         const parsedLocation = JSON.parse(itemData.location);
         console.log("parsedLocation", parsedLocation);
-
+        const regionData = {
+          latitude: parsedLocation && parsedLocation?.coordinates.lat,
+          longitude: parsedLocation && parsedLocation?.coordinates.lng,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        };
+        setRegion(regionData);
         setLocationData(parsedLocation);
       }
     } catch (error) {
@@ -83,12 +90,6 @@ export default function Details() {
     getItemData();
   }, [itemId]);
 
-  const region = {
-    latitude: locationData?.coordinates.lat,
-    longitude: locationData?.coordinates.lng,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-  };
   // Ke
   const handleImagePress = (index: number) => {
     if (imgIndex !== index) {
@@ -99,6 +100,7 @@ export default function Details() {
   };
 
   // console.log("locationData ===", locationData ? locationData?.address : "");
+  console.log("region == ", region);
 
   return (
     <ScreenWrapper statusBarColor={AppColors.primary}>
@@ -294,9 +296,13 @@ export default function Details() {
               <Text>{locationData ? locationData?.address : ""}</Text>
 
               <View style={styles.mapView}>
-                <MapView style={styles.map} region={region}>
-                  <Marker coordinate={region} title={locationData?.address} />
-                </MapView>
+                {region && region !== undefined ? (
+                  <MapView style={styles.map} initialRegion={region}>
+                    <Marker coordinate={region} title={locationData?.address} />
+                  </MapView>
+                ) : (
+                  <Text>Location data is not available</Text>
+                )}
               </View>
             </View>
           </ScrollView>
