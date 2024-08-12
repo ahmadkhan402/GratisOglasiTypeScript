@@ -27,12 +27,13 @@ import Modal from "react-native-modal";
 import { height, width } from "../../utils/Dimension";
 import { getItem } from "../../api/item";
 import Images from "../../assets/images";
+import { showMessage } from "react-native-flash-message";
 
 type DetailRouteProps = RouteProp<RootStackParamList, ScreenNames.DETAILS>;
 
 export default function Details() {
   const route = useRoute<DetailRouteProps>();
-  const { params } = route;
+  const itemId = route.params.adsData || {};
   const { t } = useTranslation();
   const [readLessOrMore, setReadLessOrMore] = useState<boolean>(false);
   const [user, setUser] = useState<any>();
@@ -55,15 +56,60 @@ export default function Details() {
     },
   };
 
-  try {
-    locationData = JSON.parse(params?.adsData?.location);
-  } catch (error) {
-    console.error("Error parsing address:", error);
-  }
+  useEffect(() => {
+    if (!itemId) {
+      showMessage({
+        message: "No data available for this item.",
+        type: "danger",
+      });
+      return;
+    }
+
+    const getItemData = async () => {
+      setLoading(true);
+      try {
+        const itemData = await getItem(itemId);
+        setItem(itemData);
+      } catch (error) {
+        console.error("Error fetching item data:", error);
+        showMessage({
+          message: "Error fetching item data. Please try again later.",
+          type: "danger",
+        });
+      }
+      setLoading(false);
+    };
+    try {
+      locationData = JSON.parse(params?.adsData?.location);
+    } catch (error) {
+      console.error("Error parsing address:", error);
+    }
+
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const [userData, itemData] = await Promise.all([
+          getUser(params?.adsData?.addedBy),
+          getItem(params?.adsData?._id),
+        ]);
+        setUser(userData);
+        setItem(itemData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        showMessage({
+          message: "Error fetching data. Please try again later.",
+          type: "danger",
+        });
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [params]);
 
   const region = {
-    latitude: locationData.coordinates.lat,
-    longitude: locationData.coordinates.lng,
+    latitude: locationData?.coordinates.lat,
+    longitude: locationData?.coordinates.lng,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };
@@ -76,25 +122,25 @@ export default function Details() {
     setShowImageModal(!showImageModal);
   };
 
-  const getApiRequest = async () => {
-    setLoading(true);
-    const [userData, itemData] = await Promise.all([
-      getUser(params?.adsData?.addedBy),
-      getItem(params?.adsData?._id),
-    ]);
-    setUser(userData);
-    setItem(itemData);
-    // console.log("itemData", itemData);
+  // const getApiRequest = async () => {
+  //   setLoading(true);
+  //   const [userData, itemData] = await Promise.all([
+  //     getUser(params?.adsData?.addedBy),
+  //     getItem(params?.adsData?._id),
+  //   ]);
+  //   setUser(userData);
+  //   setItem(itemData);
+  //   // console.log("itemData", itemData);
 
-    setLoading(false);
-  };
-  useEffect(() => {
-    const fetchData = async () => {
-      await getApiRequest();
-    };
+  //   setLoading(false);
+  // };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     await getApiRequest();
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   // console.log("item", item);
 
@@ -163,11 +209,13 @@ export default function Details() {
                     {t("details.publishedOn")}
                   </Text>
                 </View>
-                <Text>
-                  {formatDistanceToNow(new Date(params.adsData.createdAt), {
-                    addSuffix: true,
-                  })}
-                </Text>
+                {params?.adsData?.createdAt && (
+                  <Text>
+                    {formatDistanceToNow(new Date(params.adsData.createdAt), {
+                      addSuffix: true,
+                    })}
+                  </Text>
+                )}
               </View>
               <View style={styles.publishView}>
                 <View style={styles.showInRow}>

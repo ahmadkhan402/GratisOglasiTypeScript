@@ -61,7 +61,7 @@ export default function Card({ item }: CardProps) {
     <TouchableOpacity
       style={styles.cardView}
       onPress={() =>
-        navigation.navigate(ScreenNames.DETAILS, { adsData: item })
+        navigation.navigate(ScreenNames.DETAILS, { adsData: item._id })
       }
     >
       <Image source={{ uri: item.images[0] }} style={styles.cardImage} />
