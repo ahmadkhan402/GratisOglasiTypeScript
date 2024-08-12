@@ -20,7 +20,7 @@ export type RootStackParamList = {
     latest?: string;
     subCategory?: string | "";
   };
-  [ScreenNames.DETAILS]: { adsData?: any };
+  [ScreenNames.DETAILS]: { adsId?: any };
   [ScreenNames.SUBCATEGORIES]: {
     category?: string;
     subCategory?: string;

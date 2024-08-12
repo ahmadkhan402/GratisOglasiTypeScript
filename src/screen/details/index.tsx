@@ -33,7 +33,8 @@ type DetailRouteProps = RouteProp<RootStackParamList, ScreenNames.DETAILS>;
 
 export default function Details() {
   const route = useRoute<DetailRouteProps>();
-  const itemId = route.params.adsData || {};
+  const itemId = route.params.adsId || {};
+
   const { t } = useTranslation();
   const [readLessOrMore, setReadLessOrMore] = useState<boolean>(false);
   const [user, setUser] = useState<any>();
@@ -42,18 +43,33 @@ export default function Details() {
   const [swiperKey, setSwiperKey] = useState<number>(0);
   const [item, setItem] = useState<any>(null);
   const [loading, setLoading] = useState<Boolean>(false);
-  // console.log(params.adsData);
+  const [locationData, setLocationData] = useState<any>(null);
+
+  const getItemData = async () => {
+    setLoading(true);
+    try {
+      if (itemId) {
+        const itemData = await getItem(itemId);
+        const userData = await getUser(itemData?.addedBy);
+        setItem(itemData);
+        setUser(userData);
+        const parsedLocation = JSON.parse(itemData.location);
+        console.log("parsedLocation", parsedLocation);
+
+        setLocationData(parsedLocation);
+      }
+    } catch (error) {
+      console.error("Error fetching item data:", error);
+      showMessage({
+        message: "Error fetching item data. Please try again later.",
+        type: "danger",
+      });
+    }
+    setLoading(false);
+  };
 
   const handleReadLessOrMore = () => {
     setReadLessOrMore(!readLessOrMore);
-  };
-
-  let locationData = {
-    address: "",
-    coordinates: {
-      lat: 0,
-      lng: 0,
-    },
   };
 
   useEffect(() => {
@@ -64,48 +80,8 @@ export default function Details() {
       });
       return;
     }
-
-    const getItemData = async () => {
-      setLoading(true);
-      try {
-        const itemData = await getItem(itemId);
-        setItem(itemData);
-      } catch (error) {
-        console.error("Error fetching item data:", error);
-        showMessage({
-          message: "Error fetching item data. Please try again later.",
-          type: "danger",
-        });
-      }
-      setLoading(false);
-    };
-    try {
-      locationData = JSON.parse(params?.adsData?.location);
-    } catch (error) {
-      console.error("Error parsing address:", error);
-    }
-
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const [userData, itemData] = await Promise.all([
-          getUser(params?.adsData?.addedBy),
-          getItem(params?.adsData?._id),
-        ]);
-        setUser(userData);
-        setItem(itemData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        showMessage({
-          message: "Error fetching data. Please try again later.",
-          type: "danger",
-        });
-      }
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [params]);
+    getItemData();
+  }, [itemId]);
 
   const region = {
     latitude: locationData?.coordinates.lat,
@@ -122,27 +98,7 @@ export default function Details() {
     setShowImageModal(!showImageModal);
   };
 
-  // const getApiRequest = async () => {
-  //   setLoading(true);
-  //   const [userData, itemData] = await Promise.all([
-  //     getUser(params?.adsData?.addedBy),
-  //     getItem(params?.adsData?._id),
-  //   ]);
-  //   setUser(userData);
-  //   setItem(itemData);
-  //   // console.log("itemData", itemData);
-
-  //   setLoading(false);
-  // };
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     await getApiRequest();
-  //   };
-
-  //   fetchData();
-  // }, []);
-
-  // console.log("item", item);
+  // console.log("locationData ===", locationData ? locationData?.address : "");
 
   return (
     <ScreenWrapper statusBarColor={AppColors.primary}>
@@ -209,9 +165,9 @@ export default function Details() {
                     {t("details.publishedOn")}
                   </Text>
                 </View>
-                {params?.adsData?.createdAt && (
+                {item?.createdAt && (
                   <Text>
-                    {formatDistanceToNow(new Date(params.adsData.createdAt), {
+                    {formatDistanceToNow(new Date(item?.createdAt), {
                       addSuffix: true,
                     })}
                   </Text>
@@ -229,7 +185,7 @@ export default function Details() {
                   </Text>
                 </View>
                 <Text>
-                  {formatDistanceToNow(new Date(params.adsData.updatedAt), {
+                  {formatDistanceToNow(new Date(item?.updatedAt), {
                     addSuffix: true,
                   })}
                 </Text>
@@ -335,13 +291,11 @@ export default function Details() {
               </View>
 
               <Text style={styles.titleText}>{t("details.location")}</Text>
-              <Text>
-                {item?.location && JSON.parse(item?.location).address}
-              </Text>
+              <Text>{locationData ? locationData?.address : ""}</Text>
 
               <View style={styles.mapView}>
                 <MapView style={styles.map} region={region}>
-                  <Marker coordinate={region} title={locationData.address} />
+                  <Marker coordinate={region} title={locationData?.address} />
                 </MapView>
               </View>
             </View>
