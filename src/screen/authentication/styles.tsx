@@ -104,6 +104,16 @@ const styles = StyleSheet.create({
     paddingLeft: width(1),
     textAlign: "center",
   },
+  menuView: {
+    height: height(5),
+    alignItems: "flex-end",
+    justifyContent: "center",
+    paddingRight: width(15),
+  },
+  menuItems: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
 });
 
 export default styles;

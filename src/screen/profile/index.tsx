@@ -15,6 +15,7 @@ import { addUser, emptyUserData } from "../../redux/user";
 import ConfirmationModal from "../../component/confirmationModal";
 import { ScreenWrapper } from "react-native-screen-wrapper";
 import Loader from "../../component/loaderComponent";
+import { removeCredentials } from "../../utils/Methord";
 
 type navigationProps = NativeStackNavigationProp<
   RootStackParamList,
@@ -37,11 +38,10 @@ export default function Profile() {
     console.log("Logout");
 
     setTimeout(() => {
-      dispatch(emptyUserData());
+      removeCredentials();
       navigation.navigate(ScreenNames.AUTHENTICATION, { showView: "OnLogin" });
       setLoading(false);
     }, 1000);
-    // navigation.navigate(ScreenNames.TABHOME);
   };
 
   useEffect(() => {
@@ -52,10 +52,13 @@ export default function Profile() {
       <View style={styles.parentView}>
         <Header back={false} title={"Profile"} />
         <View style={styles.userContentView}>
-          <Image
-            source={{ uri: user && user?.profilePicture }}
-            style={styles.userImg}
-          />
+          {user?.profilePicture ? (
+            <Image
+              source={{ uri: user && user?.profilePicture }}
+              style={styles.userImg}
+            />
+          ) : null}
+
           <View style={styles.userNameView}>
             <Text style={styles.userName}>
               {user && user?.firstname + " " + user?.lastname}

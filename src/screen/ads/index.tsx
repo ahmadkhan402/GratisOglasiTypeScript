@@ -110,36 +110,6 @@ export default function Ads() {
     );
   };
 
-  // const handleLoadMore = async () => {
-  //   try {
-  //     if (isLoading) return;
-  //     if (allAds?.items.length >= totalAds) return;
-  //     // if (allAds?.items.length >= totalAds) return;
-  //     setIsLoading(true);
-
-  //     let allItemAds: any;
-  //     if (category) {
-  //       allItemAds = await getCategoryAds(category, subCategory, loadIndex);
-  //     } else if (latest) {
-  //       allItemAds = await getAllLatestAds(loadIndex);
-  //     }
-  //     const hasMore = allAds.items.length >= 10;
-  //     setTotalAds(allItemAds.totalAds);
-  //     // Update the load index for the next page
-  //     if (hasMore) {
-  //       setAllAds((prevAds: any) => ({
-  //         items: [...prevAds?.items, ...allItemAds.items], // Append new items
-  //       }));
-  //       setLoadIndex((prevIndex) => prevIndex + 1);
-  //     }
-
-  //     setIsLoading(false);
-  //   } catch (error) {
-  //     console.error("Error fetching ads:", error);
-  //     setIsLoading(false);
-  //   }
-  // };
-
   const handleLoadMore = async () => {
     if (isLoading || allAds?.items.length >= totalAds) return;
 

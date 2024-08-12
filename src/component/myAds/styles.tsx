@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import AppColors from "../../utils/AppColors";
 import { height, width } from "../../utils/Dimension";
 
@@ -21,5 +21,24 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
+  },
+  scrollButton: {
+    position: "absolute",
+    bottom: height(2),
+    right: width(5),
+    backgroundColor: AppColors.wildSand,
+    width: width(8),
+    height: height(4),
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    ...(Platform.OS === "ios"
+      ? {
+          shadowColor: AppColors.black,
+          shadowOffset: { width: 0, height: 1 },
+          shadowOpacity: 0.5,
+          shadowRadius: 2,
+        }
+      : { elevation: 5 }),
   },
 });

@@ -110,15 +110,8 @@ export default function Authentication() {
           <Text style={styles.welcomeText}>Welcome</Text>
           <Text style={styles.enterDetailsText}>Please enter your details</Text>
         </View>
-        <View
-          style={{
-            height: height(5),
-            alignItems: "flex-end",
-            justifyContent: "center",
-            paddingRight: width(15),
-          }}
-        >
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <View style={styles.menuView}>
+          <View style={styles.menuItems}>
             <Text style={styles.MenuText} onPress={showMenu}>
               {ShowMenu}
             </Text>

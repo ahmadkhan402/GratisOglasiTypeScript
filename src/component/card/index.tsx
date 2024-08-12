@@ -13,10 +13,12 @@ import { addToFavorite, removeFromFavorite } from "../../api/favorites";
 import { getUser } from "../../api/user";
 import { addUser } from "../../redux/user";
 import { addFavorite, removeFavorite } from "../../redux/favorites";
+import MenuItems from "../menuItems";
 
 interface CardProps {
   item: any;
   favorites?: boolean;
+  myAds?: boolean;
 }
 
 type CardNavigationProps = NativeStackNavigationProp<
@@ -24,7 +26,7 @@ type CardNavigationProps = NativeStackNavigationProp<
   ScreenNames.DETAILS
 >;
 
-export default function Card({ item }: CardProps) {
+export default function Card({ item, myAds }: CardProps) {
   const loginUser = useSelector((state: any) => state.user.userData);
   const dispatch = useDispatch();
   const favoritesData = useSelector(
@@ -71,10 +73,16 @@ export default function Card({ item }: CardProps) {
           loginUser && handleFavorites(item?._id), setShowHeart(!showHeart);
         }}
       >
-        {showHeart ? (
-          <AntDesign name="heart" size={20} color={AppColors.red} />
+        {myAds ? (
+          <MenuItems />
         ) : (
-          <AntDesign name="hearto" size={20} color={AppColors.gray} />
+          <View>
+            {showHeart ? (
+              <AntDesign name="heart" size={20} color={AppColors.red} />
+            ) : (
+              <AntDesign name="hearto" size={20} color={AppColors.gray} />
+            )}
+          </View>
         )}
       </TouchableOpacity>
       {item.category !== "Jobs" ? (
